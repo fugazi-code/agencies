@@ -47,7 +47,7 @@ class Vouchers extends Component
         Voucher::query()->updateOrCreate(['id' => $this->details['id'] ?? null], $params);
 
         $this->emit('callToaster', [
-            'message' => $this->details['id'] ? 'Voucher has been updated!' : 'New Voucher has been Added!',
+            'message' => isset($this->details['id']) ? 'Voucher has been updated!' : 'New Voucher has been Added!',
         ]);
         $this->details = [];
     }
