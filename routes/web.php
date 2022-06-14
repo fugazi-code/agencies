@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Login;
+use App\Http\Livewire\Users;
 use App\Http\Livewire\Vouchers;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +27,14 @@ Route::post(
     }
 )->name('logout');
 
-Route::middleware(['auth', 'can:agency'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/', Dashboard::class)->name('dashboard');
-    Route::get('/vouchers', Vouchers::class)->name('finance.vouchers');
+
+    Route::middleware(['can:agency'])->group(function () {
+        Route::get('/vouchers', Vouchers::class)->name('finance.vouchers');
+    });
+
+    Route::middleware(['can:admin'])->group(function () {
+        Route::get('/users', Users::class)->name('users');
+    });
 });

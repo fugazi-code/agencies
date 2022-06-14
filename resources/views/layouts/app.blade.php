@@ -55,6 +55,33 @@
         .sidebar .nav .nav-item a.nav-link {
             padding: 3px !important;
         }
+
+        @media (min-width: 992px) {
+            .sidebar-icon-only .sidebar .nav .nav-item .nav-link i {
+                font-size: 17px;
+                margin: auto;
+                padding-top: 13px;
+            }
+        }
+
+        .navbar .navbar-brand-wrapper {
+            width: 180px !important;
+        }
+
+        .sidebar {
+            min-height: auto !important;
+            width: 180px !important;
+        }
+
+        .content-wrapper {
+            min-height: 91vh !important;
+            margin-left: 180px !important;
+            width: calc(100% - 180px) !important;
+        }
+        .footer {
+            margin-left: 180px !important;
+            width: calc(100% - 180px) !important;
+        }
     </style>
     @livewireStyles
 </head>
