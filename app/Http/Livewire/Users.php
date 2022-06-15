@@ -16,6 +16,12 @@ class Users extends Component
         $this->agencies = Agency::list();
     }
 
+    public function updating()
+    {
+        validator($this->details, [
+            ''
+        ]);
+    }
     public function render()
     {
         return view('livewire.users');

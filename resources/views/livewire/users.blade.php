@@ -38,6 +38,14 @@
                 <label>E-mail</label>
                 <x-input model="details.email"/>
             </div>
+            <div class="col-md-4 mb-3">
+                <label>Password</label>
+                <x-input type="password" model="details.password"/>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label>Confirm Password</label>
+                <x-input type="password" model="details.password_confirmation"/>
+            </div>
         </div>
         <x-slot name="button">
             <button type="button" class="btn btn-primary">Save changes</button>
