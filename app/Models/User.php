@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -74,14 +74,14 @@ class User extends Authenticatable
         return (new static())->newQuery()->where('role', 5)->pluck('id');
     }
 
-    public function information()
-    {
-        return $this->belongsTo(Information::class, 'id', 'user_id');
-    }
-
     public function employee()
     {
         return $this->hasMany(Candidate::class, 'employer_id', 'id');
+    }
+
+    public function information()
+    {
+        return $this->belongsTo(Information::class, 'information_id', 'id');
     }
 
     public function agency()

@@ -20,14 +20,39 @@
         </div>
     </div>
 
-    <x-modalform id="userModal" modalTitle="New User">
+    <x-modalform id="userModal" modalTitle="New User" size="modal-lg">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label>Agency</label>
+                <x-select model="details.agency">
+                    @foreach($agencies as $agency)
+                        <option value="{{ $agency['id'] }}">{{ $agency['name'] }}</option>
+                    @endforeach
+                </x-select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label>Name</label>
+                <x-input model="details.name"/>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label>E-mail</label>
+                <x-input model="details.email"/>
+            </div>
+        </div>
+        <x-slot name="button">
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </x-slot>
+    </x-modalform>
+
+
+    <x-modalform id="userEditModal" modalTitle="Edit User">
         <div class="row">
             <div>
 
             </div>
         </div>
         <x-slot name="button">
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-info">Update</button>
         </x-slot>
     </x-modalform>
 </div>

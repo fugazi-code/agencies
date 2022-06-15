@@ -20,20 +20,8 @@ class Agency extends Model
         'created_by',
     ];
 
-    public function coHost()
+    public static function list()
     {
-        return $this->hasMany(User::class, 'agency_id', 'id')
-                    ->where('role', 5)
-                    ->join('information as inf', 'inf.user_id', '=', 'users.id');
-    }
-
-    public function contracts()
-    {
-        return $this->hasMany(Contract::class, 'agency_id', 'id');
-    }
-
-    public function contractsPending()
-    {
-        return $this->hasMany(Contract::class, 'agency_id', 'id')->where('status', 'Pending');
+        return self::query()->select(['id', 'name'])->get()->toArray();
     }
 }
