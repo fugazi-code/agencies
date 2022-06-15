@@ -16,6 +16,7 @@
     <script>
         window.addEventListener('toaster-js', event => {
             $('.toast').toast('show');
+            $('.modal').modal('hide')
         })
     </script>
 </div>

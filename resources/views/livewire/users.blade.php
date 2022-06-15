@@ -24,10 +24,18 @@
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label>Agency</label>
-                <x-select model="details.agency">
+                <x-select model="details.agency_id">
                     @foreach($agencies as $agency)
                         <option value="{{ $agency['id'] }}">{{ $agency['name'] }}</option>
                     @endforeach
+                </x-select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label>Roles</label>
+                <x-select model="details.role">
+                    <option value="1">Admin</option>
+                    <option value="2">Agency</option>
+                    <option value="4">Gov</option>
                 </x-select>
             </div>
             <div class="col-md-4 mb-3">
@@ -46,12 +54,14 @@
                 <label>Confirm Password</label>
                 <x-input type="password" model="details.password_confirmation"/>
             </div>
+            <div class="col-md-12">
+                <x-errors/>
+            </div>
         </div>
         <x-slot name="button">
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary" wire:click="store">Save changes</button>
         </x-slot>
     </x-modalform>
-
 
     <x-modalform id="userEditModal" modalTitle="Edit User">
         <div class="row">

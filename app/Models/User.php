@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @property mixed $agency_id
@@ -21,8 +23,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
         'email',
+        'role',
+        'agency_id',
+        'information_id',
         'password',
     ];
 
@@ -87,5 +91,10 @@ class User extends Authenticatable
     public function agency()
     {
         return $this->belongsTo(Agency::class, 'agency_id', 'id');
+    }
+
+    public function password(): Attribute
+    {
+        return Attribute::make(set: fn($value) => bcrypt($value));
     }
 }

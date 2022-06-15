@@ -20,5 +20,6 @@ class Toaster extends Component
         $this->emit('refreshDatatable');
         $this->message = $attribute['message'];
         $this->dispatchBrowserEvent('toaster-js');
+        $this->emit('refreshDatatable');
     }
 }
