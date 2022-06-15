@@ -76,7 +76,7 @@ class User extends Authenticatable
 
     public function information()
     {
-        return $this->hasOne(Information::class, 'user_id', 'id');
+        return $this->belongsTo(Information::class, 'id', 'user_id');
     }
 
     public function employee()
@@ -86,6 +86,6 @@ class User extends Authenticatable
 
     public function agency()
     {
-        return $this->hasMany(Agency::class, 'id', 'agency_id');
+        return $this->belongsTo(Agency::class, 'agency_id', 'id');
     }
 }
