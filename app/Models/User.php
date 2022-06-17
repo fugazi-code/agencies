@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
 
 /**
  * @property mixed $agency_id
@@ -96,5 +95,13 @@ class User extends Authenticatable
     public function password(): Attribute
     {
         return Attribute::make(set: fn($value) => bcrypt($value));
+    }
+
+    public function tableQuery()
+    {
+        return $this->newQuery()
+            ->selectRaw('users.id as prime_id, users.*, information.*')
+            ->leftJoin('information', 'information.id', '=', 'users.information_id')
+            ->leftJoin('agencies as agency', 'agency.id', '=', 'users.agency_id');
     }
 }

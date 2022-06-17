@@ -13,9 +13,9 @@ class UserTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make("Actions")
+            Column::make("Actions", "prime_id")
                 ->format(fn($id) => view('buttons.actions',
-                    ['id' => $id, 'listener' => 'hello', 'modal' => 'userEditModal']))
+                    ['id' => $id, 'listener' => 'bindUserDetails', 'modal' => 'userEditModal']))
                 ->asHtml(),
             Column::make("ID", "prime_id")
                 ->sortable(),
@@ -33,9 +33,6 @@ class UserTable extends DataTableComponent
 
     public function query(): Builder
     {
-        return User::query()
-            ->selectRaw('users.id as prime_id, users.*')
-            ->leftJoin('information', 'information.id', '=', 'users.information_id')
-            ->leftJoin('agencies as agency', 'agency.id', '=', 'users.agency_id');
+        return app(User::class)->tableQuery();
     }
 }
