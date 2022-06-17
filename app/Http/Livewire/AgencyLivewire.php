@@ -84,4 +84,12 @@ class AgencyLivewire extends Component
         $this->emit('callToaster', ['message' => 'Agency has been Updated!']);
         $this->details = [];
     }
+
+    public function delete()
+    {
+        Agency::query()->where('id', $this->details['id'])->delete();
+
+        $this->emit('callToaster', ['message' => 'Agency has been Updated!']);
+        $this->details = [];
+    }
 }

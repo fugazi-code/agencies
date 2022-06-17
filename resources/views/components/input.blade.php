@@ -1,3 +1,5 @@
 <div>
-    <input type="{{ $type ?? 'text' }}" class="{{ $type == 'file' ? 'form-input' : 'form-control' }}" wire:model="{{ $model }}">
+    <input type="{{ $type ?? 'text' }}"
+           class="{{ isset($type) ? ($type == 'file' ? 'form-input' :'form-control') : 'form-control' }}"
+           wire:model="{{ $model }}">
 </div>
