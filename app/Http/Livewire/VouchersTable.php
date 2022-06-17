@@ -26,13 +26,14 @@ class VouchersTable extends DataTableComponent
     {
         return [
             Column::make('Action', 'id')
-                ->format(fn($value, $row, Column $column) => view('buttons.actions-voucher', $row)),
+                ->format(fn($value) => view('buttons.actions',
+                    ['id' => $value, 'listener' => 'bindUserDetails', 'modal' => 'userEditModal'])),
             Column::make("Created at", "created_at")
                 ->sortable()
-                ->format(fn($value, $row, Column $column) => Carbon::parse($row->created_at)->format('F j, Y H:iA')),
-            Column::make("Created by", "user.email")->eagerLoadRelations()
+                ->format(fn($value) => Carbon::parse($value)->format('F j, Y H:iA')),
+            Column::make("Created by", "users.email")
                 ->sortable(),
-            Column::make("Agency", "agency.name")->eagerLoadRelations()
+            Column::make("Agency", "agency.name")
                 ->sortable(),
             Column::make("Applicant Name", "name")
                 ->searchable()
@@ -115,11 +116,13 @@ class VouchersTable extends DataTableComponent
     public function query()
     {
         return Voucher::query()
-        ->where('vouchers.agency_id', auth()->user()->agency_id)
-        ->when(
-            isset($this->filtered['account']),
-            fn($q) => $q->where('vouchers.created_by', $this->filtered['account']),
-            fn($q) => $q->where('vouchers.created_by', auth()->id())
-        );
+            ->selectRaw('vouchers.*, users.email')
+            ->where('vouchers.agency_id', auth()->user()->agency_id)
+            ->join('users', 'users.id', '=', 'vouchers.created_by')
+            ->when(
+                isset($this->filtered['account']),
+                fn($q) => $q->where('vouchers.created_by', $this->filtered['account']),
+                fn($q) => $q->where('vouchers.created_by', auth()->id())
+            );
     }
 }

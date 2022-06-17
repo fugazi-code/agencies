@@ -81,6 +81,7 @@ class Users extends Component
 //            'type' => $this->details['type'],
 //            'poea' => $this->details['poea'],
         ]);
+
         User::query()->where('id', $this->details['prime_id'])->update([
             'email'=> $this->details['email'],
             'role'=> $this->details['role'],

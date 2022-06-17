@@ -43,14 +43,12 @@ class Voucher extends Model
         "vaccine_fare",
     ];
 
-    protected $with = ['user', 'agency'];
-
     public function information(): HasOne
     {
         return $this->hasOne(Information::class, 'user_id', 'created_by');
     }
 
-    public function user(): HasOne
+    public function users(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'created_by');
     }
