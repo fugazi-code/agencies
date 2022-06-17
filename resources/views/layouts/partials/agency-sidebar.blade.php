@@ -21,6 +21,12 @@
             </li>
         @endcan
         @can('admin')
+            <li class="nav-item @if(request()->routeIs('agencies')) active @endif">
+                <a class="nav-link p-0" href="{{ route('agencies') }}">
+                    <i class="fas fa-building my-auto"></i>
+                    <span class="menu-title">Agency</span>
+                </a>
+            </li>
             <li class="nav-item @if(request()->routeIs('users')) active @endif">
                 <a class="nav-link p-0" href="{{ route('users') }}">
                     <i class="fas fa-users my-auto"></i>

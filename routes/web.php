@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\AgencyLivewire;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\Users;
@@ -36,5 +37,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['can:admin'])->group(function () {
         Route::get('/users', Users::class)->name('users');
+        Route::get('/agencies', AgencyLivewire::class)->name('agencies');
     });
 });

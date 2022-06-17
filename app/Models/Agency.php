@@ -24,4 +24,9 @@ class Agency extends Model
     {
         return self::query()->select(['id', 'name'])->get()->toArray();
     }
+
+    public function users()
+    {
+        return $this->hasOne(User::class, 'id', 'created_by');
+    }
 }
