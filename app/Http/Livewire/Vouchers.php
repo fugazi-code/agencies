@@ -38,7 +38,7 @@ class Vouchers extends Component
 
     public function edit($id)
     {
-        $this->details = Voucher::query()->find($id)->toArray();
+        $this->details = Voucher::query()->find($id)->toArray()[0];
     }
 
     public function store()

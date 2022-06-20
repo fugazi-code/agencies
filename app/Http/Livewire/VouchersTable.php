@@ -10,6 +10,8 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 class VouchersTable extends DataTableComponent
 {
     public array $filtered = [];
+    public string $defaultSortColumn = 'created_at';
+    public string $defaultSortDirection = 'desc';
 
     protected $listeners = [
         'voucherFiltered'  => 'setFiltered',
@@ -27,7 +29,7 @@ class VouchersTable extends DataTableComponent
         return [
             Column::make('Action', 'id')
                 ->format(fn($value) => view('buttons.actions',
-                    ['id' => $value, 'listener' => 'bindUserDetails', 'modal' => 'userEditModal'])),
+                    ['id' => $value, 'listener' => 'editVoucher', 'modal' => 'voucherEditModal'])),
             Column::make("Created at", "created_at")
                 ->sortable()
                 ->format(fn($value) => Carbon::parse($value)->format('F j, Y H:iA')),
