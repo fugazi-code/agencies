@@ -9,12 +9,15 @@ use App\Models\Candidate;
 
 class ApplicantsTable extends DataTableComponent
 {
+    public string $defaultSortColumn = 'date_hired';
+    public string $defaultSortDirection = 'desc';
 
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
-                ->sortable(),
+            Column::make('Action', 'id')
+                ->format(fn($value) => view('buttons.actions',
+                    ['link' => route('applicant.form', ['candidate_id' => encrypt($value)])])),
             Column::make("Date hired", "date_hired")
                 ->sortable(),
             Column::make("Code", "code")
@@ -28,6 +31,8 @@ class ApplicantsTable extends DataTableComponent
             Column::make("Gender", "gender")
                 ->sortable(),
             Column::make("Status", "status")
+                ->sortable(),
+            Column::make("Row ID", "id")
                 ->sortable(),
         ];
     }

@@ -31,13 +31,24 @@ class ApplicationFromLivewire extends Component
 
     public $picfull;
 
-    public function mount()
-    {
-        $this->generateCode();
-    }
+    protected $queryString = ['candidate_id'];
+
+    public ?string $candidate_id = '';
+
+    public ?string $cand_id = '';
 
     public function render()
     {
+        if($this->candidate_id) {
+            $this->cand_id = decrypt($this->candidate_id);
+            $this->details = Candidate::query()->find($this->cand_id)->toArray();
+            $this->children = Children::query()->where('candidate_id', $this->cand_id)->first()?->toArray() ?? [];
+            $this->workHistory = EmploymentHistory::query()->where('candidate_id', $this->cand_id)->first()?->toArray() ?? [];
+            $this->languageLevel = LanguageLevel::query()->where('candidate_id', $this->cand_id)->first()?->toArray() ?? [];
+        } else {
+            $this->generateCode();
+        }
+
         return view('livewire.application-from-livewire');
     }
 

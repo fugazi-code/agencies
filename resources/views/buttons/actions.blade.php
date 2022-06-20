@@ -1,7 +1,13 @@
 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-info" data-toggle="modal"
-            data-target="#{{ $modal }}"
-            wire:click="$emit('{{ $listener }}', {'id' : {{ $id }}})">
+    <a href="{{ $link ?? '#'}}" class="btn btn-info"
+            @isset($modal)
+                 data-toggle="modal"
+                data-target="#{{ $modal }}"
+            @endisset
+            @isset($listener)
+                wire:click="$emit('{{ $listener }}', {'id' : {{ $id }}})"
+            @endisset
+    >
         <i class="fas fa-pencil"></i>
-    </button>
+    </a>
 </div>

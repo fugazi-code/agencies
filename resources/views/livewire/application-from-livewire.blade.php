@@ -19,6 +19,10 @@
                     <x-input model="details.contact_1"/>
                 </div>
                 <div class="col-md-3 mb-2">
+                    <label>Date Hired</label>
+                    <x-input type="date" model="details.date_hired"/>
+                </div>
+                <div class="col-md-3 mb-2">
                     <label>Code</label>
                     <div class="d-flex flex-row w-100">
                         <x-input model="details.code" wrapper="w-100" attr="readonly"/>
@@ -136,6 +140,10 @@
                         Photo Preview:
                         <img src="{{ $photo_url->temporaryUrl() }}" class="img-fluid">
                     @endif
+                    @isset($details['photo_url'])
+                        Photo Preview:
+                        <img src="{{ asset($details['photo_url']) }}" class="img-fluid">
+                    @endisset
                 </div>
                 <div class="col-md-3 mb-2">
                     <label>Picture of Full-body</label>
@@ -144,6 +152,10 @@
                         Photo Preview:
                         <img src="{{ $picfull->temporaryUrl() }}" class="img-fluid">
                     @endif
+                    @isset ($details['picfull'])
+                        Photo Preview:
+                        <img src="{{ asset($details['picfull']) }}" class="img-fluid">
+                    @endisset
                 </div>
                 <div class="col-md-12"></div>
                 <div class="col-md-4 mb-2 mt-4">
@@ -276,9 +288,11 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-3 mt-5">
-                    <x-a-button class="btn btn-primary w-100" click="store">
-                        <h5>Confirm and Save</h5>
-                    </x-a-button>
+                    @if(!$candidate_id)
+                        <x-a-button class="btn btn-primary w-100" click="store">
+                            <h5>Confirm and Save</h5>
+                        </x-a-button>
+                    @endif
                 </div>
             </div>
         </div>
