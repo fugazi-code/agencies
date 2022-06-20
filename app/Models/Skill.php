@@ -10,7 +10,8 @@ class Skill extends Model
     use HasFactory;
 
     protected $fillable = [
-        'agency_id',
-        'name',
+        'candidate_id',
+        'skill',
+        'remarks',
     ];
 }

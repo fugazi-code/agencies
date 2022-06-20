@@ -124,17 +124,39 @@
                     <label>Weight</label>
                     <x-input model="details.weight"/>
                 </div>
+                <div class="col-md-6 mb-2">
+                    <label>Objectives</label>
+                    <x-textarea model="details.remarks"/>
+                </div>
+                <div class="col-md-12"></div>
+                <div class="col-md-3 mb-2">
+                    <label>Picture of Face</label>
+                    <x-input type="file" model="photo_url"/>
+                    @if ($photo_url)
+                        Photo Preview:
+                        <img src="{{ $photo_url->temporaryUrl() }}" class="img-fluid">
+                    @endif
+                </div>
+                <div class="col-md-3 mb-2">
+                    <label>Picture of Full-body</label>
+                    <x-input type="file" model="picfull"/>
+                    @if ($picfull)
+                        Photo Preview:
+                        <img src="{{ $picfull->temporaryUrl() }}" class="img-fluid">
+                    @endif
+                </div>
+                <div class="col-md-12"></div>
                 <div class="col-md-4 mb-2 mt-4">
                     <div class="col-md-auto d-flex flex-row">
-                        <h4 class="mr-2">Childrens</h4> <x-a-button click="addChildren">Add Children</x-a-button>
+                        <x-a-button click="addChildren"><i class="fas fa-plus"></i></x-a-button><h4 class="ml-2">Childrens</h4>
                     </div>
                     <div class="row mt-4">
                         <div class="col-md-12">
-                            <table>
+                            <table class="w-100 table-bordered">
                                 <thead>
                                 <th class="text-center">Sex</th>
                                 <th class="text-center">Age</th>
-                                <th></th>
+                                <th class="text-center">Action</th>
                                 </thead>
                                 <tbody>
                                 @foreach($children as $key => $child)
@@ -154,18 +176,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-2 mt-4">
+                <div class="col-md-8 mb-2 mt-4">
                     <div class="col-md-auto d-flex flex-row">
-                        <h4 class="mr-2">Work History</h4> <x-a-button click="addWorkHistory">Add Work History</x-a-button>
+                        <x-a-button click="addWorkHistory"><i class="fas fa-plus"></i></x-a-button><h4 class="ml-2">Work History</h4>
                     </div>
                     <div class="row mt-4">
                         <div class="col-md-12">
-                            <table>
+                            <table class="w-100 table-bordered">
                                 <thead>
                                     <th class="text-center">Country</th>
                                     <th class="text-center">Category</th>
                                     <th class="text-center">Periods</th>
-                                    <th></th>
+                                    <th class="text-center">Action</th>
                                 </thead>
                                 <tbody>
                                 @foreach($workHistory as $key => $work)
@@ -188,6 +210,75 @@
                             </table>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-4 mb-2 mt-4">
+                    <div class="col-md-auto d-flex flex-row">
+                        <x-a-button click="addLanguage"><i class="fas fa-plus"></i></x-a-button> <h4 class="ml-2">Language Level</h4>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <table class="w-100 table-bordered">
+                                <thead>
+                                <th class="text-center">Language</th>
+                                <th class="text-center">Level</th>
+                                <th class="text-center">Action</th>
+                                </thead>
+                                <tbody>
+                                @foreach($languageLevel as $key => $work)
+                                    <tr>
+                                        <td>
+                                            <x-input model="languageLevel.{{ $key }}.language"></x-input>
+                                        </td>
+                                        <td>
+                                            <x-input model="languageLevel.{{ $key }}.level"></x-input>
+                                        </td>
+                                        <td>
+                                            <x-a-button class="btn btn-danger" click="languageUnset({{ $key }})">Remove</x-a-button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2 mt-4">
+                    <div class="col-md-auto d-flex flex-row">
+                        <x-a-button click="addSkills"><i class="fas fa-plus"></i></x-a-button> <h4 class="ml-2">Other Skills</h4>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <table class="w-100 table-bordered">
+                                <thead>
+                                <th class="text-center">Skill</th>
+                                <th class="text-center">Remarks</th>
+                                <th class="text-center">Action</th>
+                                </thead>
+                                <tbody>
+                                @foreach($skills as $key => $skill)
+                                    <tr>
+                                        <td>
+                                            <x-input model="skills.{{ $key }}.skill"></x-input>
+                                        </td>
+                                        <td>
+                                            <x-input model="skills.{{ $key }}.remarks"></x-input>
+                                        </td>
+                                        <td>
+                                            <x-a-button class="btn btn-danger" click="skillUnset({{ $key }})">Remove</x-a-button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-3 mt-5">
+                    <x-a-button class="btn btn-primary w-100" click="store">
+                        <h5>Confirm and Save</h5>
+                    </x-a-button>
                 </div>
             </div>
         </div>
