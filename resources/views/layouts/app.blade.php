@@ -74,6 +74,10 @@
         .sidebar {
             min-height: auto;
         }
+
+        select.form-control:not([size]):not([multiple]) {
+            height: calc(2.25rem + 9px) !important;
+        }
     </style>
     @livewireStyles
 </head>

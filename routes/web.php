@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Livewire\AgencyLivewire;
+use App\Http\Livewire\ApplicantsLivewire;
+use App\Http\Livewire\ApplicationFromLivewire;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\Users;
@@ -33,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['can:agency'])->group(function () {
         Route::get('/vouchers', Vouchers::class)->name('finance.vouchers');
+        Route::get('/applicants', ApplicantsLivewire::class)->name('applicants');
+        Route::get('/applicant/form', ApplicationFromLivewire::class)->name('applicant.form');
     });
 
     Route::middleware(['can:admin'])->group(function () {

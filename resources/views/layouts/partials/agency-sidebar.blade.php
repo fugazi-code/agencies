@@ -13,6 +13,12 @@
             </a>
         </li>
         @can('agency')
+            <li class="nav-item @if(request()->routeIs('applicants')) active @endif">
+                <a class="nav-link p-0" href="{{ route('applicants') }}">
+                    <i class="fas fa-folder my-auto"></i>
+                    <span class="menu-title">Applicants</span>
+                </a>
+            </li>
             <li class="nav-item @if(request()->routeIs('finance.vouchers')) active @endif">
                 <a class="nav-link p-0" href="{{ route('finance.vouchers') }}">
                     <i class="fas fa-ticket my-auto"></i>
