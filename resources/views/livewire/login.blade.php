@@ -2,9 +2,12 @@
     <div class="container-scroller">
         <div class="container-fluid">
             <div class="row">
-                <div class="content-wrapper full-page-wrapper d-flex align-items-center auth-pages">
+                <div class="content-wrapper full-page-wrapper d-flex align-items-center auth-pages" style="height: 100vh">
                     <div class="card col-lg-4 mx-auto">
                         <div class="card-body px-5 py-5">
+                            <div class="col-auto mx-auto">
+                                <img src="{{ $photo_link }}" class="img-fluid">
+                            </div>
                             <h3 class="card-title text-left mb-3">Login</h3>
                             <form>
                                 <div class="form-group">
@@ -23,7 +26,7 @@
 {{--                                    <a href="#" class="forgot-pass">Forgot password</a>--}}
                                 </div>
                                 <div class="text-center">
-                                    <a href="#" class="btn btn-primary btn-block enter-btn"
+                                    <a href="#" class="btn btn-primary btn-block enter-btn shadow"
                                             wire:click="authenticate">LOG IN
                                     </a>
                                 </div>

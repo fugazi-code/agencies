@@ -2,27 +2,28 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Agency;
 use App\Models\User;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Login extends Component
 {
-    public ?string $email = '';
-    public ?string $password = '';
-
-    protected $rules = [
+    public ?string $email       = '';
+    public ?string $password    = '';
+    public ?string $agency      = '';
+    public ?string $photo_link  = '';
+    protected      $queryString = ['agency'];
+    protected      $rules       = [
         'email'    => 'required|email|max:50',
         'password' => 'required',
     ];
 
     public function mount()
     {
-        if(!Auth::guest()) {
+        $this->photo_link = Agency::find($this->agency)?->logo_path;
+
+        if (! Auth::guest()) {
             return redirect()->route('dashboard');
         }
     }
