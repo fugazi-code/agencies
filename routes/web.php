@@ -26,7 +26,7 @@ Route::post(
     function () {
         Auth::logout();
 
-        return redirect()->route('login');
+        return redirect()->route('login', ['agency' => auth()->user()->agency_id]);
     }
 )->name('logout');
 
