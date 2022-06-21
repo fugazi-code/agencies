@@ -99,7 +99,7 @@
             </div>
         </div>
         <x-slot name="button">
-            <button type="button" class="btn btn-info" wire:click="edit">Update</button>
+            <button type="button" class="btn btn-info" wire:click="edit" wire:loading.remove>Update</button>
             <button type="button" class="btn btn-danger" wire:click="delete">Delete</button>
         </x-slot>
     </x-modalform>
