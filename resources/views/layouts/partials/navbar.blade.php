@@ -2,7 +2,8 @@
 <nav class="navbar navbar-default col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="bg-white text-center navbar-brand-wrapper">
         <a class="navbar-brand brand-logo" href="{{ route('dashboard') }}">
-            <img src="{{ \Illuminate\Support\Facades\Storage::url(auth()->user()->agency()->pluck('logo_path')[0]) }}" class="img-fluid">
+            <img src="{{ \Illuminate\Support\Facades\Storage::url(auth()->user()->agency()->pluck('logo_path')[0]) }}"
+            style="max-width: 25%;">
         </a>
         <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard') }}">
             <img src="{{ asset('images/logo_star_mini.jpg') }}" alt="">
