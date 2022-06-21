@@ -24,9 +24,10 @@ Route::get('/login', Login::class)->name('login');
 Route::post(
     '/logout',
     function () {
+        $agency = auth()->user()->agency_id;
         Auth::logout();
 
-        return redirect()->route('login', ['agency' => session('agency')]);
+        return redirect()->route('login', ['agency' => $agency]);
     }
 )->name('logout');
 

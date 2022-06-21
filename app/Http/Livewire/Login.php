@@ -30,7 +30,6 @@ class Login extends Component
 
     public function render()
     {
-        session(['agency' => $this->agency]);
         return view('livewire.login');
     }
 
