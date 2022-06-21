@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Candidate;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Candidate;
 
 class ApplicantsTable extends DataTableComponent
 {
-    public string $defaultSortColumn = 'date_hired';
+    public string $defaultSortColumn    = 'date_hired';
     public string $defaultSortDirection = 'desc';
 
     public function columns(): array
@@ -19,6 +20,7 @@ class ApplicantsTable extends DataTableComponent
                 ->format(fn($value) => view('buttons.actions',
                     ['link' => route('applicant.form', ['candidate_id' => encrypt($value)])])),
             Column::make("Date hired", "date_hired")
+                ->format(fn($value) => $value ? Carbon::parse($value)->format('F j, Y') : '')
                 ->sortable(),
             Column::make("Code", "code")
                 ->sortable(),
@@ -31,8 +33,6 @@ class ApplicantsTable extends DataTableComponent
             Column::make("Gender", "gender")
                 ->sortable(),
             Column::make("Status", "status")
-                ->sortable(),
-            Column::make("Row ID", "id")
                 ->sortable(),
         ];
     }

@@ -39,12 +39,20 @@ class ApplicationFromLivewire extends Component
 
     public function render()
     {
-        if($this->candidate_id) {
-            $this->cand_id = decrypt($this->candidate_id);
-            $this->details = Candidate::query()->find($this->cand_id)->toArray();
-            $this->children = Children::query()->where('candidate_id', $this->cand_id)->first()?->toArray() ?? [];
-            $this->workHistory = EmploymentHistory::query()->where('candidate_id', $this->cand_id)->first()?->toArray() ?? [];
-            $this->languageLevel = LanguageLevel::query()->where('candidate_id', $this->cand_id)->first()?->toArray() ?? [];
+        if ($this->candidate_id) {
+            if ($this->cand_id == '') {
+                $this->cand_id = decrypt($this->candidate_id);
+                $this->details = Candidate::query()->find($this->cand_id)->toArray();
+
+                $this->children      = Children::query()->where('candidate_id',
+                        $this->cand_id)->get()?->toArray() ?? [];
+                $this->workHistory   = EmploymentHistory::query()->where('candidate_id',
+                        $this->cand_id)->get()?->toArray() ?? [];
+                $this->languageLevel = LanguageLevel::query()->where('candidate_id',
+                        $this->cand_id)->get()?->toArray() ?? [];
+                $this->skills        = Skill::query()->where('candidate_id',
+                        $this->cand_id)->get()?->toArray() ?? [];
+            }
         } else {
             $this->generateCode();
         }
@@ -122,10 +130,10 @@ class ApplicationFromLivewire extends Component
 
     public function store()
     {
-        if($this->photo_url) {
+        if ($this->photo_url) {
             $this->details['photo_url'] = $this->photo_url->store('applicant');
         }
-        if($this->picfull) {
+        if ($this->picfull) {
             $this->details['picfull'] = $this->picfull->store('applicant');
         }
 
@@ -148,6 +156,44 @@ class ApplicationFromLivewire extends Component
 
         foreach ($this->skills as $skill) {
             $skill['candidate_id'] = $id;
+            Skill::query()->create($skill);
+        }
+
+        return redirect()->route('applicants');
+    }
+
+    public function edit()
+    {
+        if ($this->photo_url) {
+            $this->details['photo_url'] = $this->photo_url->store('applicant');
+        }
+        if ($this->picfull) {
+            $this->details['picfull'] = $this->picfull->store('applicant');
+        }
+
+        Candidate::query()->where('id', $this->cand_id)->update($this->details);
+
+        Children::query()->where('candidate_id', $this->cand_id)->delete();
+        foreach ($this->children as $child) {
+            $child['candidate_id'] = $this->cand_id;
+            Children::query()->create($child);
+        }
+
+        EmploymentHistory::query()->where('candidate_id', $this->cand_id)->delete();
+        foreach ($this->workHistory as $work) {
+            $work['candidate_id'] = $this->cand_id;
+            EmploymentHistory::query()->create($work);
+        }
+
+        LanguageLevel::query()->where('candidate_id', $this->cand_id)->delete();
+        foreach ($this->languageLevel as $language) {
+            $language['candidate_id'] = $this->cand_id;
+            LanguageLevel::query()->create($language);
+        }
+
+        Skill::query()->where('candidate_id', $this->cand_id)->delete();
+        foreach ($this->skills as $skill) {
+            $skill['candidate_id'] = $this->cand_id;
             Skill::query()->create($skill);
         }
 

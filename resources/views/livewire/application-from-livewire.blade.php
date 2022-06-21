@@ -292,6 +292,10 @@
                         <x-a-button class="btn btn-primary w-100" click="store">
                             <h5>Confirm and Save</h5>
                         </x-a-button>
+                    @else
+                        <x-a-button class="btn btn-info w-100" click="edit">
+                            <h5>Confirm and Update</h5>
+                        </x-a-button>
                     @endif
                 </div>
             </div>
