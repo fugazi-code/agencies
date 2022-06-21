@@ -21,6 +21,7 @@ class Login extends Component
 
     public function mount()
     {
+        session(['agency' => $this->agency]);
         $this->photo_link = Agency::find($this->agency)?->logo_path;
 
         if (! Auth::guest()) {
