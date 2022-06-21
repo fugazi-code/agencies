@@ -92,7 +92,7 @@
             </div>
             <div class="col-md-6 mb-2">
                 <label>Preview</label>
-                <img src="{{ Storage::url($details['logo_path']) ?? '' }}" class="img-fluid">
+                <img src="{{ $details['logo_path']? Storage::url($details['logo_path']) : '' }}" class="img-fluid">
             </div>
             <div class="col-md-12 mb-2">
                 <x-errors/>
