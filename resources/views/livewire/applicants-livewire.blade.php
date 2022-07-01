@@ -13,8 +13,8 @@
                     <div class="row mb-4 mx-2">
                     </div>
                 </div>
-                <div class="col-12">
-                    <livewire:applicants-table/>
+                <div>
+                    <x-throwexceptions::gridjs :table="$applicantTable" name="tableApplicant"/>
                 </div>
             </div>
         </div>

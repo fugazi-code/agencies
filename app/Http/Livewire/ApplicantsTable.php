@@ -17,7 +17,7 @@ class ApplicantsTable extends DataTableComponent
     {
         return [
             Column::make('Action', 'id')
-                ->format(fn($value) => view('buttons.actions',
+                ->format(fn($value) => view('buttons.actions-application',
                     ['link' => route('applicant.form', ['candidate_id' => encrypt($value)])])),
             Column::make("Date hired", "date_hired")
                 ->format(fn($value) => $value ? Carbon::parse($value)->format('F j, Y') : '')

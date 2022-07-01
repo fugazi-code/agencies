@@ -62,6 +62,7 @@ class Candidate extends Model
         'created_at',
         'updated_at',
         'skills_other',
+        'fullname',
     ];
 
     public function employment()

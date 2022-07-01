@@ -80,6 +80,7 @@
         }
     </style>
     @livewireStyles
+    <x-throwexceptions::styles/>
 </head>
 
 <body>
@@ -129,6 +130,7 @@
 <script src="{{ asset('theme/js/misc.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 @livewireScripts
+<x-throwexceptions::scripts/>
 </body>
 
 </html>
