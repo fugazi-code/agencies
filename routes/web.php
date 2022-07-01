@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\AgencyLivewire;
+use App\Http\Livewire\ApplicantDocsLivewire;
 use App\Http\Livewire\ApplicantsLivewire;
 use App\Http\Livewire\ApplicationFromLivewire;
 use App\Http\Livewire\Dashboard;
@@ -43,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
             return app(ApplicantTableGridjs::class)->fetch(request());
         })->name('applicant.get');
 
+        Route::get('/applicant/docs', ApplicantDocsLivewire::class)->name('applicant-docs-livewire');
     });
 
     Route::middleware(['can:admin'])->group(function () {

@@ -13,6 +13,9 @@ class ApplicantTableGridjs extends LaravelGridjs
         return $this->setQuery(model: Candidate::query())
                     ->editColumn('action', function ($value) {
                         return view('buttons.action-applicant', ['candidateId' => $value['id']]);
+                    })
+                    ->editColumn('gender', function ($value) {
+                        return "<strong>{$value['gender']}</strong>";
                     });
     }
 
@@ -22,8 +25,12 @@ class ApplicantTableGridjs extends LaravelGridjs
             'action'   => [
                 'name'     => 'Action',
                 'sortable' => false,
+                'width' => 'auto'
             ],
             'fullname' => 'Full Name',
+            'code' => 'Code',
+            'gender' => 'Gender',
+            'position_selected' => 'Position Selected'
         ];
     }
 }

@@ -13,7 +13,7 @@
                     <div class="row mb-4 mx-2">
                     </div>
                 </div>
-                <div>
+                <div class="col-12">
                     <x-throwexceptions::gridjs :table="$applicantTable" name="tableApplicant"/>
                 </div>
             </div>

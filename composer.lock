@@ -5046,12 +5046,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/throwexceptions/laravel-gridjs.git",
-                "reference": "c5e1bab24d2d18f1fd7881c0a2da16083674046c"
+                "reference": "55440f9944bea4ba3c03654a53f28d698f1f7c7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/throwexceptions/laravel-gridjs/zipball/c5e1bab24d2d18f1fd7881c0a2da16083674046c",
-                "reference": "c5e1bab24d2d18f1fd7881c0a2da16083674046c",
+                "url": "https://api.github.com/repos/throwexceptions/laravel-gridjs/zipball/55440f9944bea4ba3c03654a53f28d698f1f7c7c",
+                "reference": "55440f9944bea4ba3c03654a53f28d698f1f7c7c",
                 "shasum": ""
             },
             "require": {
@@ -5100,7 +5100,7 @@
                 "issues": "https://github.com/throwexceptions/laravel-gridjs/issues",
                 "source": "https://github.com/throwexceptions/laravel-gridjs/tree/master"
             },
-            "time": "2022-07-01T05:27:29+00:00"
+            "time": "2022-07-01T14:54:26+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
