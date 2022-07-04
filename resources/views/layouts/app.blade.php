@@ -21,7 +21,14 @@
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/js/min/perfect-scrollbar.jquery.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
     <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
         div span {
             padding: 3px 10px;
             white-space: nowrap;
@@ -131,6 +138,7 @@
 <script src="{{ asset('js/app.js') }}"></script>
 @livewireScripts
 <x-throwexceptions::scripts/>
+@stack('scripts')
 </body>
 
 </html>

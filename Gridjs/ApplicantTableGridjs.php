@@ -4,6 +4,7 @@ namespace Gridjs;
 
 use App\Models\Applicant;
 use App\Models\Candidate;
+use Carbon\Carbon;
 use Throwexceptions\LaravelGridjs\LaravelGridjs;
 
 class ApplicantTableGridjs extends LaravelGridjs
@@ -16,6 +17,9 @@ class ApplicantTableGridjs extends LaravelGridjs
                     })
                     ->editColumn('gender', function ($value) {
                         return "<strong>{$value['gender']}</strong>";
+                    })
+                    ->editColumn('date_hired', function ($value) {
+                        return Carbon::parse($value['date_hired'])->format('F j, Y');
                     });
     }
 
@@ -27,8 +31,9 @@ class ApplicantTableGridjs extends LaravelGridjs
                 'sortable' => false,
                 'width' => 'auto'
             ],
-            'fullname' => 'Full Name',
+            'date_hired' => 'Date Hired',
             'code' => 'Code',
+            'fullname' => 'Full Name',
             'gender' => 'Gender',
             'position_selected' => 'Position Selected'
         ];

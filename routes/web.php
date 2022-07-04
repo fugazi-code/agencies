@@ -9,6 +9,7 @@ use App\Http\Livewire\Login;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Vouchers;
 use Gridjs\ApplicantTableGridjs;
+use Gridjs\DocumentTableGridjs;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +46,9 @@ Route::middleware(['auth'])->group(function () {
         })->name('applicant.get');
 
         Route::get('/applicant/docs', ApplicantDocsLivewire::class)->name('applicant-docs-livewire');
+        Route::post('/docs/get', function () {
+            return app(DocumentTableGridjs::class)->fetch(request());
+        })->name('docs.get');
     });
 
     Route::middleware(['can:admin'])->group(function () {

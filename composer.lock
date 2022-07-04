@@ -2517,16 +2517,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.11.5",
+            "version": "v0.11.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "c23686f9c48ca202710dbb967df8385a952a2daf"
+                "reference": "3f5b5f8aaa979fbd0d1783173f4c82ad529fe621"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/c23686f9c48ca202710dbb967df8385a952a2daf",
-                "reference": "c23686f9c48ca202710dbb967df8385a952a2daf",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/3f5b5f8aaa979fbd0d1783173f4c82ad529fe621",
+                "reference": "3f5b5f8aaa979fbd0d1783173f4c82ad529fe621",
                 "shasum": ""
             },
             "require": {
@@ -2587,9 +2587,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.11.5"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.11.6"
             },
-            "time": "2022-05-27T18:03:49+00:00"
+            "time": "2022-07-03T16:40:23+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -5046,12 +5046,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/throwexceptions/laravel-gridjs.git",
-                "reference": "55440f9944bea4ba3c03654a53f28d698f1f7c7c"
+                "reference": "5fbb9fea0e0aced0807926d59c08352f28a1070d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/throwexceptions/laravel-gridjs/zipball/55440f9944bea4ba3c03654a53f28d698f1f7c7c",
-                "reference": "55440f9944bea4ba3c03654a53f28d698f1f7c7c",
+                "url": "https://api.github.com/repos/throwexceptions/laravel-gridjs/zipball/5fbb9fea0e0aced0807926d59c08352f28a1070d",
+                "reference": "5fbb9fea0e0aced0807926d59c08352f28a1070d",
                 "shasum": ""
             },
             "require": {
@@ -5100,7 +5100,7 @@
                 "issues": "https://github.com/throwexceptions/laravel-gridjs/issues",
                 "source": "https://github.com/throwexceptions/laravel-gridjs/tree/master"
             },
-            "time": "2022-07-01T14:54:26+00:00"
+            "time": "2022-07-04T04:09:17+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
