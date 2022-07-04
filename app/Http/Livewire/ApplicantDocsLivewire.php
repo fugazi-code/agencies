@@ -20,6 +20,8 @@ class ApplicantDocsLivewire extends Component
 
     public array $candidate = [];
 
+    protected $listeners = ['destroyDocs' => 'destroy'];
+
     public function mount()
     {
         $this->candidate = Candidate::find(decrypt($this->candidate_id))->toArray();
@@ -51,6 +53,15 @@ class ApplicantDocsLivewire extends Component
 
         $this->dispatchBrowserEvent('uploadDocument', ['path' => $path]);
         $this->emit('callToaster', ['message' => 'Document Uploaded!']);
+        $this->details = [];
+    }
+
+    public function destroy($id)
+    {
+        Document::query()->find($id)->delete();
+
+        $this->dispatchBrowserEvent('uploadDocument', ['path' => '']);
+        $this->emit('callToaster', ['message' => 'Document Deleted!']);
         $this->details = [];
     }
 }
