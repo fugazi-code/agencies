@@ -5,4 +5,7 @@
     <a href="{{ route('applicant-docs-livewire', ['candidate_id' => encrypt($candidateId)]) }}" class="btn btn-info">
         <i class="fas fa-paperclip"></i>
     </a>
+    <a href="#" onclick="window.Livewire.emit('bindDetails', '{{ encrypt($candidateId) }}')" class="btn btn-warning" data-toggle="modal" data-target="#statusModal">
+        <i class="fas fa-award"></i>
+    </a>
 </div>

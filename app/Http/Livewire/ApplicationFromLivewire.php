@@ -63,7 +63,7 @@ class ApplicationFromLivewire extends Component
     public function generateCode()
     {
         do {
-            $code = Factory::create()->bothify(now()->format('y').'#?#?'.now()->format('m'));
+            $code = strtoupper(Factory::create()->bothify('#?#?'.now()->format('md').now()->format('y')));
         } while (Candidate::query()->where('code', $code)->count() > 0);
 
         $this->details['code'] = $code;
