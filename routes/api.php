@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Resources\CandidateStatusResource;
+use App\Models\Candidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('candidate/status/{code}', function ($code) {
+    return new CandidateStatusResource(Candidate::query()->where('code', $code)->first());
+});
+

@@ -23,7 +23,8 @@ class ApplicantsLivewire extends Component
 
     public function bind($id)
     {
-        $this->details = Candidate::query()->where('id',decrypt($id))->with(['tags'])->get()[0]->toArray();
+        $this->dispatchBrowserEvent('tableApplicantRender');
+        $this->details = Candidate::query()->where('id', decrypt($id))->with(['tags'])->get()[0]->toArray();
     }
 
     public function detach($slug)
@@ -31,13 +32,17 @@ class ApplicantsLivewire extends Component
         $candidate = Candidate::query()->find($this->details['id']);
         $candidate->detachTag($slug);
 
-        $this->details = Candidate::query()->where('id',$this->details['id'])->with(['tags'])->get()[0]->toArray();
+        $this->details = Candidate::query()->where('id', $this->details['id'])->with(['tags'])->get()[0]->toArray();
+        $this->dispatchBrowserEvent('tableApplicantRender');
     }
 
     public function addStatus()
     {
         $candidate = Candidate::query()->find($this->details['id']);
         $candidate->attachTag($this->status);
-        $this->status = '';
+
+        $this->status  = '';
+        $this->details = Candidate::query()->where('id', $this->details['id'])->with(['tags'])->get()[0]->toArray();
+        $this->dispatchBrowserEvent('tableApplicantRender');
     }
 }
