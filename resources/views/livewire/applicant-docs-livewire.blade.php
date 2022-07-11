@@ -28,8 +28,7 @@
             </div>
             <div class="col-md-12 mb-3">
                 <label>File</label>
-
-                <div wire:loading wire:target="docu">Uploading...</div>
+                <div wire:loading wire:target="details.docu">Uploading...</div>
                 <form wire:loading.remove>
                     <input type="file" wire:model="details.docu">
                     @error('details.docu') <span class="text-danger">{{ $message }}</span> @enderror
