@@ -26,9 +26,14 @@
                 <input type="text" class="form-control" wire:model="details.type">
                 @error('details.type') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
-            <div class="col-md-12 mb-3">
+            <div class="col-md-12 mb-3 d-flex flex-column">
                 <label>File</label>
-                <div wire:loading wire:target="details.docu">Uploading...</div>
+                <div wire:loading wire:target="details.docu">
+                    Loading...
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only"></span>
+                    </div>
+                </div>
                 <form wire:loading.remove>
                     <input type="file" wire:model="details.docu">
                     @error('details.docu') <span class="text-danger">{{ $message }}</span> @enderror
