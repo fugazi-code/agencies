@@ -38,6 +38,10 @@ class ApplicantsLivewire extends Component
 
     public function addStatus()
     {
+        $this->validate([
+            'status' => 'required|max:50'
+        ]);
+
         $candidate = Candidate::query()->find($this->details['id']);
         $candidate->attachTag($this->status);
 

@@ -24,6 +24,7 @@
             <div class="col-md-12 mb-3">
                 <label>Enter a Status</label>
                 <input type="text" class="form-control" wire:model="status">
+                @error('status') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
             <div class="col-md-12 mb-3">
                 <h6>Statuses</h6>
