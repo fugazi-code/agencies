@@ -1,7 +1,7 @@
 
 <!-- partial:../../partials/_sidebar.html -->
 <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
-    <div class="user-info mb-0 mt-5">
+    <div class="user-info mt-5 mb-3">
         <p class="name font-weight-bold text-muted">{{ auth()->user()->email }}</p>
         <span class="online mt-2"></span>
     </div>
@@ -34,6 +34,27 @@
                 <a class="nav-link p-0" href="{{ route('agencies') }}">
                     <i class="fas fa-building my-auto"></i>
                     <span class="menu-title">Agency</span>
+                </a>
+            </li>
+            <hr>
+            <li class="nav-item">
+                <a class="nav-link p-0" href="#">
+                    <i class="fas fa-ban my-auto"></i>
+                    <span class="menu-title">Blacklists</span>
+                </a>
+            </li>
+            <hr>
+            <li class="nav-item">
+                <a class="nav-link p-0" href="#">
+                    <i class="fas fa-certificate my-auto"></i>
+                    <span class="menu-title">Complaints</span>
+                </a>
+            </li>
+            <hr>
+            <li class="nav-item">
+                <a class="nav-link p-0" href="#">
+                    <i class="fas fa-file-contract my-auto"></i>
+                    <span class="menu-title">Cases</span>
                 </a>
             </li>
             <hr>
