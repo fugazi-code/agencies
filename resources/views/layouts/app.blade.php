@@ -85,6 +85,16 @@
         select.form-control:not([size]):not([multiple]) {
             height: calc(2.25rem + 9px) !important;
         }
+        .dash-cards {
+            color: #02ff5f;
+            background: black;
+        }
+        .dash-cards > .card-body > div > .font-weight-bold {
+            font-size: 16px;
+        }
+        .dash-cards > .card-body > div > .text-right {
+            font-size: 20px;
+        }
     </style>
     @livewireStyles
     <x-throwexceptions::styles/>
