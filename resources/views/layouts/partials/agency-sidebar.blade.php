@@ -2,7 +2,7 @@
 <!-- partial:../../partials/_sidebar.html -->
 <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
     <div class="user-info mb-0 mt-5">
-        <p class="name font-weight-bold">{{ auth()->user()->email }}</p>
+        <p class="name font-weight-bold text-muted">{{ auth()->user()->email }}</p>
         <span class="online mt-2"></span>
     </div>
     <ul class="nav">
@@ -12,6 +12,7 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+        <hr>
         @can('agency')
             <li class="nav-item @if(request()->routeIs('applicants')) active @endif">
                 <a class="nav-link p-0" href="{{ route('applicants') }}">
@@ -19,12 +20,14 @@
                     <span class="menu-title">Applicants</span>
                 </a>
             </li>
+            <hr>
             <li class="nav-item @if(request()->routeIs('finance.vouchers')) active @endif">
                 <a class="nav-link p-0" href="{{ route('finance.vouchers') }}">
                     <i class="fas fa-ticket my-auto"></i>
                     <span class="menu-title">Vouchers</span>
                 </a>
             </li>
+            <hr>
         @endcan
         @can('admin')
             <li class="nav-item @if(request()->routeIs('agencies')) active @endif">
@@ -33,12 +36,14 @@
                     <span class="menu-title">Agency</span>
                 </a>
             </li>
+            <hr>
             <li class="nav-item @if(request()->routeIs('users')) active @endif">
                 <a class="nav-link p-0" href="{{ route('users') }}">
                     <i class="fas fa-users my-auto"></i>
                     <span class="menu-title">Users</span>
                 </a>
             </li>
+            <hr>
         @endcan
     </ul>
 </nav>
