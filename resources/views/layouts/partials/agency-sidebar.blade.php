@@ -37,22 +37,22 @@
                 </a>
             </li>
             <hr>
-            <li class="nav-item">
-                <a class="nav-link p-0" href="#">
+            <li class="nav-item @if(request()->routeIs('blacklist')) active @endif">
+                <a class="nav-link p-0" href="{{ route('blacklist') }}">
                     <i class="fas fa-ban my-auto"></i>
                     <span class="menu-title">Blacklists</span>
                 </a>
             </li>
             <hr>
-            <li class="nav-item">
-                <a class="nav-link p-0" href="#">
+            <li class="nav-item @if(request()->routeIs('complaints')) active @endif">
+                <a class="nav-link p-0" href="{{ route('complaints') }}">
                     <i class="fas fa-certificate my-auto"></i>
                     <span class="menu-title">Complaints</span>
                 </a>
             </li>
             <hr>
-            <li class="nav-item">
-                <a class="nav-link p-0" href="#">
+            <li class="nav-item @if(request()->routeIs('cases')) active @endif">
+                <a class="nav-link p-0" href="{{ route('cases') }}">
                     <i class="fas fa-file-contract my-auto"></i>
                     <span class="menu-title">Cases</span>
                 </a>

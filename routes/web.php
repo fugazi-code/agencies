@@ -4,6 +4,9 @@ use App\Http\Livewire\AgencyLivewire;
 use App\Http\Livewire\ApplicantDocsLivewire;
 use App\Http\Livewire\ApplicantsLivewire;
 use App\Http\Livewire\ApplicationFromLivewire;
+use App\Http\Livewire\Blacklist;
+use App\Http\Livewire\Cases;
+use App\Http\Livewire\Complaints;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\Users;
@@ -54,5 +57,8 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['can:admin'])->group(function () {
         Route::get('/users', Users::class)->name('users');
         Route::get('/agencies', AgencyLivewire::class)->name('agencies');
+        Route::get('/blacklist', Blacklist::class)->name('blacklist');
+        Route::get('/complaints', Complaints::class)->name('complaints');
+        Route::get('/cases', Cases::class)->name('cases');
     });
 });
