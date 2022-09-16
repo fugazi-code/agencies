@@ -2,8 +2,6 @@
 <!-- partial:../../partials/_sidebar.html -->
 <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
     <div class="user-info mt-5 mb-3">
-        <p class="name font-weight-bold text-muted">{{ auth()->user()->email }}</p>
-        <span class="online mt-2"></span>
     </div>
     <ul class="nav">
         <li class="nav-item @if(request()->routeIs('dashboard')) active @endif">

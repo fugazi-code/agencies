@@ -3,10 +3,10 @@
     <div class="bg-white text-center navbar-brand-wrapper">
         <a class="navbar-brand brand-logo" href="{{ route('dashboard') }}">
             <img src="{{ \Illuminate\Support\Facades\Storage::url(auth()->user()->agency()->pluck('logo_path')[0]) }}"
-            style="max-width: 25%;">
+            style="max-width: 30%;">
         </a>
         <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard') }}">
-            <img src="{{ asset('images/logo_star_mini.jpg') }}" alt="">
+            <img src="{{ \Illuminate\Support\Facades\Storage::url(auth()->user()->agency()->pluck('logo_path')[0]) }}">
         </a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center">
@@ -15,13 +15,18 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <ul class="navbar-nav ml-lg-auto d-flex align-items-center flex-row">
-            <li class="nav-item">
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-sm btn-link nav-link">
-                        <i class="fas fa-unlock"></i> Logout
-                    </button>
-                </form>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="fas fa-circle p-0 mt-1" style="color: #22ff1a;"></span> {{ auth()->user()->email }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: 5% !important; position: absolute !important;">
+                    <form action="{{ route('logout') }}" method="POST" class="dropdown-item">
+                        @csrf
+                        <button type="submit" class="btn btn-link nav-link text-dark p-0">
+                            Logout
+                        </button>
+                    </form>
+                </div>
             </li>
         </ul>
         <button class="navbar-toggler navbar-dark navbar-toggler-right d-lg-none align-self-center" type="button"
