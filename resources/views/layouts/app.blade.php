@@ -10,109 +10,35 @@
     <link rel="shortcut icon" href="#"/>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('theme/css/style.css') }}"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/nucleo-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/nucleo-svg.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link id="pagestyle" rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/soft-ui-dashboard.min.css?v=1.0.6') }}">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.7/js/min/perfect-scrollbar.jquery.min.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
-        div span {
-            padding: 3px 10px;
-            white-space: nowrap;
-        }
-
-        tr td {
-            padding: 3px 10px;
-            white-space: nowrap;
-        }
-
-        .navbar.fixed-top + .container-fluid {
-            padding-top: 1.5rem;
-        }
-
-        .nav-link {
-            font-weight: 900;
-        }
-
-        [x-cloak] {
-            display: none !important;
-        }
-
-        .table td {
-            padding: 5px !important;
-        }
-
-        .navbar .navbar-brand-wrapper .navbar-brand img {
-            width: 41% !important;
-        }
-
-        .sidebar .nav .nav-item a.nav-link {
-            padding: 3px !important;
-        }
-
-        @media (min-width: 992px) {
-            .sidebar-icon-only .sidebar .nav .nav-item .nav-link i {
-                font-size: 17px;
-                margin: auto;
-                padding-top: 13px;
-            }
-            .sidebar-icon-only .sidebar .nav {
-                padding: 29px 0px 10px 0px;
-            }
-        }
-
-        .content-wrapper {
-            min-height: 91vh !important;
-        }
-
-        .sidebar {
-            min-height: auto;
-        }
-
-        select.form-control:not([size]):not([multiple]) {
-            height: calc(2.25rem + 9px) !important;
-        }
-        .dash-cards {
-            color: #02ff5f;
-            background: black;
-        }
-        .dash-cards > .card-body > div > .font-weight-bold {
-            font-size: 16px;
-        }
-        .dash-cards > .card-body > div > .text-right {
-            font-size: 20px;
-        }
-    </style>
     @livewireStyles
     <x-throwexceptions::styles/>
 </head>
 
-<body>
+<body class="g-sidenav-show bg-gray-100">
+    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-white"
+           id="sidenav-main">
 
-<div class="container-scroller">
-@if(request()->routeIs('login'))
-    {{ $slot }}
-@else
-    <!-- partial:../../partials/_navbar.html -->
+        <hr class="horizontal dark mt-0">
+
+        @include('layouts.partials.agency-sidebar')
+    </aside>
+
+    <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
+        <!-- Navbar -->
+        <!-- partial:../../partials/_navbar.html -->
         @include('layouts.partials.navbar')
+        <!-- End Navbar -->
 
         <div class="container-fluid">
             <div class="row row-offcanvas row-offcanvas-right">
                 <!-- partial -->
-                @include('layouts.partials.agency-sidebar')
+
 
                 <div class="content-wrapper">
                     {{ $slot }}
@@ -122,33 +48,36 @@
                 <footer class="footer">
                     <div class="container-fluid clearfix">
                         <span class="float-right">
-                            <a href="#">Star Admin</a> &copy; {{ now()->year }}
+                            <a href="#">Yaramay</a> &copy; {{ now()->year }}
                         </span>
                     </div>
                 </footer>
                 <!-- partial -->
             </div>
         </div>
-    @endif
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"
-        integrity="sha512-X41/A5OSxoi5uqtS6Krhqz8QyyD8E/ZbN7B4IaBSgqPLRbWVuXJXr9UwOujstj71SoVxh5vxgy7kmtd17xrJRw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{{ asset('theme/js/off-canvas.js') }}"></script>
-<script src="{{ asset('theme/js/hoverable-collapse.js') }}"></script>
-<script src="{{ asset('theme/js/misc.js') }}"></script>
-<script src="{{ asset('js/app.js') }}"></script>
-@livewireScripts
-<x-throwexceptions::scripts/>
-@stack('scripts')
+    </div>
+
+    @livewireScripts
+    <!--   Core JS Files   -->
+    <script src="{{ asset('theme/soft-ui/assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('theme/soft-ui/assets/js/core/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('theme/soft-ui/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('theme/soft-ui/assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="{{ asset('theme/soft-ui/assets/js/soft-ui-dashboard.min.js') }}"></script>
+    <x-throwexceptions::scripts/>
+    @stack('scripts')
 </body>
 
 </html>

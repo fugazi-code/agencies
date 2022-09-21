@@ -1,68 +1,126 @@
-
-<!-- partial:../../partials/_sidebar.html -->
-<nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
-    <div class="user-info mt-5 mb-3">
+<div class="collapse navbar-collapse w-auto ">
+    <div class="sidenav-header">
+        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+        <a class="navbar-brand m-0 d-flex flex-column justify-content-center" href="{{ route('dashboard') }}">
+            <div class="d-flex justify-content-center">
+                <img src="{{ \Illuminate\Support\Facades\Storage::url(auth()->user()->agency()->pluck('logo_path')[0]) }}"
+                     class="navbar-brand-img" alt="main_logo">
+            </div>
+        </a>
     </div>
-    <ul class="nav">
-        <li class="nav-item @if(request()->routeIs('dashboard')) active @endif">
-            <a class="nav-link" href="{{ route('dashboard') }}">
-                <i class="fas fa-dashboard my-auto"></i>
-                <span class="menu-title">Dashboard</span>
+    <hr class="horizontal dark mt-0">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link @if(request()->routeIs('dashboard')) active @endif" href="{{ route('dashboard') }}">
+                <div
+                    class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="fas fa-dashboard fs-6"></i>
+                </div>
+                <span class="nav-link-text ms-1">Dashboard</span>
             </a>
         </li>
-        <hr>
         @can('agency')
-            <li class="nav-item @if(request()->routeIs('applicants')) active @endif">
-                <a class="nav-link p-0" href="{{ route('applicants') }}">
-                    <i class="fas fa-folder my-auto"></i>
-                    <span class="menu-title">Applicants</span>
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('applicants')) active @endif"
+                   href="{{ route('applicants') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-people-group fs-6"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Applicants</span>
                 </a>
             </li>
-            <hr>
-            <li class="nav-item @if(request()->routeIs('finance.vouchers')) active @endif">
-                <a class="nav-link p-0" href="{{ route('finance.vouchers') }}">
-                    <i class="fas fa-ticket my-auto"></i>
-                    <span class="menu-title">Vouchers</span>
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('finance.vouchers')) active @endif"
+                   href="{{ route('finance.vouchers') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-receipt fs-6"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Vouchers</span>
                 </a>
             </li>
-            <hr>
         @endcan
+
         @can('admin')
-            <li class="nav-item @if(request()->routeIs('agencies')) active @endif">
-                <a class="nav-link p-0" href="{{ route('agencies') }}">
-                    <i class="fas fa-building my-auto"></i>
-                    <span class="menu-title">Agency</span>
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('ofw.monitoring')) active @endif"
+                   href="{{ route('ofw.monitoring') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-signal fs-6"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">OFW Monitoring</span>
                 </a>
             </li>
-            <hr>
-            <li class="nav-item @if(request()->routeIs('blacklist')) active @endif">
-                <a class="nav-link p-0" href="{{ route('blacklist') }}">
-                    <i class="fas fa-ban my-auto"></i>
-                    <span class="menu-title">Blacklists</span>
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('agencies')) active @endif" href="{{ route('agencies') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-building fs-5"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Agency</span>
                 </a>
             </li>
-            <hr>
-            <li class="nav-item @if(request()->routeIs('complaints')) active @endif">
-                <a class="nav-link p-0" href="{{ route('complaints') }}">
-                    <i class="fas fa-certificate my-auto"></i>
-                    <span class="menu-title">Complaints</span>
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('blacklist')) active @endif" href="{{ route('blacklist') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-ban fs-5"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Blacklist</span>
                 </a>
             </li>
-            <hr>
-            <li class="nav-item @if(request()->routeIs('cases')) active @endif">
-                <a class="nav-link p-0" href="{{ route('cases') }}">
-                    <i class="fas fa-file-contract my-auto"></i>
-                    <span class="menu-title">Cases</span>
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('complaints')) active @endif"
+                   href="{{ route('complaints') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-comment fs-5"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Complaints</span>
                 </a>
             </li>
-            <hr>
-            <li class="nav-item @if(request()->routeIs('users')) active @endif">
-                <a class="nav-link p-0" href="{{ route('users') }}">
-                    <i class="fas fa-users my-auto"></i>
-                    <span class="menu-title">Users</span>
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('cases')) active @endif" href="{{ route('cases') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-envelope fs-5"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Cases</span>
                 </a>
             </li>
-            <hr>
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('users')) active @endif" href="{{ route('users') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-users fs-5"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Users</span>
+                </a>
+            </li>
         @endcan
     </ul>
-</nav>
+</div>
+
+{{--<div class="sidenav-footer mx-3 ">--}}
+{{--    <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">--}}
+{{--        <div class="full-background"--}}
+{{--             style="background-image: url('{{ asset('theme/soft-ui/assets/img/curved-images/white-curved.jpg') }}')"></div>--}}
+{{--        <div class="card-body text-start p-3 w-100">--}}
+{{--            <div--}}
+{{--                class="icon icon-shape icon-sm bg-white shadow text-center mb-3 d-flex align-items-center justify-content-center border-radius-md">--}}
+{{--                <i class="ni ni-diamond text-dark text-gradient text-lg top-0" aria-hidden="true"--}}
+{{--                   id="sidenavCardIcon"></i>--}}
+{{--            </div>--}}
+{{--            <div class="docs-info">--}}
+{{--                <h6 class="text-white up mb-0">Need help?</h6>--}}
+{{--                <p class="text-xs font-weight-bold">Please check our docs</p>--}}
+{{--                <a href="https://www.creative-tim.com/learning-lab/bootstrap/license/soft-ui-dashboard" target="_blank"--}}
+{{--                   class="btn btn-white btn-sm w-100 mb-0">Documentation</a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--    <a class="btn bg-gradient-primary mt-3 w-100"--}}
+{{--       href="https://www.creative-tim.com/product/soft-ui-dashboard-pro?ref=sidebarfree">Upgrade to pro</a>--}}
+{{--</div>--}}

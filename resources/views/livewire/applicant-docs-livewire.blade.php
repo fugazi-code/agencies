@@ -6,7 +6,7 @@
                 <h3>Documents of <strong>{{ $candidate['fullname'] }}</strong></h3>
                 <x-a-button class="btn btn-success ml-3">
                     <x-slot name="others">
-                        data-toggle="modal" data-target="#documentModal" wire:click="$set('details', [])"
+                        data-bs-toggle="modal" data-bs-target="#documentModal" wire:click="$set('details', [])"
                     </x-slot>
                     <i class="fas fa-upload"></i> Upload Document
                 </x-a-button>

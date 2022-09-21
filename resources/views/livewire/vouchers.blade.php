@@ -1,4 +1,11 @@
 <div>
+    @push('breadcrumbs')
+        <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Vouchers</li>
+        </ol>
+        <h6 class="font-weight-bolder mb-0">Vouchers</h6>
+    @endpush
     <livewire:toaster/>
     <div class="card mt-5">
         <div class="card-body">
@@ -6,7 +13,7 @@
                 <h3>Vouchers</h3>
                 <x-a-button class="btn btn-success ml-3">
                     <x-slot name="others">
-                        data-toggle="modal" data-target="#voucherModal" wire:click="$set('details', [])"
+                        data-bs-toggle="modal" data-bs-target="#voucherModal" wire:click="$set('details', [])"
                     </x-slot>
                     <i class="fas fa-plus"></i> Add Voucher
                 </x-a-button>
@@ -60,7 +67,7 @@
             <div class="col-md-4 mb-2"><label>Vaccine Fare</label><input type="text" class="form-control" wire:model="details.vaccine_fare"></div>
         </div>
         <x-slot name="button">
-            <button type="button" class="btn btn-primary" data-dismiss="modal" wire:click="store">Save changes</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click="store">Save changes</button>
         </x-slot>
     </x-modalform>
     {{--Edit--}}
@@ -92,8 +99,8 @@
             <div class="col-md-4 mb-2"><label>Vaccine Fare</label><input type="text" class="form-control" wire:model="details.vaccine_fare"></div>
         </div>
         <x-slot name="button">
-            <button type="button" class="btn btn-primary" data-dismiss="modal" wire:click="store">Update</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal" wire:click="destroy">Delete</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click="store">Update</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" wire:click="destroy">Delete</button>
         </x-slot>
     </x-modalform>
 </div>

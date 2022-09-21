@@ -6,7 +6,7 @@
                 <h3>Agencies</h3>
                 <x-a-button class="btn btn-success ml-3">
                     <x-slot name="others">
-                        data-toggle="modal" data-target="#agencyModal" wire:click="$set('details', [])"
+                        data-bs-toggle="modal" data-bs-target="#agencyModal" wire:click="$set('details', [])"
                     </x-slot>
                     <i class="fas fa-plus"></i> Add Agency
                 </x-a-button>

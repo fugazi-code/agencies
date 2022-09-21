@@ -4,7 +4,7 @@
         // $('#sidebar .nav').perfectScrollbar();
         // $('.container-scroller').perfectScrollbar( {suppressScrollX: true});
         const ps = new PerfectScrollbar('.container-scroller', {suppressScrollX: true});
-        $('[data-toggle="minimize"]').on("click", function () {
+        $('[data-bs-toggle="minimize"]').on("click", function () {
             $('body').toggleClass('sidebar-icon-only');
         });
     });

@@ -1,37 +1,58 @@
-
-<nav class="navbar navbar-default col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-    <div class="bg-white text-center navbar-brand-wrapper">
-        <a class="navbar-brand brand-logo" href="{{ route('dashboard') }}">
-            <img src="{{ \Illuminate\Support\Facades\Storage::url(auth()->user()->agency()->pluck('logo_path')[0]) }}"
-            style="max-width: 30%;">
-        </a>
-        <a class="navbar-brand brand-logo-mini" href="{{ route('dashboard') }}">
-            <img src="{{ \Illuminate\Support\Facades\Storage::url(auth()->user()->agency()->pluck('logo_path')[0]) }}">
-        </a>
-    </div>
-    <div class="navbar-menu-wrapper d-flex align-items-center">
-        <button class="navbar-toggler navbar-toggler d-none d-lg-block navbar-dark align-self-center mr-3"
-                type="button" data-toggle="minimize">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <ul class="navbar-nav ml-lg-auto d-flex align-items-center flex-row">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="fas fa-circle p-0 mt-1" style="color: #22ff1a;"></span> {{ auth()->user()->email }}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: 5% !important; position: absolute !important;">
-                    <form action="{{ route('logout') }}" method="POST" class="dropdown-item">
-                        @csrf
-                        <button type="submit" class="btn btn-link nav-link text-dark p-0">
-                            Logout
-                        </button>
-                    </form>
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 border-radius-xl shadow-none position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky"
+     navbar-scroll="true">
+    <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+            <div class="d-flex flex-row">
+                <div class="my-auto me-3">
+                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                            <div class="sidenav-toggler-inner">
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                            </div>
+                        </a>
+                    </li>
                 </div>
-            </li>
-        </ul>
-        <button class="navbar-toggler navbar-dark navbar-toggler-right d-lg-none align-self-center" type="button"
-                data-toggle="offcanvas">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+                <div>
+                    @stack('breadcrumbs')
+                </div>
+            </div>
+        </nav>
+
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                {{-- --}}
+            </div>
+            <ul class="navbar-nav  justify-content-end">
+                <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                    <a href="javascript:;" class="nav-link text-body p-0 d-flex flex-row" id="dropdownMenuButton"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-circle cursor-pointer me-2 my-auto" style="color: #59F30D"></i>
+                        <span class="font-weight-bold my-auto d-none d-xl-block">{{ auth()->user()->email }}</span>
+                    </a>
+                    <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
+                        aria-labelledby="dropdownMenuButton">
+                        <li class="mb-2">
+                            <a class="dropdown-item border-radius-md" href="javascript:;">
+                                <div class="d-flex py-1">
+                                    <div class="my-auto me-3">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-link text-sm m-0 p-0">
+                                                <span class="font-weight-bold">Log Out</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
