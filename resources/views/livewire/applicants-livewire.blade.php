@@ -11,7 +11,7 @@
         <div class="card-body">
             <div class="card-title mb-4 d-flex flex-row">
                 <h3>Applicants</h3>
-                <x-a-button class="btn btn-success ml-3" href="{{ route('applicant.form') }}">
+                <x-a-button class="btn btn-success ms-3" href="{{ route('applicant.form') }}">
                     <i class="fas fa-plus"></i> Add Applicant
                 </x-a-button>
             </div>
