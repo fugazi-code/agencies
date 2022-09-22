@@ -14,67 +14,35 @@
     <link rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/nucleo-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/nucleo-svg.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-    <link id="pagestyle" rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/soft-ui-dashboard.min.css?v=1.0.6') }}">
+    <link id="pagestyle" rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/soft-ui-dashboard.min.css') }}">
 
     @livewireStyles
     <x-throwexceptions::styles/>
 </head>
 
-<body class="g-sidenav-show bg-gray-100">
+<body class="bg-gray-100 h-100 d-flex align-items-start flex-column" style="min-height: 100vh;">
 
-<div class="container-fluid">
+<main class="container-fluid mb-auto">
     <div class="row row-offcanvas row-offcanvas-right">
         <!-- partial -->
 
-
-        <div class="content-wrapper">
-            {{ $slot }}
-        </div>
-
-        <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-            <div class="container-fluid clearfix">
-                    <span class="float-right">
-                        <a href="#">Star Admin</a> &copy; {{ now()->year }}
-                    </span>
+        <div class="flex-shrink-0">
+            <div class="content">
+                {{ $slot }}
             </div>
-        </footer>
-        <!-- partial -->
+        </div>
     </div>
-</div>
+</main>
 
-<footer class="footer pt-3  ">
-    <div class="container-fluid">
-        <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-                <div class="copyright text-center text-sm text-muted text-lg-start">
-                    © <script>
-                        document.write(new Date().getFullYear())
-                    </script>,
-                    made with <i class="fa fa-heart"></i> by
-                    <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                    for a better web.
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                    <li class="nav-item">
-                        <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<!-- partial:../../partials/_footer.html -->
+<footer class="footer py-3 bg-light w-100">
+    <div class="container-fluid clearfix">
+                    <span class="float-right">
+                        <a href="#">Yaramay</a> &copy; {{ now()->year }}
+                    </span>
     </div>
 </footer>
+<!-- partial -->
 
 @livewireScripts
 <!--   Core JS Files   -->

@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Database\Factories\CandidateFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Tags\HasTags;
 
 class Candidate extends Model
 {
+    use HasFactory;
     use HasTags;
 
     protected $fillable = [
@@ -116,12 +119,5 @@ class Candidate extends Model
     public static function belongsToEmployer($id, $agency_id)
     {
         return (new static())->where('id', $id)->where('employer_id', $agency_id)->count() > 0;
-    }
-
-    public function setAttribute($key, $value)
-    {
-        $this->attributes[$key] = trim($this->attributes[$key]);
-
-        return $this;
     }
 }

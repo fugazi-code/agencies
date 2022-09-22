@@ -2,72 +2,64 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
-use App\Models\Candidate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Candidate>
+ */
 class CandidateFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Candidate::class;
-
-    /**
      * Define the model's default state.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function definition()
     {
-        $faker    = \Faker\Factory::create();
-
         return [
-            'photo_url'        => 'https://i.pravatar.cc/300',
-            'agency_id'        => 1,
-            'applied_using'    => $faker->randomElement(['online', 'walk-in', 'agent']),
-            'code'             => $faker->hexColor,
-            'iqama'            => $faker->creditCardNumber(),
-            'first_name'       => $faker->firstName,
-            'last_name'        => $faker->lastName,
-            'middle_name'      => $faker->lastName,
-            'email'            => $faker->email,
-            'contact_1'        => $faker->phoneNumber,
-            'contact_2'        => $faker->phoneNumber,
-            'address'          => $faker->address,
-            'birth_date'       => $faker->date(),
-            'birth_place'      => $faker->address,
-            'civil_status'     => $faker->randomElement(['single', 'married', 'widow']),
-            'gender'           => $faker->randomElement(['male', 'female']),
-            'position_1'       => $faker->jobTitle,
-            'position_2'       => $faker->jobTitle,
-            'position_3'       => $faker->jobTitle,
-            'blood_type'       => 'O',
-            'height'           => '5',
-            'weight'           => '100',
-            'religion'         => 'Jewish',
-            'language'         => $faker->randomElement(['english', 'tagalog']),
-            'passport'         => $faker->bankAccountNumber,
-            'place_issue'      => $faker->address,
-            'education'        => 'college',
-            'spouse'           => $faker->name,
-            'mother_name'      => $faker->name('female'),
-            'father_name'      => $faker->name('male'),
-            'status'           => 'applicant',
-            'deployed'         => 'no',
-            'agreed'           => 'yes',
-            'travel_status'    => $faker->randomElement(['ex-abroad', '1st time abroad']),
-            'fb_account'       => $faker->email,
-            'skills'           => $faker->jobTitle,
-            'dos'              => $faker->date(),
-            'doe'              => $faker->date(),
-            'kin'              => $faker->name,
+            'photo_url' => 'https://i.pravatar.cc/300',
+            'agency_id' => 1,
+            'applied_using' => $this->faker->randomElement(['online', 'walk-in', 'agent']),
+            'code' => $this->faker->bothify('#?#?'.now()->format('md').now()->format('y')),
+            'iqama' => $this->faker->creditCardNumber(),
+            'first_name' => $this->faker->firstName,
+            'last_name' => $this->faker->lastName,
+            'middle_name' => $this->faker->lastName,
+            'email' => $this->faker->email,
+            'contact_1' => $this->faker->phoneNumber,
+            'contact_2' => $this->faker->phoneNumber,
+            'address' => $this->faker->address,
+            'birth_date' => $this->faker->date,
+            'birth_place' => $this->faker->address,
+            'civil_status' => $this->faker->randomElement(['single', 'married', 'widow']),
+            'gender' => $this->faker->randomElement(['male', 'female']),
+            'position_1' => $this->faker->jobTitle,
+            'position_2' => $this->faker->jobTitle,
+            'position_3' => $this->faker->jobTitle,
+            'blood_type' => 'O',
+            'height' => '5',
+            'weight' => '100',
+            'religion' => 'Jewish',
+            'language' => $this->faker->randomElement(['english', 'tagalog']),
+            'passport' => $this->faker->bankAccountNumber,
+            'place_issue' => $this->faker->address,
+            'education' => 'college',
+            'spouse' => $this->faker->name,
+            'mother_name' => $this->faker->name('female'),
+            'father_name' => $this->faker->name('male'),
+            'status' => 'applicant',
+            'deployed' => $this->faker->randomElement(['yes', 'no']),
+            'agreed' => 'yes',
+            'travel_status' => $this->faker->randomElement(['ex-abroad', '1st time abroad']),
+            'fb_account' => $this->faker->email,
+            'skills' => $this->faker->jobTitle,
+            'dos' => $this->faker->date(),
+            'doe' => $this->faker->date(),
+            'kin' => $this->faker->name,
             'kin_relationship' => 'relative',
-            'kin_contact'      => $faker->phoneNumber,
-            'kin_address'      => $faker->address,
-            'agency_branch'    => null,
+            'kin_contact' => $this->faker->phoneNumber,
+            'kin_address' => $this->faker->address,
+            'agency_branch' => null,
         ];
     }
 }

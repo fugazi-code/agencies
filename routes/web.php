@@ -10,10 +10,12 @@ use App\Http\Livewire\Complaints;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\OFWMonitoring;
+use App\Http\Livewire\Reporting;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Vouchers;
 use Gridjs\ApplicantTableGridjs;
 use Gridjs\DocumentTableGridjs;
+use Gridjs\OFWMonitoringGridjs;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +40,8 @@ Route::post(
     }
 )->name('logout');
 
+Route::get('report', Reporting::class)->name('report');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/', Dashboard::class)->name('dashboard');
 
@@ -57,6 +61,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['can:admin'])->group(function () {
         Route::get('/ofw-monitoring', OFWMonitoring::class)->name('ofw.monitoring');
+        Route::post('/ofw-monitoring/fetch', function () {
+            return app(OFWMonitoringGridjs::class)->fetch(request());
+        })->name('ofw-monitoring.fetch');
+
         Route::get('/users', Users::class)->name('users');
         Route::get('/agencies', AgencyLivewire::class)->name('agencies');
         Route::get('/blacklist', Blacklist::class)->name('blacklist');
