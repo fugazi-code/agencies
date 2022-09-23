@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/nucleo-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/nucleo-svg.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
     <link id="pagestyle" rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/soft-ui-dashboard.min.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     @livewireStyles
@@ -37,9 +37,9 @@
 <!-- partial:../../partials/_footer.html -->
 <footer class="footer py-3 bg-light w-100">
     <div class="container-fluid clearfix">
-                    <span class="float-right">
-                        <a href="#">Yaramay</a> &copy; {{ now()->year }}
-                    </span>
+        <span class="float-right">
+            <a href="#">Yaramay</a> &copy; {{ now()->year }}
+        </span>
     </div>
 </footer>
 <!-- partial -->
