@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/nucleo-svg.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link id="pagestyle" rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/soft-ui-dashboard.min.css?v=1.0.6') }}">
-
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     @livewireStyles
     <x-throwexceptions::styles/>
 </head>

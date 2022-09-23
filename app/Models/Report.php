@@ -4,16 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Report extends Model
 {
     use HasFactory;
 
-    public function employee(){
-        return $this->hasOne(Candidate::class, 'id', 'candidate_id');
-    }
+    protected $fillable = [
+        'reportable_id',
+        'reportable_type',
+        'created_by',
+        'salary_received',
+        'salary_date',
+        'remarks',
+        'priority_level',
+        'deleted_at',
+        'created_at',
+        'updated_at',
+    ];
 
-    public function employer(){
-        return $this->hasOne(Information::class, 'user_id', 'employer_id');
+    /**
+     * Get the parent reportable model (candidate or agency).
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function reportable(): MorphTo
+    {
+        return $this->morphTo();
     }
 }

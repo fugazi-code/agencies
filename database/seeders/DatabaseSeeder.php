@@ -46,11 +46,6 @@ class DatabaseSeeder extends Seeder
             'remember_token'    => Str::random(10),
         ]);
 
-        $hold = User::noInfoIds();
-        foreach ($hold as $id) {
-            Information::factory()->state(['user_id' => $id])->create();
-        }
-
-        // Candidate::factory()->count(10)->create();
+        Candidate::factory()->count(1000)->create();
     }
 }

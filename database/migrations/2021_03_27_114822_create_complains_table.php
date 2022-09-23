@@ -8,7 +8,7 @@ class CreateComplainsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * php artisan migrate:refresh --path=database/migrations/2021_03_27_114822_create_complains_table.php && php artisan migrate
      * @return void
      */
     public function up()

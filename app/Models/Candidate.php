@@ -120,4 +120,9 @@ class Candidate extends Model
     {
         return (new static())->where('id', $id)->where('employer_id', $agency_id)->count() > 0;
     }
+
+    public function report()
+    {
+        return $this->morphMany(Report::class, 'reportable');
+    }
 }
