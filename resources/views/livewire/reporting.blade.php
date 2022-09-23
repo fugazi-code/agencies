@@ -58,7 +58,11 @@
                                         </div>
                                         <div class="col-md-auto">
                                             <span class="badge badge-sm bg-gradient-info mt-2">
-                                                {{ \Carbon\Carbon::parse($this->latest_report->created_at)->diffForHumans()}}
+                                                @isset($this->latest_report->created_at)
+                                                    {{ \Carbon\Carbon::parse($this->latest_report->created_at)->diffForHumans()}}
+                                                @else
+                                                    No Reports Yet
+                                                @endif
                                             </span>
                                         </div>
                                     </div>
