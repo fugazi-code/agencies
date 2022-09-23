@@ -14,7 +14,7 @@
                         <div class="d-flex flex-column">
                             <label>Enter your code: </label>
                             <div class="d-flex flex-row">
-                                <input class="form-control me-2" wire:model="code">
+                                <input type="password" class="form-control me-2" wire:model="code">
                                 <button class="btn btn-primary h-100 m-0" wire:click="showDetails">Submit</button>
                             </div>
                             @error('code')<span class="badge badge-sm bg-gradient-danger mt-2">{{ $message }}</span>@enderror
@@ -37,7 +37,7 @@
                             <div class="row">
                                 <div class="col-md-12 border-bottom">
                                     <div class="row">
-                                        <div class="col-md-2 d-flex justify-content-start justify-content-md-end">
+                                        <div class="col-md-3 d-flex justify-content-start justify-content-md-end">
                                             <label class="m-0 my-auto">Name</label>
                                         </div>
                                         <div class="col-md-auto"><strong>{{ $candidate['first_name'] }}</strong></div>
@@ -45,10 +45,22 @@
                                 </div>
                                 <div class="col-md-12 border-bottom">
                                     <div class="row">
-                                        <div class="col-md-2 d-flex justify-content-start justify-content-md-end">
+                                        <div class="col-md-3 d-flex justify-content-start justify-content-md-end">
                                             <label class="m-0 my-auto">Passport</label>
                                         </div>
                                         <div class="col-md-auto"><strong>{{ $candidate['passport'] }}</strong></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 border-bottom">
+                                    <div class="row">
+                                        <div class="col-md-3 d-flex justify-content-start justify-content-md-end">
+                                            <label class="m-0 my-auto">Last Report</label>
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <span class="badge badge-sm bg-gradient-info mt-2">
+                                                {{ \Carbon\Carbon::parse($this->latest_report->created_at)->diffForHumans()}}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mt-4">

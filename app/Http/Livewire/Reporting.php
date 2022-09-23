@@ -7,13 +7,15 @@ use Livewire\Component;
 
 class Reporting extends Component
 {
-    public $code = '0v2v092322';
+    public $code = '7s0f092322';
 
     public $candidate = [];
 
     public $remarks = '';
 
     public $salary = '';
+
+    public $latest_report;
 
     public function render()
     {
@@ -25,7 +27,12 @@ class Reporting extends Component
         $this->validate([
             'code' => 'required|exists:candidates,code'
         ]);
+
         $this->candidate = Candidate::query()->where('code', $this->code)->first()->toArray();
+        $this->latest_report = Candidate::find($this->candidate['id'])
+                                             ->report()
+                                             ->orderBy('created_at', 'desc')
+                                             ->first();
     }
 
     public function resetValues()
@@ -44,6 +51,7 @@ class Reporting extends Component
         $candidate = Candidate::find($this->candidate['id']);
 
         $candidate->report()->create([
+            'salary' => $this->salary,
             'remarks' => $this->remarks
         ]);
 
