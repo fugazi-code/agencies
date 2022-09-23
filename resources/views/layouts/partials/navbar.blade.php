@@ -31,9 +31,9 @@
                         <i class="fa fa-circle cursor-pointer me-2 my-auto" style="color: #59F30D"></i>
                         <span class="font-weight-bold my-auto d-none d-xl-block">{{ auth()->user()->email }}</span>
                     </a>
-                    <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
+                    <ul class="dropdown-menu  dropdown-menu-end px-2 py-1 me-sm-n4"
                         aria-labelledby="dropdownMenuButton">
-                        <li class="mb-2">
+                        <li>
                             <a class="dropdown-item border-radius-md" href="javascript:;">
                                 <div class="d-flex py-1">
                                     <div class="my-auto me-3">

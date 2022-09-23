@@ -11,7 +11,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12 mb-2">
-                        <h2>Hi {{ auth()->user()->with(['information'])->first()['information']['name'] }}, Welcome
+                        <h2>Hi {{ auth()->user()->email }}, Welcome
                             Back!</h2>
                     </div>
                     <div class="col-md-12">
