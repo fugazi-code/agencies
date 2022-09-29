@@ -3,8 +3,9 @@
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0 d-flex flex-column justify-content-center" href="{{ route('dashboard') }}">
             <div class="d-flex justify-content-center">
-                @isset(auth()->user()->agency()->pluck('logo_path')[0])
-                <img src="{{ \Illuminate\Support\Facades\Storage::url(auth()->user()->agency()->pluck('logo_path')[0]) }}"
+                @php $logo = auth()->user()->agency()->pluck('logo_path') @endphp
+                @isset($logo[0])
+                <img src="{{ \Illuminate\Support\Facades\Storage::url($logo[0]) }}"
                      class="navbar-brand-img" alt="main_logo">
                 @endisset
             </div>

@@ -1,11 +1,11 @@
 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-    <a href="{{ $link ?? '#'}}" class="btn btn-info"
+    <a href="{{ $link ?? '#'}}" class="btn btn-info px-3 m-0"
             @isset($modal)
                  data-bs-toggle="modal"
                 data-bs-target="#{{ $modal }}"
             @endisset
             @isset($listener)
-                wire:click="$emit('{{ $listener }}', {'id' : {{ $id }}})"
+                onclick="Livewire.emit('{{ $listener }}', {'id' : {{ $id }}})"
             @endisset
     >
         <i class="fas fa-pencil"></i>

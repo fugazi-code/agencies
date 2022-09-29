@@ -82,6 +82,7 @@
                         <option value="{{ $agency['id'] }}">{{ $agency['name'] }}</option>
                     @endforeach
                 </x-select>
+                @error('details.agency_id') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="col-md-4 mb-3">
                 <label>Roles</label>
@@ -90,14 +91,17 @@
                     <option value="2">Agency</option>
                     <option value="4">Gov</option>
                 </x-select>
+                @error('details.role') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="col-md-4 mb-3">
                 <label>Name</label>
                 <x-input model="details.name"/>
+                @error('details.name') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="col-md-4 mb-3">
                 <label>E-mail</label>
                 <x-input model="details.email"/>
+                @error('details.email') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
         </div>
         <x-slot name="button">

@@ -27,12 +27,12 @@ class AgencyLivewire extends Component
     public function store()
     {
         $this->validate([
-            'details.photo'   => 'image|max:1024',    // 1MB Max
-            'details.address' => 'required|required', // 1MB Max
-            'details.name'    => 'required|required', // 1MB Max
-            'details.poea'    => 'required|required', // 1MB Max
-            'details.cr_no'   => 'required|required', // 1MB Max
-            'details.status'  => 'required|required', // 1MB Max
+            'details.photo'   => 'required|image|max:1024',    // 1MB Max
+            'details.address' => 'required',
+            'details.name'    => 'required',
+            'details.poea'    => 'required',
+            'details.cr_no'   => 'required',
+            'details.status'  => 'required',
         ]);
 
         $path = $this->details['photo']->store('agency');

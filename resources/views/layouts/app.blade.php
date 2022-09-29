@@ -19,6 +19,13 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     @livewireStyles
     <x-throwexceptions::styles/>
+    <style>
+        td.gridjs-td {
+            border: 1px solid #e5e7eb;
+            box-sizing: content-box;
+            padding: 5px 12px;
+        }
+    </style>
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -60,6 +67,7 @@
 <!-- partial -->
 @livewireScripts
 <!--   Core JS Files   -->
+<script src="{{ asset('vendor/gridjs/dist/gridjs.umd.js') }}"></script>
 <script src="{{ asset('theme/soft-ui/assets/js/core/popper.min.js') }}"></script>
 <script src="{{ asset('theme/soft-ui/assets/js/core/bootstrap.min.js') }}"></script>
 <script src="{{ asset('theme/soft-ui/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>

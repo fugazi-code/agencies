@@ -40,7 +40,9 @@ class Login extends Component
 
     public function authenticate()
     {
-        $this->validate();
+        $this->validate([
+            'email' => 'required|exists:users,email'
+        ]);
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             Auth::loginUsingId(User::query()->where('email', $this->email)->first()->id);

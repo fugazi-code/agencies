@@ -17,15 +17,15 @@ class UserTable extends DataTableComponent
                 ->format(fn($id) => view('buttons.actions',
                     ['id' => $id, 'listener' => 'bindUserDetails', 'modal' => 'userEditModal']))
                 ->asHtml(),
+            Column::make("Email", "email")
+                  ->searchable()
+                  ->sortable(),
             Column::make("ID", "prime_id")
                 ->sortable(),
             Column::make("Agency", "agency.name")
                 ->searchable()
                 ->sortable(),
             Column::make("User", "information.name")
-                ->searchable()
-                ->sortable(),
-            Column::make("Email", "email")
                 ->searchable()
                 ->sortable(),
         ];
