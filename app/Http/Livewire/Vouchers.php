@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class Vouchers extends Component
 {
-    public string $filtered = '';
+    public array $params = [];
 
     public array $accounts = [];
 
@@ -19,7 +19,7 @@ class Vouchers extends Component
 
     public function mount()
     {
-        $this->filtered = auth()->id();
+        $this->params['account'] = auth()->id();
         $this->accounts = User::query()
                               ->select(['id', 'email'])
                               ->where('agency_id', auth()->user()->agency_id)
@@ -27,17 +27,19 @@ class Vouchers extends Component
                               ->toArray();
     }
 
-    /**
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
     public function render()
     {
-        return view('livewire.vouchers', ['voucherTable' => app(VoucherGridjs::class)->make(route('vouchers.get'))]);
+        return view('livewire.vouchers');
+    }
+
+    public function updatedParams()
+    {
+        $this->emit('outsideFilter', $this->params);
     }
 
     public function updatedFiltered()
     {
-        $this->emit('voucherFiltered', ['account' => $this->filtered]);
+        $this->emit('voucherFiltered');
     }
 
     public function edit($id)
@@ -49,14 +51,10 @@ class Vouchers extends Component
     {
         $params = array_merge($this->details, ['created_by' => auth()->id(), 'agency_id' => auth()->user()->agency_id]);
         Voucher::query()->updateOrCreate(['id' => $this->details['id'] ?? null], $params);
-
         $this->emit('callToaster', [
             'message' => isset($this->details['id']) ? 'Voucher has been updated!' : 'New Voucher has been Added!',
         ]);
-
         $this->details = [];
-
-        $this->dispatchBrowserEvent('tableVoucherRender');
     }
 
     public function destroy()
@@ -64,6 +62,5 @@ class Vouchers extends Component
         Voucher::query()->find($this->details['id'])->delete();
         $this->emit('callToaster', ['message' => 'Voucher has been deleted!']);
         $this->details = [];
-        $this->dispatchBrowserEvent('tableVoucherRender');
     }
 }

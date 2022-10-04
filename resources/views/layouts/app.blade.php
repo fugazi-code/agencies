@@ -18,12 +18,15 @@
           href="{{ asset('theme/soft-ui/assets/css/soft-ui-dashboard.min.css?v=1.0.6') }}">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     @livewireStyles
-    <x-throwexceptions::styles/>
     <style>
-        td.gridjs-td {
-            border: 1px solid #e5e7eb;
-            box-sizing: content-box;
-            padding: 5px 12px;
+        .btn.dropdown-toggle.d-block.w-100 {
+            margin: 0 !important;
+        }
+        #perPage {
+            padding-right: 2rem!important;
+        }
+        #filter-active {
+            padding-right: 2rem!important;
         }
     </style>
 </head>
@@ -85,7 +88,7 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('theme/soft-ui/assets/js/soft-ui-dashboard.min.js') }}"></script>
-<x-throwexceptions::scripts/>
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 @stack('scripts')
 </body>
 

@@ -17,7 +17,6 @@
     <link id="pagestyle" rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/soft-ui-dashboard.min.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     @livewireStyles
-    <x-throwexceptions::styles/>
 </head>
 
 <body class="bg-gray-100 h-100 d-flex align-items-start flex-column" style="min-height: 100vh;">
@@ -63,7 +62,6 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('theme/soft-ui/assets/js/soft-ui-dashboard.min.js') }}"></script>
-<x-throwexceptions::scripts/>
 @stack('scripts')
 </body>
 

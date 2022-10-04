@@ -24,7 +24,7 @@
                         <div class="row mb-4 mx-2">
                             <div class="col-md-2">
                                 <label>Filter By:</label>
-                                <select class="form-control" wire:model="filtered" name="filtered">
+                                <select class="form-control" wire:model="params.account" name="filtered">
                                     @foreach($accounts as $account)
                                         <option value="{{ $account['id'] }}">{{ $account['email'] }}</option>
                                     @endforeach
@@ -33,8 +33,8 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-12" wire:ignore>
-                    <x-throwexceptions::gridjs :table="$voucherTable" name="tableVoucher"/>
+                <div class="col-12">
+                    <livewire:voucher-table :filters="$params"></livewire:voucher-table>
                 </div>
             </div>
         </div>
@@ -106,6 +106,14 @@
     {{--Edit--}}
     <x-modalform id="voucherEditModal" modalTitle="Edit Voucher" size="modal-xl">
         <div class="row px-2">
+            <div class="col-md-4 mb-2">
+                <label>Status</label>
+                <select class="form-control" wire:model="details.status">
+                    <option value="">-- Select Option -- </option>
+                    <option value="back-out">BACK-OUT</option>
+                    <option value="deployed">DEPLOYED</option>
+                </select>
+            </div>
             <div class="col-md-4 mb-2"><label>Applicant Name</label><input type="text" class="form-control"
                                                                            wire:model="details.name"></div>
             <div class="col-md-4 mb-2"><label>Source</label><input type="text" class="form-control"
