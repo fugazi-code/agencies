@@ -45,8 +45,10 @@ class VoucherTable extends DataTableComponent
                   ->format(function ($value, $column, $row) {
                       $total = 0;
                       foreach ($row->toArray() as $item) {
-                          preg_match('/\(([\d\,\.]+)/', $item, $matches);
-                          $total += isset($matches[1]) ? floatval(str_replace(',', '', $matches[1])) : 0;
+                          preg_match_all('/\(([\d\,\.]+)/', $item, $matches);
+                          foreach ($matches[1] as $amount) {
+                              $total += floatval(str_replace(',', '', $amount));
+                          }
                       }
 
                       return number_format($total, 2);
