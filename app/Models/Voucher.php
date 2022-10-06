@@ -41,6 +41,8 @@ class Voucher extends Model
         "repat",
         "stamping",
         "vaccine_fare",
+        "ticket_to_kuwait",
+        "ticket_to_qatar"
     ];
 
     public function information(): HasOne

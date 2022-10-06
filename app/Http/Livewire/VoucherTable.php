@@ -61,7 +61,7 @@ class VoucherTable extends DataTableComponent
                           return '';
                       }
 
-                      $message = $value == 'back-out' ? 'text-warning' : 'text-success';
+                      $message = $value == 'deployed' ? 'text-success' : 'text-warning';
 
                       return "<div class='spinner-grow $message' role='status'></div>".Str::upper($value);
                   })
@@ -142,6 +142,12 @@ class VoucherTable extends DataTableComponent
                   ->sortable()
                   ->searchable(),
             Column::make("Vaccine fare", "vaccine_fare")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Ticket to Kuwait", "ticket_to_kuwait")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Ticket to Qatar", "ticket_to_qatar")
                   ->sortable()
                   ->searchable(),
             Column::make("Updated at", "updated_at")

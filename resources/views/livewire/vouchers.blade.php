@@ -43,6 +43,15 @@
     {{--Add--}}
     <x-modalform id="voucherModal" modalTitle="New Voucher" size="modal-xl">
         <div class="row px-2">
+            <div class="col-md-4 mb-2">
+                <label>Status</label>
+                <select class="form-control" wire:model="details.status">
+                    <option value="">-- Select Option -- </option>
+                    <option value="back-out">BACK-OUT</option>
+                    <option value="deployed">DEPLOYED</option>
+                    <option value="in-process">IN-PROCESS</option>
+                </select>
+            </div>
             <div class="col-md-4 mb-2"><label>Applicant Name</label><input type="text" class="form-control"
                                                                            wire:model="details.name"></div>
             <div class="col-md-4 mb-2"><label>Source</label><input type="text" class="form-control"
@@ -112,6 +121,7 @@
                     <option value="">-- Select Option -- </option>
                     <option value="back-out">BACK-OUT</option>
                     <option value="deployed">DEPLOYED</option>
+                    <option value="in-process">IN-PROCESS</option>
                 </select>
             </div>
             <div class="col-md-4 mb-2"><label>Applicant Name</label><input type="text" class="form-control"
@@ -168,6 +178,10 @@
                                                                      wire:model="details.stamping"></div>
             <div class="col-md-4 mb-2"><label>Vaccine Fare</label><input type="text" class="form-control"
                                                                          wire:model="details.vaccine_fare"></div>
+            <div class="col-md-4 mb-2"><label>Ticket to Kuwait</label><input type="text" class="form-control"
+                                                                         wire:model="details.ticket_to_kuwait"></div>
+            <div class="col-md-4 mb-2"><label>Ticket to Qatar</label><input type="text" class="form-control"
+                                                                         wire:model="details.ticket_to_qatar"></div>
         </div>
         <x-slot name="button">
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click="store">Update</button>
