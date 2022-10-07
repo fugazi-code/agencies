@@ -24,7 +24,7 @@ class AgencyFactory extends Factory
         return [
             'name'       => $this->faker->company,
             'address'    => $this->faker->address,
-            'logo_path'  => '',
+            'logo_path'  => 'https://placeholder.com/',
             'poea'       => $this->faker->bankAccountNumber,
             'status'     => 'active',
             'created_by' => 'seeder',

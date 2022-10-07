@@ -8,6 +8,7 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * php artisan migrate:reset --path='database/migrations/2022_10_07_051158_create_job_orders_table.php' --force
      *
      * @return void
      */
@@ -15,9 +16,8 @@ return new class extends Migration
     {
         Schema::create('job_orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('voucher_id')->nullable();
-            $table->string('job_order_type')->nullable();
-            $table->text('description')->nullable();
+            $table->integer('voucher_id');
+            $table->string('foreign_agency_id');
             $table->timestamps();
         });
     }

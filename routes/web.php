@@ -1,24 +1,19 @@
 <?php
 
-use App\Http\Livewire\AgencyLivewire;
-use App\Http\Livewire\ApplicantDocsLivewire;
-use App\Http\Livewire\ApplicantsLivewire;
-use App\Http\Livewire\ApplicationFromLivewire;
-use App\Http\Livewire\Blacklist;
 use App\Http\Livewire\Cases;
-use App\Http\Livewire\Complaints;
-use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Login;
-use App\Http\Livewire\OFWMonitoring;
-use App\Http\Livewire\Reporting;
 use App\Http\Livewire\Users;
-use App\Http\Livewire\VoucherLivewire;
-use App\Http\Livewire\Vouchers;
-use Gridjs\ApplicantTableGridjs;
-use Gridjs\DocumentTableGridjs;
-use Gridjs\OFWMonitoringGridjs;
-use Gridjs\VoucherGridjs;
+use App\Http\Livewire\Blacklist;
+use App\Http\Livewire\Reporting;
+use App\Http\Livewire\Complaints;
+use App\Http\Livewire\OFWMonitoring;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\AgencyLivewire;
+use App\Http\Livewire\VoucherLivewire;
+use App\Http\Livewire\DashboardLivewire;
+use App\Http\Livewire\ApplicantsLivewire;
+use App\Http\Livewire\ApplicantDocsLivewire;
+use App\Http\Livewire\ApplicationFromLivewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +40,7 @@ Route::post(
 Route::get('report', Reporting::class)->name('report');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', Dashboard::class)->name('dashboard');
+    Route::get('/', DashboardLivewire::class)->name('dashboard');
 
     Route::middleware(['can:agency'])->group(function () {
         Route::get('/vouchers', VoucherLivewire::class)->name('finance.vouchers');

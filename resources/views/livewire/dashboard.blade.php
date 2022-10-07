@@ -6,59 +6,25 @@
         </ol>
         <h6 class="font-weight-bolder mb-0">Dashboard</h6>
     @endpush
-    <div class="container mt-4">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12 mb-2">
-                        <h4>Hi {{ auth()->user()->email }}, Welcome Back!</h4>
+    <div class="row mt-5">
+            @can('agency')
+                <div class="col-md-12">
+                    <h5>Vouchers Summary</h5>
+                    <div class="row p-2">
+                        <div class="col-md-auto">
+                            <div class="card dash-cards">
+                                <div class="card-body">
+                                    <div class="d-flex flex-column">
+                                        <div class="font-weight-bold">Total Vouchers</div>
+                                        <div class="text-right">000</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    @can('agency')
-                        <div class="col-md-12">
-                            <h5>Vouchers Summary</h5>
-                            <div class="row p-2">
-                                <div class="col-md-auto">
-                                    <div class="card dash-cards">
-                                        <div class="card-body">
-                                            <div class="d-flex flex-column">
-                                                <div class="font-weight-bold">Total Vouchers</div>
-                                                <div class="text-right">000</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @else
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="alert alert-light d-flex flex-row" role="alert">
-                                        <div class="me-2">
-                                            <div class="spinner-grow text-warning" role="status">
-                                            </div>
-                                        </div>
-                                        <div class="font-weight-bold my-auto">
-                                            100 OFW does not report ove 30days.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="alert alert-light d-flex flex-row" role="alert">
-                                        <div class="me-2">
-                                            <div class="spinner-grow text-danger" role="status">
-                                            </div>
-                                        </div>
-                                        <div class="font-weight-bold my-auto">
-                                            105 High Priority Concern.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endcan
                 </div>
-            </div>
+            @else
+                <livewire:dashboard-admin-livewire/>
+            @endcan
         </div>
-    </div>
 </div>

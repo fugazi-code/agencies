@@ -5,10 +5,15 @@ namespace App\Models;
 use Database\Factories\CandidateFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 use Spatie\Tags\HasTags;
 
+/**
+ * php artisan scout:import 'App\Models\Candidate'
+ */
 class Candidate extends Model
 {
+    use Searchable;
     use HasFactory;
     use HasTags;
 
@@ -70,6 +75,28 @@ class Candidate extends Model
         'skills_other',
         'fullname',
     ];
+
+    /**
+     * Get the name of the index associated with the model.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'candidates_index';
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->only('first_name', 'last_name', 'passport');
+
+        return $array;
+    }
 
     public function employment()
     {

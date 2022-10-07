@@ -17,6 +17,9 @@
                     </x-slot>
                     <i class="fas fa-plus"></i> Add Voucher
                 </x-a-button>
+                <button class="btn btn-outline-info ms-2" data-bs-toggle="modal" data-bs-target="#fraModal">
+                    <i class="fas fa-building-circle-arrow-right"></i> F.R.A.
+                </button>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -161,9 +164,10 @@
             <div class="col-md-4 mb-2"><label>Vaccine Fare</label><input type="text" class="form-control"
                                                                          wire:model="details.vaccine_fare"></div>
             <div class="col-md-4 mb-2"><label>Ticket to Kuwait</label><input type="text" class="form-control"
-                                                                         wire:model="details.ticket_to_kuwait"></div>
+                                                                             wire:model="details.ticket_to_kuwait">
+            </div>
             <div class="col-md-4 mb-2"><label>Ticket to Qatar</label><input type="text" class="form-control"
-                                                                         wire:model="details.ticket_to_qatar"></div>
+                                                                            wire:model="details.ticket_to_qatar"></div>
         </div>
         <x-slot name="button">
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click="store">Update</button>
@@ -172,7 +176,8 @@
     </x-modalform>
 
     <!-- Modal -->
-    <div wire:ignore.self class="modal fade" id="voucherStatusModal" tabindex="-1" aria-labelledby="voucherStatusModalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="voucherStatusModal" tabindex="-1"
+         aria-labelledby="voucherStatusModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -186,7 +191,7 @@
                         <div class="col-md-6">
                             <label>Status</label>
                             <select class="form-control" wire:model="voucherStatus.status">
-                                <option value="">-- Select Option -- </option>
+                                <option value="">-- Select Option --</option>
                                 <option value="back-out">BACK-OUT</option>
                                 <option value="deployed">DEPLOYED</option>
                                 <option value="in-process">IN-PROCESS</option>
@@ -212,7 +217,8 @@
     </div>
 
     <!-- Modal -->
-    <div wire:ignore.self class="modal fade" id="jobOrderModal" tabindex="-1" aria-labelledby="jobOrderModalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="jobOrderModal" tabindex="-1" aria-labelledby="jobOrderModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -226,7 +232,7 @@
                         <div class="col-md-12">
                             <label>Job Order Type</label>
                             <select class="form-control" wire:model="jobOrder.job_order_type">
-                                <option value="">-- Select Option -- </option>
+                                <option value="">-- Select Option --</option>
                                 <option value="fra">FRA</option>
                                 <option value="job-order">JOB ORDER</option>
                             </select>
@@ -245,4 +251,51 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div wire:ignore.self class="modal fade" id="fraModal" tabindex="-1" aria-labelledby="fraModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="fraModalLabel">
+                        Foreign Recruitment Agencies
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Recipient's username"
+                                       aria-label="Agency username" aria-describedby="button-addon2"
+                                       wire:model="fraKey">
+                                <button class="btn btn-outline-success m-0" type="button" id="button-addon2"
+                                    wire:click="addFRA">
+                                    ADD
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <ul class="list-group">
+                                @foreach($fra as $item)
+                                    <li class="list-group-item d-flex flex-row justify-content-between">
+                                        <div>{{ $item['agency_name'] }}</div>
+                                        <button class="btn btn-sm btn-danger m-0" wire:click="deleteFRA({{ $item['id'] }})">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" wire:click="jobOrderUpdate">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+

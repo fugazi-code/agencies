@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Agency;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,6 @@ class CandidateFactory extends Factory
     {
         return [
             'photo_url' => 'https://i.pravatar.cc/300',
-            'agency_id' => 1,
             'applied_using' => $this->faker->randomElement(['online', 'walk-in', 'agent']),
             'code' => $this->faker->bothify('#?#?'.now()->format('md').now()->format('y')),
             'iqama' => $this->faker->creditCardNumber(),

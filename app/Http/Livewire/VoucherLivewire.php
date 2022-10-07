@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\ForeignAgency;
 use App\Models\JobOrder;
 use App\Models\User;
 use App\Models\Voucher;
@@ -22,14 +23,25 @@ class VoucherLivewire extends Component
 
     protected $listeners = ['editVoucher' => 'edit', 'editJobOrder' => 'editJobOrder'];
 
+    public string $fraKey = '';
+
+    public array $fra = [];
+
     public function mount()
     {
         $this->params['account'] = auth()->id();
-        $this->accounts          = User::query()
-                                       ->select(['id', 'email'])
-                                       ->where('agency_id', auth()->user()->agency_id)
-                                       ->get()
-                                       ->toArray();
+
+        $this->accounts = User::query()
+                              ->select(['id', 'email'])
+                              ->where('agency_id', auth()->user()->agency_id)
+                              ->get()
+                              ->toArray();
+
+        $this->fra = ForeignAgency::query()
+                                  ->select(['id', 'agency_name'])
+                                  ->where('agency_id', auth()->user()->agency_id)
+                                  ->get()
+                                  ->toArray();
     }
 
     public function render()
@@ -49,13 +61,13 @@ class VoucherLivewire extends Component
 
     public function edit($id)
     {
-        $this->details = Voucher::query()->find($id)->toArray()[0];
-        $this->voucherStatus  = VoucherStatus::query()->where('voucher_id', $id['id'])->first()?->toArray() ?? [];
+        $this->details       = Voucher::query()->find($id)->toArray()[0];
+        $this->voucherStatus = VoucherStatus::query()->where('voucher_id', $id['id'])->first()?->toArray() ?? [];
     }
 
     public function editJobOrder($id)
     {
-        $this->details = Voucher::query()->find($id)->toArray()[0];
+        $this->details  = Voucher::query()->find($id)->toArray()[0];
         $this->jobOrder = JobOrder::query()->where('voucher_id', $id)->first()?->toArray() ?? [];
     }
 
@@ -79,12 +91,12 @@ class VoucherLivewire extends Component
     public function statusUpdate()
     {
         $this->validate([
-           'voucherStatus.status' => 'required'
-        ],[
-            'voucherStatus.status.required' => 'Status is required.'
+            'voucherStatus.status' => 'required',
+        ], [
+            'voucherStatus.status.required' => 'Status is required.',
         ]);
 
-        $voucher = Voucher::find($this->details['id']);
+        $voucher         = Voucher::find($this->details['id']);
         $voucher->status = $this->voucherStatus['status'];
         $voucher->save();
 
@@ -100,11 +112,36 @@ class VoucherLivewire extends Component
     public function jobOrderUpdate()
     {
         JobOrder::query()
-                     ->updateOrCreate(
-                         ['voucher_id' => $this->details['id']],
-                         $this->jobOrder
-                     );
+                ->updateOrCreate(
+                    ['voucher_id' => $this->details['id']],
+                    $this->jobOrder
+                );
 
         $this->emit('callToaster', ['message' => 'Voucher Status Updated!']);
+    }
+
+    public function addFRA()
+    {
+        ForeignAgency::create([
+            'agency_id' => auth()->user()->agency_id,
+            'agency_name' => $this->fraKey,
+        ]);
+
+        $this->fraKey = '';
+        $this->fra = ForeignAgency::query()
+                                  ->select(['id', 'agency_name'])
+                                  ->where('agency_id', auth()->user()->agency_id)
+                                  ->get()
+                                  ->toArray();
+    }
+
+    public function deleteFRA($id)
+    {
+        ForeignAgency::destroy($id);
+        $this->fra = ForeignAgency::query()
+                                  ->select(['id', 'agency_name'])
+                                  ->where('agency_id', auth()->user()->agency_id)
+                                  ->get()
+                                  ->toArray();
     }
 }

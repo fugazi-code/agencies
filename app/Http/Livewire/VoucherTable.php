@@ -67,8 +67,9 @@ class VoucherTable extends DataTableComponent
                               'label' => 'None',
                           ]);
                       }
-
-                      $message = $value == 'deployed' ? 'text-success' : 'text-warning';
+                      $message = 'text-warning';
+                      $message = $value == 'deployed' ? 'text-success' : $message;
+                      $message = $value == 'back-out' ? 'text-danger' : $message;
 
                       return view('buttons.light', [
                           'attr' => $attr,

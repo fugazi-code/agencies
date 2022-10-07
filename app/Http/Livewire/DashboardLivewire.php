@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class Dashboard extends Component
+class DashboardLivewire extends Component
 {
     public function render()
     {
