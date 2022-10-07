@@ -58,12 +58,15 @@ class VoucherTable extends DataTableComponent
                   ->sortable()
                   ->format(function ($value) {
                       if ($value == '') {
-                          return '';
+                          return view('buttons.secondary', ['label' => 'No Status']);
                       }
 
                       $message = $value == 'deployed' ? 'text-success' : 'text-warning';
 
-                      return "<div class='spinner-grow $message' role='status'></div>".Str::upper($value);
+                      return view('buttons.light', [
+                          'label' => "<div class='spinner-grow $message' role='status'></div>
+                                        <div class='my-auto ms-2'>".Str::upper($value)."</div>",
+                      ]);
                   })
                   ->searchable()
                   ->asHtml(),
