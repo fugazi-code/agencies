@@ -230,17 +230,14 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <label>Job Order Type</label>
-                            <select class="form-control" wire:model="jobOrder.job_order_type">
+                            <label>FRA</label>
+                            <select class="form-control" wire:model="jobOrder.foreign_agency_id">
                                 <option value="">-- Select Option --</option>
-                                <option value="fra">FRA</option>
-                                <option value="job-order">JOB ORDER</option>
+                                @foreach($fra as $item)
+                                    <option value="{{ $item['id'] }}">{{$item['agency_name']}}</option>
+                                @endforeach
                             </select>
                             @error('jobOrder.job_order_type') <span class="text-danger">{{ $message }}</span> @endif
-                        </div>
-                        <div class="col-md-12">
-                            <label>Description</label>
-                            <textarea class="form-control" wire:model="jobOrder.description"></textarea>
                         </div>
                     </div>
                 </div>

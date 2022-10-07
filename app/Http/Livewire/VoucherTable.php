@@ -24,9 +24,10 @@ class VoucherTable extends DataTableComponent
     public function query(): Builder
     {
         return Voucher::query()
-                      ->selectRaw('vouchers.*, users.email, agencies.name as agency_name, job_orders.job_order_type')
+                      ->selectRaw('vouchers.*, users.email, foreign_agencies.agency_name, job_orders.foreign_agency_id')
                       ->leftJoin('agencies', 'agencies.id', '=', 'vouchers.agency_id')
                       ->leftJoin('job_orders', 'job_orders.voucher_id', '=', 'vouchers.id')
+                      ->leftJoin('foreign_agencies', 'foreign_agencies.id', '=', 'job_orders.foreign_agency_id')
                       ->join('users', 'users.id', '=', 'vouchers.created_by')
                       ->when(isset($this->params['account']), function ($q) {
                           $q->where('users.id', $this->params['account']);
@@ -79,7 +80,7 @@ class VoucherTable extends DataTableComponent
                   })
                   ->searchable()
                   ->asHtml(),
-            Column::make("Job Order", "job_order_type")
+            Column::make("Job Order", "agency_name")
                   ->sortable()
                   ->format(function ($value, $column, $row) {
                       $attr = ' data-bs-toggle="modal" data-bs-target="#jobOrderModal"
@@ -92,11 +93,9 @@ class VoucherTable extends DataTableComponent
                           ]);
                       }
 
-                      $message = $value == 'fra' ? 'text-success' : 'text-warning';
-
                       return view('buttons.link', [
                           'attr' => $attr,
-                          'label' => "<div class='$message'>".Str::upper($value)."</div>",
+                          'label' => "<div class='text-dark font-weight-bold'>".Str::upper($value)."</div>",
                       ]);
                   })
                   ->searchable()
