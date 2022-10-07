@@ -4,10 +4,10 @@ namespace App\Http\Livewire;
 
 use App\Models\User;
 use App\Models\Voucher;
-use Gridjs\VoucherGridjs;
+use App\Models\VoucherStatus;
 use Livewire\Component;
 
-class Vouchers extends Component
+class VoucherLivewire extends Component
 {
     public array $params = [];
 
@@ -15,16 +15,18 @@ class Vouchers extends Component
 
     public array $details = [];
 
+    public array $voucherStatus = [];
+
     protected $listeners = ['editVoucher' => 'edit'];
 
     public function mount()
     {
         $this->params['account'] = auth()->id();
-        $this->accounts = User::query()
-                              ->select(['id', 'email'])
-                              ->where('agency_id', auth()->user()->agency_id)
-                              ->get()
-                              ->toArray();
+        $this->accounts          = User::query()
+                                       ->select(['id', 'email'])
+                                       ->where('agency_id', auth()->user()->agency_id)
+                                       ->get()
+                                       ->toArray();
     }
 
     public function render()
@@ -45,6 +47,9 @@ class Vouchers extends Component
     public function edit($id)
     {
         $this->details = Voucher::query()->find($id)->toArray()[0];
+        $voucherModel  = VoucherStatus::query()->where('voucher_id', $id['id'])->first();
+
+        $this->voucherStatus = $voucherModel?->toArray() ?? [];
     }
 
     public function store()
@@ -62,5 +67,26 @@ class Vouchers extends Component
         Voucher::query()->find($this->details['id'])->delete();
         $this->emit('callToaster', ['message' => 'Voucher has been deleted!']);
         $this->details = [];
+    }
+
+    public function statusUpdate()
+    {
+        $this->validate([
+           'voucherStatus.status' => 'required'
+        ],[
+            'voucherStatus.status.required' => 'Status is required.'
+        ]);
+
+        $voucher = Voucher::find($this->details['id']);
+        $voucher->status = $this->voucherStatus['status'];
+        $voucher->save();
+
+        VoucherStatus::query()
+                     ->updateOrCreate(
+                         ['voucher_id' => $this->details['id']],
+                         $this->voucherStatus
+                     );
+
+        $this->emit('callToaster', ['message' => 'Voucher Status Updated!']);
     }
 }

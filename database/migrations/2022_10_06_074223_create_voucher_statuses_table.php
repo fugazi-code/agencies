@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('voucher_id');
             $table->string('status');
-            $table->date('date')->nullable();
+            $table->date('status_date')->nullable();
             $table->text('remarks')->nullable();
             $table->timestamps();
         });

@@ -43,15 +43,6 @@
     {{--Add--}}
     <x-modalform id="voucherModal" modalTitle="New Voucher" size="modal-xl">
         <div class="row px-2">
-            <div class="col-md-4 mb-2">
-                <label>Status</label>
-                <select class="form-control" wire:model="details.status">
-                    <option value="">-- Select Option -- </option>
-                    <option value="back-out">BACK-OUT</option>
-                    <option value="deployed">DEPLOYED</option>
-                    <option value="in-process">IN-PROCESS</option>
-                </select>
-            </div>
             <div class="col-md-4 mb-2"><label>Applicant Name</label><input type="text" class="form-control"
                                                                            wire:model="details.name"></div>
             <div class="col-md-4 mb-2"><label>Source</label><input type="text" class="form-control"
@@ -115,15 +106,6 @@
     {{--Edit--}}
     <x-modalform id="voucherEditModal" modalTitle="Edit Voucher" size="modal-xl">
         <div class="row px-2">
-            <div class="col-md-4 mb-2">
-                <label>Status</label>
-                <select class="form-control" wire:model="details.status">
-                    <option value="">-- Select Option -- </option>
-                    <option value="back-out">BACK-OUT</option>
-                    <option value="deployed">DEPLOYED</option>
-                    <option value="in-process">IN-PROCESS</option>
-                </select>
-            </div>
             <div class="col-md-4 mb-2"><label>Applicant Name</label><input type="text" class="form-control"
                                                                            wire:model="details.name"></div>
             <div class="col-md-4 mb-2"><label>Source</label><input type="text" class="form-control"
@@ -188,4 +170,44 @@
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal" wire:click="destroy">Delete</button>
         </x-slot>
     </x-modalform>
+
+    <!-- Modal -->
+    <div wire:ignore.self class="modal fade" id="voucherStatusModal" tabindex="-1" aria-labelledby="voucherStatusModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="voucherStatusModalLabel">
+                        Voucher Status <code>{{ $details['name'] ?? '' }}</code>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Status</label>
+                            <select class="form-control" wire:model="voucherStatus.status">
+                                <option value="">-- Select Option -- </option>
+                                <option value="back-out">BACK-OUT</option>
+                                <option value="deployed">DEPLOYED</option>
+                                <option value="in-process">IN-PROCESS</option>
+                            </select>
+                            @error('voucherStatus.status') <span class="text-danger">{{ $message }}</span> @endif
+                        </div>
+                        <div class="col-md-6">
+                            <label>Status Date</label>
+                            <input type="date" class="form-control" wire:model="voucherStatus.status_date">
+                        </div>
+                        <div class="col-md-12">
+                            <label>Remarks</label>
+                            <textarea class="form-control" wire:model="voucherStatus.remarks"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" wire:click="statusUpdate">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

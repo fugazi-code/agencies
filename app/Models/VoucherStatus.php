@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class VoucherStatus extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'voucher_id',
+        'status',
+        'status_date',
+        'remarks'
+    ];
 }

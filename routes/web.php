@@ -12,6 +12,7 @@ use App\Http\Livewire\Login;
 use App\Http\Livewire\OFWMonitoring;
 use App\Http\Livewire\Reporting;
 use App\Http\Livewire\Users;
+use App\Http\Livewire\VoucherLivewire;
 use App\Http\Livewire\Vouchers;
 use Gridjs\ApplicantTableGridjs;
 use Gridjs\DocumentTableGridjs;
@@ -47,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', Dashboard::class)->name('dashboard');
 
     Route::middleware(['can:agency'])->group(function () {
-        Route::get('/vouchers', Vouchers::class)->name('finance.vouchers');
+        Route::get('/vouchers', VoucherLivewire::class)->name('finance.vouchers');
         Route::get('/applicants', ApplicantsLivewire::class)->name('applicants');
         Route::get('/applicant/form', ApplicationFromLivewire::class)->name('applicant.form');
         Route::get('/applicant/docs', ApplicantDocsLivewire::class)->name('applicant-docs-livewire');

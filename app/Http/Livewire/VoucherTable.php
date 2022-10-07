@@ -56,14 +56,21 @@ class VoucherTable extends DataTableComponent
                   ->asHtml(),
             Column::make("Status", "status")
                   ->sortable()
-                  ->format(function ($value) {
+                  ->format(function ($value, $column, $row) {
+                      $attr = ' data-bs-toggle="modal" data-bs-target="#voucherStatusModal"
+                      wire:click="$emitUp(\'editVoucher\', { \'id\' :'.$row->id.'})"';
+
                       if ($value == '') {
-                          return view('buttons.secondary', ['label' => 'No Status']);
+                          return view('buttons.secondary', [
+                              'attr' => $attr,
+                              'label' => 'No Status',
+                          ]);
                       }
 
                       $message = $value == 'deployed' ? 'text-success' : 'text-warning';
 
                       return view('buttons.light', [
+                          'attr' => $attr,
                           'label' => "<div class='spinner-grow $message' role='status'></div>
                                         <div class='my-auto ms-2'>".Str::upper($value)."</div>",
                       ]);
