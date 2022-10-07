@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\JobOrder;
 use App\Models\User;
 use App\Models\Voucher;
 use App\Models\VoucherStatus;
@@ -17,7 +18,9 @@ class VoucherLivewire extends Component
 
     public array $voucherStatus = [];
 
-    protected $listeners = ['editVoucher' => 'edit'];
+    public array $jobOrder = [];
+
+    protected $listeners = ['editVoucher' => 'edit', 'editJobOrder' => 'editJobOrder'];
 
     public function mount()
     {
@@ -47,9 +50,13 @@ class VoucherLivewire extends Component
     public function edit($id)
     {
         $this->details = Voucher::query()->find($id)->toArray()[0];
-        $voucherModel  = VoucherStatus::query()->where('voucher_id', $id['id'])->first();
+        $this->voucherStatus  = VoucherStatus::query()->where('voucher_id', $id['id'])->first()?->toArray() ?? [];
+    }
 
-        $this->voucherStatus = $voucherModel?->toArray() ?? [];
+    public function editJobOrder($id)
+    {
+        $this->details = Voucher::query()->find($id)->toArray()[0];
+        $this->jobOrder = JobOrder::query()->where('voucher_id', $id)->first()?->toArray() ?? [];
     }
 
     public function store()
@@ -85,6 +92,17 @@ class VoucherLivewire extends Component
                      ->updateOrCreate(
                          ['voucher_id' => $this->details['id']],
                          $this->voucherStatus
+                     );
+
+        $this->emit('callToaster', ['message' => 'Voucher Status Updated!']);
+    }
+
+    public function jobOrderUpdate()
+    {
+        JobOrder::query()
+                     ->updateOrCreate(
+                         ['voucher_id' => $this->details['id']],
+                         $this->jobOrder
                      );
 
         $this->emit('callToaster', ['message' => 'Voucher Status Updated!']);

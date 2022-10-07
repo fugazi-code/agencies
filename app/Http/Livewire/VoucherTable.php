@@ -24,8 +24,9 @@ class VoucherTable extends DataTableComponent
     public function query(): Builder
     {
         return Voucher::query()
-                      ->selectRaw('vouchers.*, users.email, agencies.name as agency_name')
+                      ->selectRaw('vouchers.*, users.email, agencies.name as agency_name, job_orders.job_order_type')
                       ->leftJoin('agencies', 'agencies.id', '=', 'vouchers.agency_id')
+                      ->leftJoin('job_orders', 'job_orders.voucher_id', '=', 'vouchers.id')
                       ->join('users', 'users.id', '=', 'vouchers.created_by')
                       ->when(isset($this->params['account']), function ($q) {
                           $q->where('users.id', $this->params['account']);
@@ -63,7 +64,7 @@ class VoucherTable extends DataTableComponent
                       if ($value == '') {
                           return view('buttons.secondary', [
                               'attr' => $attr,
-                              'label' => 'No Status',
+                              'label' => 'None',
                           ]);
                       }
 
@@ -73,6 +74,28 @@ class VoucherTable extends DataTableComponent
                           'attr' => $attr,
                           'label' => "<div class='spinner-grow $message' role='status'></div>
                                         <div class='my-auto ms-2'>".Str::upper($value)."</div>",
+                      ]);
+                  })
+                  ->searchable()
+                  ->asHtml(),
+            Column::make("Job Order", "job_order_type")
+                  ->sortable()
+                  ->format(function ($value, $column, $row) {
+                      $attr = ' data-bs-toggle="modal" data-bs-target="#jobOrderModal"
+                      wire:click="$emitUp(\'editJobOrder\', { \'id\' :'.$row->id.'})"';
+
+                      if ($value == '') {
+                          return view('buttons.secondary', [
+                              'attr' => $attr,
+                              'label' => 'None',
+                          ]);
+                      }
+
+                      $message = $value == 'fra' ? 'text-success' : 'text-warning';
+
+                      return view('buttons.link', [
+                          'attr' => $attr,
+                          'label' => "<div class='$message'>".Str::upper($value)."</div>",
                       ]);
                   })
                   ->searchable()

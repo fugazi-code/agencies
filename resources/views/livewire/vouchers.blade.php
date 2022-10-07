@@ -210,4 +210,39 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div wire:ignore.self class="modal fade" id="jobOrderModal" tabindex="-1" aria-labelledby="jobOrderModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="jobOrderModalLabel">
+                        Job Order <code>{{ $details['name'] ?? '' }}</code>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Job Order Type</label>
+                            <select class="form-control" wire:model="jobOrder.job_order_type">
+                                <option value="">-- Select Option -- </option>
+                                <option value="fra">FRA</option>
+                                <option value="job-order">JOB ORDER</option>
+                            </select>
+                            @error('jobOrder.job_order_type') <span class="text-danger">{{ $message }}</span> @endif
+                        </div>
+                        <div class="col-md-12">
+                            <label>Description</label>
+                            <textarea class="form-control" wire:model="jobOrder.description"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" wire:click="jobOrderUpdate">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
