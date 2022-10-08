@@ -8,6 +8,7 @@ class CreateCandidatesTable extends Migration
 {
     /**
      * Run the migrations.
+     * php artisan migrate:reset --path='database/migrations/2021_01_06_094258_create_candidates_table.php' --force
      *
      * @return void
      */
@@ -15,23 +16,18 @@ class CreateCandidatesTable extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
-            $table->string('agency_id', 200)->nullable();
+            $table->integer('agency_id')->nullable();
+            $table->integer('voucher_id')->nullable();
 
             $table->string('position_1', 200)->nullable();
             $table->string('position_2', 200)->nullable();
             $table->string('position_3', 200)->nullable();
             $table->text('skills')->nullable();
 
-            $table->string('employer_id', 200)->nullable();
             $table->string('status', 200)->nullable();
             $table->string('salary', 200)->nullable();
             $table->string('position_selected', 200)->nullable();
             $table->date('date_hired')->nullable();
-
-            $table->string('agency_abroad_id', 200)->nullable();
-            $table->string('deployed', 200)->nullable();
-            $table->date('date_deployed')->nullable();
-
             $table->string('passport', 200)->nullable();
             $table->string('place_issue', 200)->nullable();
             $table->string('dos', 200)->nullable();
@@ -45,7 +41,6 @@ class CreateCandidatesTable extends Migration
             $table->text('kin_address')->nullable();
 
             $table->string('applied_using', 200)->nullable();
-            $table->string('agency_branch', 200)->nullable();
             $table->text('picfull')->nullable();
             $table->string('code', 200)->nullable();
             $table->string('iqama', 200)->nullable();

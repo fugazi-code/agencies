@@ -19,6 +19,7 @@ class CandidateFactory extends Factory
     {
         return [
             'photo_url' => 'https://i.pravatar.cc/300',
+            'salary' => $this->faker->randomFloat(),
             'applied_using' => $this->faker->randomElement(['online', 'walk-in', 'agent']),
             'code' => $this->faker->bothify('#?#?'.now()->format('md').now()->format('y')),
             'iqama' => $this->faker->creditCardNumber(),
@@ -48,7 +49,6 @@ class CandidateFactory extends Factory
             'mother_name' => $this->faker->name('female'),
             'father_name' => $this->faker->name('male'),
             'status' => 'applicant',
-            'deployed' => $this->faker->randomElement(['yes', 'no']),
             'agreed' => 'yes',
             'travel_status' => $this->faker->randomElement(['ex-abroad', '1st time abroad']),
             'fb_account' => $this->faker->email,
@@ -59,7 +59,6 @@ class CandidateFactory extends Factory
             'kin_relationship' => 'relative',
             'kin_contact' => $this->faker->phoneNumber,
             'kin_address' => $this->faker->address,
-            'agency_branch' => null,
         ];
     }
 }

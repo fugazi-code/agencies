@@ -23,5 +23,6 @@ class DevEnvironmentSeeder extends Seeder
             Candidate::factory()->count(10)->create(['agency_id' => $value->id]);
             ForeignAgency::factory()->count(10)->create(['agency_id' => $value->id]);
         });
+
     }
 }
