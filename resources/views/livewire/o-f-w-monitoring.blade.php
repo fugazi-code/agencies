@@ -16,6 +16,7 @@
         <div class="card-body">
             <div class="card-title mb-4 d-flex flex-row">
                 <h3>OFW Monitoring</h3>
+                <a href="{{ route('report') }}" class="btn btn-outline-info ms-3" target="_blank">Online Reporting</a>
             </div>
             <div class="row">
                 <div class="col-12">

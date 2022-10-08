@@ -25,7 +25,7 @@
             @endif
             <div class="col-12"></div>
             @if($candidate)
-                @if($candidate['deployed'] == 'yes')
+                @if($candidate['status'] == 'deployed')
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header bg-primary">

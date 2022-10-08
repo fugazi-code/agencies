@@ -146,6 +146,6 @@ class Candidate extends Model
 
     public function report()
     {
-        return $this->morphMany(Report::class, 'reportable');
+        return $this->morphMany(Report::class, 'reportable')->orderBy('created_at', 'desc');
     }
 }
