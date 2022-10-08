@@ -11,6 +11,7 @@ class JobOrder extends Model
 
     protected $fillable =[
         'voucher_id',
-        'foreign_agency_id'
+        'foreign_agency_id',
+        'agency_id'
     ];
 }

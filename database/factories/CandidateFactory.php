@@ -18,10 +18,10 @@ class CandidateFactory extends Factory
     public function definition()
     {
         return [
+            'code' => $this->faker->bothify('#?#?'.now()->format('md').now()->format('y')),
             'photo_url' => 'https://i.pravatar.cc/300',
             'salary' => $this->faker->randomFloat(),
             'applied_using' => $this->faker->randomElement(['online', 'walk-in', 'agent']),
-            'code' => $this->faker->bothify('#?#?'.now()->format('md').now()->format('y')),
             'iqama' => $this->faker->creditCardNumber(),
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,

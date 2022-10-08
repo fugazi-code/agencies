@@ -14,8 +14,15 @@ class CandidateTable extends DataTableComponent
     {
         return [
             Column::make("Agency id", "name")
-                ->searchable()
+                ->searchable(function ($q, $v) {
+                    return $q->orWhere('ag.name', 'LIKE', "%$v%");
+                })
                 ->sortable(),
+            Column::make("Status", "status")
+                  ->searchable(function ($q, $v) {
+                      return $q->orWhere('v.status', 'LIKE', "%$v%");
+                  })
+                  ->sortable(),
             Column::make("First name", "first_name")
                   ->searchable()
                   ->sortable(),
@@ -37,8 +44,6 @@ class CandidateTable extends DataTableComponent
             Column::make("Skills", "skills")
                 ->sortable(),
             Column::make("Employer id", "employer_id")
-                ->sortable(),
-            Column::make("Status", "status")
                 ->sortable(),
             Column::make("Salary", "salary")
                 ->sortable(),
@@ -135,6 +140,9 @@ class CandidateTable extends DataTableComponent
 
     public function query(): Builder
     {
-        return Candidate::query()->leftJoin('agencies as ag', 'ag.id', '=', 'candidates.agency_id');
+        return Candidate::query()
+                        ->selectRaw('candidates.*, ag.name, v.status')
+                        ->join('agencies as ag', 'ag.id', '=', 'candidates.agency_id')
+                        ->join('vouchers as v', 'v.id', '=', 'candidates.voucher_id');
     }
 }
