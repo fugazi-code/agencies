@@ -53,7 +53,7 @@
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fas fa-signal fs-6"></i>
                     </div>
-                    <span class="nav-link-text ms-1">OFW Monitoring</span>
+                    <span class="nav-link-text ms-1">OFW Details</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -63,15 +63,6 @@
                         <i class="fas fa-building fs-5"></i>
                     </div>
                     <span class="nav-link-text ms-1">Agency</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link @if(request()->routeIs('blacklist')) active @endif" href="{{ route('blacklist') }}">
-                    <div
-                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-ban fs-5"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Blacklist</span>
                 </a>
             </li>
             <li class="nav-item">

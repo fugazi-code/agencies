@@ -6,13 +6,13 @@ use App\Http\Livewire\Users;
 use App\Http\Livewire\Blacklist;
 use App\Http\Livewire\Reporting;
 use App\Http\Livewire\Complaints;
-use App\Http\Livewire\OFWMonitoring;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\AgencyLivewire;
 use App\Http\Livewire\VoucherLivewire;
 use App\Http\Livewire\DashboardLivewire;
 use App\Http\Livewire\ApplicantsLivewire;
 use App\Http\Livewire\ApplicantDocsLivewire;
+use App\Http\Livewire\OFWMonitoringLivewire;
 use App\Http\Livewire\ApplicationFromLivewire;
 
 /*
@@ -52,9 +52,8 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['can:admin'])->group(function () {
         Route::get('/users', Users::class)->name('users');
         Route::get('/cases', Cases::class)->name('cases');
-        Route::get('/blacklist', Blacklist::class)->name('blacklist');
         Route::get('/complaints', Complaints::class)->name('complaints');
         Route::get('/agencies', AgencyLivewire::class)->name('agencies');
-        Route::get('/ofw-monitoring', OFWMonitoring::class)->name('ofw.monitoring');
+        Route::get('/ofw-monitoring', OFWMonitoringLivewire::class)->name('ofw.monitoring');
     });
 });

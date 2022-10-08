@@ -4,10 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class Blacklist extends Component
+class OFWMonitoringLivewire extends Component
 {
     public function render()
     {
-        return view('livewire.blacklist');
+        return view('livewire.o-f-w-monitoring');
     }
 }

@@ -13,6 +13,8 @@ class DashboardAdminLivewire extends Component
 
     public $keyIn = 0;
 
+    public array $candidate = [];
+
     public function render()
     {
         return view('livewire.dashboard-admin-livewire');
@@ -25,5 +27,13 @@ class DashboardAdminLivewire extends Component
                           ->paginate(10);
 
         $this->results = $model->load('agency')->toArray();
+    }
+
+    public function bindSearch($id, $keyword)
+    {
+        $this->keyIn = 0;
+        $this->keyword = $keyword;
+
+        $this->candidate = Candidate::query()->find($id)->toArray();
     }
 }

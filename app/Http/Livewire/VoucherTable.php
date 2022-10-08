@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Voucher;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Voucher;
 use Illuminate\Support\Str;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
 
 class VoucherTable extends DataTableComponent
 {
