@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class Cases extends Component
+class CasesLivewire extends Component
 {
     public function render()
     {

@@ -79,7 +79,7 @@ class Candidate extends Model
      */
     public function searchableAs()
     {
-        return 'candidates_index';
+        return config('scout.algolia.index');
     }
 
     /**
@@ -89,9 +89,7 @@ class Candidate extends Model
      */
     public function toSearchableArray()
     {
-        $array = $this->only('first_name', 'last_name', 'passport');
-
-        return $array;
+        return $this->only('first_name', 'last_name', 'passport', 'iqama');
     }
 
     public function employment()

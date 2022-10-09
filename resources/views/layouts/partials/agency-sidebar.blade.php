@@ -66,16 +66,6 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link @if(request()->routeIs('complaints')) active @endif"
-                   href="{{ route('complaints') }}">
-                    <div
-                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-comment fs-5"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Complaints</span>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link @if(request()->routeIs('cases')) active @endif" href="{{ route('cases') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">

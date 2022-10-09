@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Agency;
 use App\Models\Candidate;
+use App\Models\Complains;
 use App\Models\ForeignAgency;
 use App\Models\JobOrder;
 use App\Models\Voucher;
@@ -20,11 +21,20 @@ class DevEnvironmentSeeder extends Seeder
      */
     public function run()
     {
+        Complains::factory()->count(200)->create();
         Agency::factory()->count(100)->create();
         Agency::query()->each(function ($value) {
             Candidate::factory()->count(10)->create(['agency_id' => $value->id]);
             ForeignAgency::factory()->count(10)->create(['agency_id' => $value->id]);
             Voucher::factory()->count(10)->create(['agency_id' => $value->id]);
+
+            $foreignAgency = ForeignAgency::query()->where('agency_id', $value->id)->inRandomOrder()->first();
+            Complains::factory()->count(10)->create([
+                'agency_id' => $value->id,
+                'agency' => $value->name,
+                'foreign_agency' => $foreignAgency->agency_name,
+                'foreign_agency_id' => $foreignAgency->id
+            ]);
         });
 
         Voucher::query()->each(function ($value) {
@@ -58,5 +68,6 @@ class DevEnvironmentSeeder extends Seeder
             $candidate->voucher_id = $value->id;
             $candidate->save();
         });
+
     }
 }

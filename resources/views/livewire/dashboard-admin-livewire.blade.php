@@ -26,7 +26,9 @@
                                                 {{ $item['last_name'] }}, {{ $item['first_name'] }}
                                             </h6>
                                             <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">
-                                                Agency: {{ $item['agency']['name'] ?? 'Not Assigned' }}
+                                                Agency: {{ $item['agency']['name'] ?? 'Not Assigned' }} <br>
+                                                Passport: {{ $item['passport'] ?? 'Not Assigned' }}<br>
+                                                National ID: {{ $item['iqama'] ?? 'Not Assigned' }}<br>
                                             </p>
                                         </div>
                                     </div>

@@ -14,11 +14,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="row mb-4 mx-2">
-                    </div>
-                </div>
-                <div class="col-12">
-
+                    <livewire:complains-table/>
                 </div>
             </div>
         </div>

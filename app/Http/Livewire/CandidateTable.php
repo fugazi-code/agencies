@@ -13,6 +13,12 @@ class CandidateTable extends DataTableComponent
     public function columns(): array
     {
         return [
+            Column::make("Action", "id")
+                  ->format(function ($value) {
+                      return view('buttons.actions',
+                          ['id' => $value, 'listener' => 'editVoucher', 'modal' => 'voucherEditModal']);
+                  })
+                  ->asHtml(),
             Column::make("Agency id", "name")
                 ->searchable(function ($q, $v) {
                     return $q->orWhere('ag.name', 'LIKE', "%$v%");

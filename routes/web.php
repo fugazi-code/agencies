@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Cases;
+use App\Http\Livewire\CasesLivewire;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Blacklist;
@@ -51,8 +52,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['can:admin'])->group(function () {
         Route::get('/users', Users::class)->name('users');
-        Route::get('/cases', Cases::class)->name('cases');
-        Route::get('/complaints', Complaints::class)->name('complaints');
+        Route::get('/cases', CasesLivewire::class)->name('cases');
         Route::get('/agencies', AgencyLivewire::class)->name('agencies');
         Route::get('/ofw-monitoring', OFWMonitoringLivewire::class)->name('ofw.monitoring');
     });
