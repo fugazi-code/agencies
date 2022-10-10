@@ -13,8 +13,12 @@ class ComplainsTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
-                  ->sortable(),
+            Column::make("Action", "id")
+                  ->format(function ($value) {
+                      return view('buttons.primary',
+                          ['id' => $value, 'label' => 'VIEW', 'listener' => 'editCase', 'modal' => 'caseDetailModal']);
+                  })
+                  ->asHtml(),
             Column::make("Agency", "agency")
                   ->searchable()
                   ->sortable(),
@@ -50,14 +54,6 @@ class ComplainsTable extends DataTableComponent
             Column::make("Address abroad", "address_abroad")
                   ->sortable(),
             Column::make("Employer contact", "employer_contact")
-                  ->sortable(),
-            Column::make("Complaint", "complaint")
-                  ->sortable(),
-            Column::make("Image1", "image1")
-                  ->sortable(),
-            Column::make("Image2", "image2")
-                  ->sortable(),
-            Column::make("Image3", "image3")
                   ->sortable(),
             Column::make("Actual latitude", "actual_latitude")
                   ->sortable(),
