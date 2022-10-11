@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Cases;
 use App\Http\Livewire\CasesLivewire;
+use App\Http\Livewire\ComplaintFormLivewire;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Blacklist;
@@ -39,6 +40,7 @@ Route::post(
 )->name('logout');
 
 Route::get('report', Reporting::class)->name('report');
+Route::get('complaint', ComplaintFormLivewire::class)->name('complaint-form-livewire');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', DashboardLivewire::class)->name('dashboard');

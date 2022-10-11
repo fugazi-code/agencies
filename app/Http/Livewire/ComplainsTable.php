@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Complains;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -19,6 +20,11 @@ class ComplainsTable extends DataTableComponent
                           ['id' => $value, 'label' => 'VIEW', 'listener' => 'editCase', 'modal' => 'caseDetailModal']);
                   })
                   ->asHtml(),
+            Column::make("Created at", "created_at")
+                  ->format(function ($value) {
+                      return Carbon::parse($value)->format('F j, Y');
+                  })
+                  ->sortable(),
             Column::make("Agency", "agency")
                   ->searchable()
                   ->sortable(),
@@ -58,12 +64,6 @@ class ComplainsTable extends DataTableComponent
             Column::make("Actual latitude", "actual_latitude")
                   ->sortable(),
             Column::make("Actual longitude", "actual_longitude")
-                  ->sortable(),
-            Column::make("Created at", "created_at")
-                  ->sortable(),
-            Column::make("Created at", "created_at")
-                  ->sortable(),
-            Column::make("Updated at", "updated_at")
                   ->sortable(),
         ];
     }

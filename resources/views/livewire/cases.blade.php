@@ -11,7 +11,9 @@
         <div class="card-body">
             <div class="card-title mb-4 d-flex flex-row">
                 <h3>Cases</h3>
-                <a href="{{ route('report') }}" class="btn btn-outline-info ms-3" target="_blank">Complaint Form</a>
+                <a href="{{ route('complaint-form-livewire', ['agencyId' => 1]) }}" class="btn btn-outline-info ms-3" target="_blank">
+                    Complaint Form
+                </a>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -33,15 +35,21 @@
                         @if($detail)
                             <div class="row">
                                 <div class="col-md-12 d-flex flex-row justify-content-center">
-                                    <a href="{{ $detail['image1'] }}" class="btn btn-sm btn-info mx-2" target="_blank">
-                                        Image 1
-                                    </a>
-                                    <a href="{{ $detail['image2'] }}" class="btn btn-sm btn-info mx-2" target="_blank">
-                                        Image 2
-                                    </a>
-                                    <a href="{{ $detail['image3'] }}" class="btn btn-sm btn-info mx-2" target="_blank">
-                                        Image 3
-                                    </a>
+                                    @if($detail['image1'])
+                                        <a href="{{ $detail['image1'] }}" class="btn btn-sm btn-info mx-2" target="_blank">
+                                            Image 1
+                                        </a>
+                                    @endif
+                                    @if($detail['image2'])
+                                        <a href="{{ $detail['image2'] }}" class="btn btn-sm btn-info mx-2" target="_blank">
+                                            Image 2
+                                        </a>
+                                    @endif
+                                    @if($detail['image3'])
+                                        <a href="{{ $detail['image3'] }}" class="btn btn-sm btn-info mx-2" target="_blank">
+                                            Image 3
+                                        </a>
+                                    @endif
                                 </div>
                                 <div class="col-md-12 border-top">
                                     Complaint
