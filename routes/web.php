@@ -4,6 +4,8 @@ use App\Http\Livewire\Cases;
 use App\Http\Livewire\CasesLivewire;
 use App\Http\Livewire\ComplaintFormLivewire;
 use App\Http\Livewire\Login;
+use App\Http\Livewire\ReportLivewire;
+use App\Http\Livewire\RescueRemoteLivewire;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Blacklist;
 use App\Http\Livewire\Reporting;
@@ -40,6 +42,7 @@ Route::post(
 )->name('logout');
 
 Route::get('report', Reporting::class)->name('report');
+Route::get('rescue-report', RescueRemoteLivewire::class)->name('rescue');
 Route::get('complaint', ComplaintFormLivewire::class)->name('complaint-form-livewire');
 
 Route::middleware(['auth'])->group(function () {
@@ -52,9 +55,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/applicant/docs', ApplicantDocsLivewire::class)->name('applicant-docs-livewire');
     });
 
-    Route::middleware(['can:admin'])->group(function () {
+    Route::middleware(['can:admin'])->group(callback: function () {
         Route::get('/users', Users::class)->name('users');
         Route::get('/cases', CasesLivewire::class)->name('cases');
+        Route::get('/reports', ReportLivewire::class)->name('report');
         Route::get('/agencies', AgencyLivewire::class)->name('agencies');
         Route::get('/ofw-monitoring', OFWMonitoringLivewire::class)->name('ofw.monitoring');
     });

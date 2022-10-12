@@ -21,11 +21,15 @@
             </div>
             <div class="col-12" wire:ignore.self id="form-ofw-loading">
                 <div class="card mt-4">
-                    <div class="d-flex flex-row justify-content-center my-5">
-                        <div class="spinner-border me-4" role="status">
-                            <span class="visually-hidden">Loading...</span>
+                    <div class="d-flex flex-column justify-content-center my-5">
+                        <div class="d-flex flex-row justify-content-center">
+                            <div class="spinner-border me-4" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                         </div>
-                        <h3 class="my-auto">Please wait.. We are searching your location...</h3>
+                        <div class="d-flex flex-row justify-content-center">
+                            <h3 class="my-auto px-3">Please wait.. We are searching your location...</h3>
+                        </div>
                     </div>
                 </div>
             </div>

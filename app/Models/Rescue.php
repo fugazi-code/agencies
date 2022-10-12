@@ -4,15 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AlertLevel extends Model
+class Rescue extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
-        "color_level",
-        "description",
-        "name",
-        "created_by"
+      'candidate_id',
+      'ip_address',
+      'actual_latitude',
+      'actual_longitude'
     ];
 }

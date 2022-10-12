@@ -2,10 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Report;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Report;
 
 class ReportTable extends DataTableComponent
 {
@@ -14,36 +13,30 @@ class ReportTable extends DataTableComponent
     {
         return [
             Column::make("Id", "id")
-                ->sortable(),
-            Column::make("Reportable id", "reportable_id")
-                ->sortable(),
-            Column::make("Reportable type", "reportable_type")
-                ->sortable(),
-            Column::make("Created by", "created_by")
-                ->sortable(),
+                  ->sortable(),
+            Column::make("From", "fullname")
+                  ->searchable(function ($q, $v) {
+                      $q->orWhere('c.last_name', 'LIKE', "%$v%")->orWhere('c.first_name', 'LIKE', "%$v%");
+                  })
+                  ->sortable(),
             Column::make("Salary received", "salary_received")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Salary date", "salary_date")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Remarks", "remarks")
-                ->sortable(),
-            Column::make("Priority level", "priority_level")
-                ->sortable(),
-            Column::make("Deleted at", "deleted_at")
-                ->sortable(),
+                  ->searchable()
+                  ->sortable(),
             Column::make("Created at", "created_at")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Updated at", "updated_at")
-                ->sortable(),
-            Column::make("Created at", "created_at")
-                ->sortable(),
-            Column::make("Updated at", "updated_at")
-                ->sortable(),
+                  ->sortable(),
         ];
     }
 
-    public function query(): Builder
+    public function query()
     {
-        return Report::query();
+        return Report::query()
+                     ->selectRaw('reports.*, CONCAT(c.last_name, \', \', c.first_name) as fullname')
+                     ->leftJoin('candidates as c', 'c.id', '=', 'reportable_id');
     }
 }
