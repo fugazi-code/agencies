@@ -2,15 +2,16 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\AlertSystemEvent;
 use App\Models\Candidate;
 use App\Models\Rescue;
 use Livewire\Component;
 
 class RescueRemoteLivewire extends Component
 {
-    public $code = '9z2x100822';
+    public string $code = '9z2x100822';
 
-    public $candidate = [];
+    public array $candidate = [];
 
     public $form;
 
@@ -34,6 +35,7 @@ class RescueRemoteLivewire extends Component
 
     public function rescue()
     {
+        event(new AlertSystemEvent());
         Rescue::query()->updateOrCreate(['ip_address' => request()->ip()], [
             'candidate_id' => $this->candidate['id'],
             'ip_address' => request()->ip(),
