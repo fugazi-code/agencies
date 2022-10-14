@@ -9,14 +9,44 @@
     <div class="row mt-5">
             @can('agency')
                 <div class="col-md-12">
-                    <h5>Vouchers Summary</h5>
-                    <div class="row p-2">
-                        <div class="col-md-auto">
-                            <div class="card dash-cards">
-                                <div class="card-body">
-                                    <div class="d-flex flex-column">
-                                        <div class="font-weight-bold">Total Vouchers</div>
-                                        <div class="text-right">000</div>
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-body p-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="numbers">
+                                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Vouchers</p>
+                                            <h5 class="font-weight-bolder mb-0">
+                                                {{ $totalVoucher }}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                                            <i class="fas fa-stream"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-body p-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="numbers">
+                                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Applicant</p>
+                                            <h5 class="font-weight-bolder mb-0">
+                                                {{ $totalVoucher }}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                                            <i class="fas fa-stream"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
