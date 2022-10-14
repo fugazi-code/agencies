@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="col-12" wire:ignore>
-                    <x-throwexceptions::gridjs :table="$applicantTable" name="tableApplicant"/>
+                    <livewire:candidate-table/>
                 </div>
             </div>
         </div>

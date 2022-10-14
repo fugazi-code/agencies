@@ -16,9 +16,7 @@ class ApplicantsLivewire extends Component
 
     public function render()
     {
-        return view('livewire.applicants-livewire',
-            ['applicantTable' => app(ApplicantTableGridjs::class)->make(route('applicant.get'))]
-        );
+        return view('livewire.applicants-livewire');
     }
 
     public function bind($id)

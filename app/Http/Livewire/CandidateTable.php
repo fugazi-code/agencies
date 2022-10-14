@@ -15,8 +15,8 @@ class CandidateTable extends DataTableComponent
         return [
             Column::make("Action", "id")
                   ->format(function ($value) {
-                      return view('buttons.actions',
-                          ['id' => $value, 'listener' => 'editVoucher', 'modal' => 'voucherEditModal']);
+                      return view('buttons.link',
+                          ['link' => route('applicant.form', ['candidate_id' => encrypt($value)]), 'label' => 'Edit']);
                   })
                   ->asHtml(),
             Column::make("Agency id", "name")
