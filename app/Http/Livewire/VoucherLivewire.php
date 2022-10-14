@@ -65,10 +65,12 @@ class VoucherLivewire extends Component
         $this->voucherStatus = VoucherStatus::query()->where('voucher_id', $id['id'])->first()?->toArray() ?? [];
     }
 
-    public function editJobOrder($id)
+    public function editJobOrder($data)
     {
-        $this->details  = Voucher::query()->find($id)->toArray()[0];
-        $this->jobOrder = JobOrder::query()->where('voucher_id', $id)->first()?->toArray() ?? [];
+        $this->details  = Voucher::query()->find($data['id'])->toArray();
+        $this->jobOrder = JobOrder::query()
+                                  ->where('foreign_agency_id', $data['foreign_agency_id'])
+                                  ->first()?->toArray() ?? [];
     }
 
     public function store()
@@ -128,11 +130,11 @@ class VoucherLivewire extends Component
         ]);
 
         $this->fraKey = '';
-        $this->fra = ForeignAgency::query()
-                                  ->select(['id', 'agency_name'])
-                                  ->where('agency_id', auth()->user()->agency_id)
-                                  ->get()
-                                  ->toArray();
+        $this->fra    = ForeignAgency::query()
+                                     ->select(['id', 'agency_name'])
+                                     ->where('agency_id', auth()->user()->agency_id)
+                                     ->get()
+                                     ->toArray();
     }
 
     public function deleteFRA($id)

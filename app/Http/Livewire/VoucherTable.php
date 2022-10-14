@@ -2,18 +2,22 @@
 
 namespace App\Http\Livewire;
 
-use Carbon\Carbon;
 use App\Models\Voucher;
-use Illuminate\Support\Str;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Column;
+use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class VoucherTable extends DataTableComponent
 {
     protected $listeners = ['refreshDatatable' => '$refresh', 'outsideFilter'];
 
     public $params;
+
+    public string $defaultSortColumn = 'created_at';
+
+    public string $defaultSortDirection = 'desc';
 
     public function outsideFilter($data)
     {
@@ -84,7 +88,7 @@ class VoucherTable extends DataTableComponent
                   ->sortable()
                   ->format(function ($value, $column, $row) {
                       $attr = ' data-bs-toggle="modal" data-bs-target="#jobOrderModal"
-                      wire:click="$emitUp(\'editJobOrder\', { \'id\' :'.$row->id.'})"';
+                      wire:click="$emitUp(\'editJobOrder\', { \'id\':'.$row->id.', \'foreign_agency_id\':\''.$row->foreign_agency_id.'\'})"';
 
                       if ($value == '') {
                           return view('buttons.secondary', [
