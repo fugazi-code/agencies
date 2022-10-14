@@ -149,6 +149,9 @@ class CandidateTable extends DataTableComponent
         return Candidate::query()
                         ->selectRaw('candidates.*, ag.name, v.status')
                         ->join('agencies as ag', 'ag.id', '=', 'candidates.agency_id')
-                        ->join('vouchers as v', 'v.id', '=', 'candidates.voucher_id');
+                        ->join('vouchers as v', 'v.id', '=', 'candidates.voucher_id')
+                        ->when(auth()->user()->role == 2, function ($q){
+                            $q->where('candidates.agency_id', auth()->user()->agency_id);
+                        });
     }
 }

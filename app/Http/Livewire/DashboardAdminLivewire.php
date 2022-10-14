@@ -31,11 +31,6 @@ class DashboardAdminLivewire extends Component
 
     public function mount()
     {
-        $this->rescueCount = Rescue::query()
-                                   ->leftJoin('responds as rs', 'rs.rescue_id', '=', 'rescues.id')
-                                   ->whereNull('rs.rescue_id')
-                                   ->count();
-
         $this->reportCount = Report::query()->count();
         $this->casesCount  = Complains::query()->count();
         $this->agencyCount = Agency::query()->count();
@@ -43,6 +38,10 @@ class DashboardAdminLivewire extends Component
 
     public function render()
     {
+        $this->rescueCount = Rescue::query()
+                                   ->leftJoin('responds as rs', 'rs.rescue_id', '=', 'rescues.id')
+                                   ->whereNull('rs.rescue_id')
+                                   ->count();
         return view('livewire.dashboard-admin-livewire');
     }
 
