@@ -4,8 +4,10 @@ use App\Http\Livewire\Cases;
 use App\Http\Livewire\CasesLivewire;
 use App\Http\Livewire\ComplaintFormLivewire;
 use App\Http\Livewire\Login;
+use App\Http\Livewire\MapLivewire;
 use App\Http\Livewire\ReportLivewire;
 use App\Http\Livewire\RescueRemoteLivewire;
+use App\Http\Livewire\RescuesLivewire;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Blacklist;
 use App\Http\Livewire\Reporting;
@@ -48,17 +50,20 @@ Route::get('complaint', ComplaintFormLivewire::class)->name('complaint-form-live
 Route::middleware(['auth'])->group(function () {
     Route::get('/', DashboardLivewire::class)->name('dashboard');
 
+    Route::get('/applicant/form', ApplicationFromLivewire::class)->name('applicant.form');
+    Route::get('/applicant/docs', ApplicantDocsLivewire::class)->name('applicant-docs-livewire');
+
     Route::middleware(['can:agency'])->group(function () {
         Route::get('/vouchers', VoucherLivewire::class)->name('finance.vouchers');
         Route::get('/applicants', ApplicantsLivewire::class)->name('applicants');
-        Route::get('/applicant/form', ApplicationFromLivewire::class)->name('applicant.form');
-        Route::get('/applicant/docs', ApplicantDocsLivewire::class)->name('applicant-docs-livewire');
     });
 
     Route::middleware(['can:admin'])->group(callback: function () {
         Route::get('/users', Users::class)->name('users');
         Route::get('/cases', CasesLivewire::class)->name('cases');
         Route::get('/reports', ReportLivewire::class)->name('report');
+        Route::get('/mapview', MapLivewire::class)->name('map');
+        Route::get('/rescues', RescuesLivewire::class)->name('rescues');
         Route::get('/agencies', AgencyLivewire::class)->name('agencies');
         Route::get('/ofw-monitoring', OFWMonitoringLivewire::class)->name('ofw.monitoring');
     });
