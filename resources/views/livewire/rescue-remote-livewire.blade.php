@@ -81,11 +81,6 @@
                 $('#form-ofw').removeAttr('hidden');
                 $('#form-ofw-loading').attr('hidden', 'hidden');
 
-                @this.
-                set('form.actual_latitude', position.coords.latitude);
-                @this.
-                set('form.actual_longitude', position.coords.longitude);
-
                 var map2 = new mapboxgl.Map({
                     container: 'map2',
                     center: [position.coords.longitude, position.coords.latitude],
@@ -96,6 +91,11 @@
                 var marker2 = new mapboxgl.Marker()
                     .setLngLat([position.coords.longitude, position.coords.latitude])
                     .addTo(map2);
+
+                @this.
+                set('form.actual_latitude', position.coords.latitude);
+                @this.
+                set('form.actual_longitude', position.coords.longitude);
             }
 
             function showError(error) {
