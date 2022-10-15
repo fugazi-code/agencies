@@ -49,15 +49,15 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-md-12 mt-3">
-                        <div wire:ignore id='map2' style='width: 100%; height: 300px;'></div>
-                    </div>
                 @else
                     <div class="d-flex flex-row justify-content-center">
                         <h3 class="my-auto px-3">Only Deployed OFW is required.</h3>
                     </div>
                 @endif
             @endif
+            <div class="col-md-12 mt-3">
+                <div wire:ignore id='map2' style='width: 100%; height: 300px;'></div>
+            </div>
         </div>
     </div>
 
