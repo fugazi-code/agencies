@@ -17,6 +17,7 @@
     <link id="pagestyle" rel="stylesheet" href="{{ asset('theme/soft-ui/assets/css/soft-ui-dashboard.min.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     @livewireStyles
+    @stack('header')
 </head>
 
 <body class="bg-gray-100 h-100 d-flex align-items-start flex-column" style="min-height: 100vh;">
