@@ -54,10 +54,10 @@
                         <h3 class="my-auto px-3">Only Deployed OFW is required.</h3>
                     </div>
                 @endif
+                    <div class="col-md-12 mt-3">
+                        <div wire:ignore id='map2' style='width: 100%; height: 300px;'></div>
+                    </div>
             @endif
-            <div class="col-md-12 mt-3">
-                <div wire:ignore id='map2' style='width: 100%; height: 300px;'></div>
-            </div>
         </div>
     </div>
 
