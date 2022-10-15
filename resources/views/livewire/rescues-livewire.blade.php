@@ -9,6 +9,13 @@
     <livewire:toaster/>
     <div class="card mt-5">
        <div class="card-body">
+           <div class="card-title mb-4 d-flex flex-row">
+               <h3>Rescues</h3>
+               <a href="{{ route('rescue') }}" class="btn btn-info">Rescue Page</a>
+               <button class="btn btn-outline-info ms-2" data-bs-toggle="modal" data-bs-target="#fraModal">
+                   <i class="fas fa-building-circle-arrow-right"></i> F.R.A.
+               </button>
+           </div>
            <livewire:rescue-table/>
        </div>
     </div>
