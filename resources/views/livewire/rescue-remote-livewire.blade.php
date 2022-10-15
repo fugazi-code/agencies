@@ -54,7 +54,7 @@
                         <h3 class="my-auto px-3">Only Deployed OFW is required.</h3>
                     </div>
                 @endif
-                    <div id="map2-container" class="col-md-12 mt-3" hidden wire:ignore>
+                    <div id="map2-container" class="col-md-12 mt-3" wire:ignore>
                         <div wire:ignore id='map2' style='width: 100%; height: 300px;'></div>
                     </div>
                     <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
@@ -75,7 +75,7 @@
 
                             function showPosition(position) {
                                 $('#form-ofw-loading').attr('hidden', 'hidden');
-                                $('#map2-container').removeAttr('hidden');
+                                $('#form-ofw').removeAttr('hidden');
 
                                 var map2 = new mapboxgl.Map({
                                     container: 'map2',
