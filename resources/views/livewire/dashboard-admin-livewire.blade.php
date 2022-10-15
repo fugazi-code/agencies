@@ -59,7 +59,7 @@
 
             <!-- Modal -->
             <div class="modal fade" id="urgentModal" tabindex="-1" aria-labelledby="urgentModalLabel"
-                 aria-hidden="true">
+                 aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
