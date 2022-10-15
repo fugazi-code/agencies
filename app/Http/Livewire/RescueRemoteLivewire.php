@@ -27,6 +27,7 @@ class RescueRemoteLivewire extends Component
         ]);
 
         $this->candidate = Candidate::query()
+                                    ->selectRaw('candidates.*, vouchers.status')
                                     ->where('code', $this->code)
                                     ->join('vouchers as v', 'v.id', '=', 'candidates.voucher_id')
                                     ->first()
