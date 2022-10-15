@@ -55,7 +55,7 @@
                     </div>
                 @endif
             @endif
-            <div class="col-md-12 mt-3" hidden wire:ignore>
+            <div id="map2-container" class="col-md-12 mt-3" hidden wire:ignore>
                 <div wire:ignore id='map2' style='width: 100%; height: 300px;'></div>
             </div>
         </div>
@@ -79,7 +79,7 @@
 
             function showPosition(position) {
                 $('#form-ofw-loading').attr('hidden', 'hidden');
-                $('#map2').removeAttr('hidden');
+                $('#map2-container').removeAttr('hidden');
 
                 var map2 = new mapboxgl.Map({
                     container: 'map2',
