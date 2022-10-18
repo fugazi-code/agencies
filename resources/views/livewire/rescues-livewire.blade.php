@@ -11,7 +11,7 @@
         <div class="card-body">
             <div class="card-title mb-4 d-flex flex-row">
                 <h3>Rescues</h3>
-                <a href="{{ route('rescue') }}" class="btn btn-outline-info ms-2">Rescue Page</a>
+                <a href="{{ route('rescue') }}" target="_blank" class="btn btn-outline-info ms-2">Rescue Page</a>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal"
                         data-bs-target="#recipientModal">

@@ -3,8 +3,11 @@
 namespace App\Http\Livewire;
 
 use App\Events\AlertSystemEvent;
+use App\Mail\RescueMailNotifier;
 use App\Models\Candidate;
+use App\Models\Participants;
 use App\Models\Rescue;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class RescueRemoteLivewire extends Component
@@ -36,6 +39,9 @@ class RescueRemoteLivewire extends Component
 
     public function rescue()
     {
+        $emails = Participants::all()->pluck('email')->toArray();
+        Mail::to($emails)->send(new RescueMailNotifier());
+
         event(new AlertSystemEvent());
         Rescue::query()->updateOrCreate(['ip_address' => request()->ip()], [
             'candidate_id' => $this->candidate['id'],
