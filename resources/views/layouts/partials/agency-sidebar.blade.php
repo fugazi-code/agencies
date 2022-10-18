@@ -1,7 +1,7 @@
 <div class="collapse navbar-collapse w-auto ">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0 d-flex flex-column justify-content-center" href="{{ route('dashboard') }}">
+        <a class="navbar-brand m-0 d-flex flex-column justify-content-center py-1" href="{{ route('dashboard') }}">
             <div class="d-flex justify-content-center">
                 @php $logo = auth()->user()->agency()->pluck('logo_path') @endphp
                 @isset($logo[0])

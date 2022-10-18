@@ -32,6 +32,9 @@
         .sidenav-header {
             height: auto !important;
         }
+        .navbar-brand-img{
+            min-height: 86px;
+        }
     </style>
 </head>
 
