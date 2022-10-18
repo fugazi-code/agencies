@@ -12,12 +12,18 @@
             <div class="card-title mb-4 d-flex flex-row">
                 <h3>Rescues</h3>
                 <a href="{{ route('rescue') }}" class="btn btn-outline-info ms-2">Rescue Page</a>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal"
+                        data-bs-target="#recipientModal">
+                    Recipients
+                </button>
             </div>
             <livewire:rescue-table/>
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true" wire:ignore.self>
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true"
+         wire:ignore.self>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -45,6 +51,45 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" wire:click="submitFeedback">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div wire:ignore.self class="modal fade" id="recipientModal" tabindex="-1" aria-labelledby="recipientModalLabel"
+         aria-hidden="true"  data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="recipientModalLabel">Recipients</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Add recipient</label>
+                            <input class="form-control" wire:model="recipient">
+                            @error('recipient') <span class="text-danger">{{ $message }}</span>@enderror
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <ul class="list-group list-group-flush">
+                                @foreach($recipients as $item)
+                                    <li class="list-group-item d-flex flex-row justify-content-between">
+                                        <span>{{ $item['email'] }}</span>
+                                        <button class="btn btn-sm btn-danger" wire:click="deleteEmail({{$item['id']}})">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" wire:click="addRecipient">Add</button>
                 </div>
             </div>
         </div>

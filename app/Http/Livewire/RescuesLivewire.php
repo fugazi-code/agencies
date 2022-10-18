@@ -2,18 +2,24 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Participants;
 use App\Models\Responds;
 use Livewire\Component;
 
 class RescuesLivewire extends Component
 {
+    public string $recipient = '';
 
     public array $respond = [];
+
+    public array $recipients = [];
 
     public $listeners = ['bindFeedback' => 'feedback'];
 
     public function render()
     {
+        $this->recipients = Participants::all()->toArray();
+
         return view('livewire.rescues-livewire');
     }
 
@@ -38,5 +44,24 @@ class RescuesLivewire extends Component
 
         Responds::query()->updateOrCreate(['rescue_id' => $this->respond['rescue_id']], $this->respond);
         $this->emit('callToaster', ['message' => 'Feedback has been submitted!']);
+    }
+
+    public function addRecipient()
+    {
+        $this->validate([
+            'recipient' => 'required|email'
+        ]);
+
+        Participants::query()->create([
+            'email' => $this->recipient,
+            'can_receive' => 1
+        ]);
+
+        $this->recipient = '';
+    }
+
+    public function deleteEmail($id)
+    {
+        Participants::destroy($id);
     }
 }

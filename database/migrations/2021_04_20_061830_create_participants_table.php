@@ -8,6 +8,7 @@ class CreateParticipantsTable extends Migration
 {
     /**
      * Run the migrations.
+     * php artisan migrate:reset --path='database/migrations/2021_04_20_061830_create_participants_table.php' --force
      *
      * @return void
      */
@@ -15,9 +16,8 @@ class CreateParticipantsTable extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id', 200);
-            $table->string('status', 200);
-            $table->string('is_read', 200);
+            $table->string('email', 200);
+            $table->integer('can_receive')->nullable();
             $table->timestamps();
         });
     }

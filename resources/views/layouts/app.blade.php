@@ -41,7 +41,7 @@
 <body class="g-sidenav-show bg-gray-100">
 <aside
     class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl mt-3 mb-5 fixed-start ms-3 bg-white"
-    id="sidenav-main">
+    id="sidenav-main" style="z-index: -1;">
 
     <hr class="horizontal dark mt-0">
 

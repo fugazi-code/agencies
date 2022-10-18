@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Participants extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+      'email',
+      'can_receive'
+    ];
 }
