@@ -17,9 +17,14 @@ class RescueTable extends DataTableComponent
             Column::make('Created At', 'created_at')
                   ->format(fn($value) => Carbon::parse($value)->format('F j, Y'))
                   ->sortable(),
+            Column::make('Status', 'status')
+                    ->searchable()
+                  ->sortable(),
             Column::make('IP Address', 'ip_address')
+                  ->searchable()
                   ->sortable(),
             Column::make('OFW name', 'last_name')
+                  ->searchable()
                   ->format(fn($value, $row, $data) => $data['last_name'].', '.$data['first_name'])
                   ->sortable(),
             Column::make('Locate', 'id')
@@ -52,7 +57,7 @@ class RescueTable extends DataTableComponent
     public function query(): Builder
     {
         return Rescue::query()
-                     ->selectRaw('c.last_name, c.first_name, rescues.*, res.feedback')
+                     ->selectRaw('c.last_name, c.first_name, rescues.*, res.feedback, res.status')
                      ->join('candidates as c', 'c.id', '=', 'rescues.candidate_id')
                      ->leftJoin('responds as res', 'res.rescue_id', '=', 'rescues.id');
     }

@@ -41,6 +41,7 @@ class DashboardAdminLivewire extends Component
         $this->rescueCount = Rescue::query()
                                    ->leftJoin('responds as rs', 'rs.rescue_id', '=', 'rescues.id')
                                    ->whereNull('rs.rescue_id')
+                                   ->orWhere('rs.status', '<>', 'resolved')
                                    ->count();
         return view('livewire.dashboard-admin-livewire');
     }
