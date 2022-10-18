@@ -82,7 +82,6 @@ class VoucherTable extends DataTableComponent
                                         <div class='my-auto ms-2'>".Str::upper($value)."</div>",
                       ]);
                   })
-                  ->searchable()
                   ->asHtml(),
             Column::make("Job Order", "agency_name")
                   ->sortable()
@@ -102,7 +101,6 @@ class VoucherTable extends DataTableComponent
                           'label' => "<div class='text-dark font-weight-bold'>".Str::upper($value)."</div>",
                       ]);
                   })
-                  ->searchable()
                   ->asHtml(),
             Column::make("Created at", "created_at")
                   ->sortable()

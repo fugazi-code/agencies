@@ -36,9 +36,13 @@ class RescueTable extends DataTableComponent
             Column::make('Feedback', 'id')
                   ->format(function ($value, $row, $data) {
                       if (! $data['feedback']) {
-                          return '<button type="button" class="btn btn-sm btn-info my-auto">Add Feedback</button>';
+                          return '<button type="button" data-bs-toggle="modal" data-bs-target="#feedbackModal"
+                            class="btn btn-sm btn-info my-auto"
+                            wire:click="$emit(\'bindFeedback\', '.$value.')">Add Feedback</button>';
                       }
-                      return '<button type="button" class="btn btn-sm btn-link my-auto">View</button>';
+                      return '<button type="button" data-bs-toggle="modal" data-bs-target="#feedbackModal"
+                      class="btn btn-sm btn-info my-auto"
+                      wire:click="$emit(\'bindFeedback\', '.$value.')">View</button>';
                   })
                   ->asHtml()
                   ->sortable(),
