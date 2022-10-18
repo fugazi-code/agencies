@@ -30,7 +30,8 @@
 {{--                                            <label class="form-check-label" for="rememberMe">Remember me</label>--}}
                                         </div>
                                         <div class="text-center">
-                                            <button type="button" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
+                                            <button type="button" class="btn bg-gradient-info w-100 mt-4 mb-0"
+                                                    wire:click="authenticate">Sign in</button>
                                         </div>
                                     </form>
                                 </div>
