@@ -35,29 +35,8 @@
                     </button>
                 </div>
         @endif
-        <!-- Modal -->
-            <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel"
-                 aria-hidden="true" wire:ignore.self>
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="mapModalLabel">Map Location</h5>
-                            <button type="button" class="btn-close bg-dark" data-bs-dismiss="modal" aria-label="Close">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div wire:ignore id='map2' style='width: 100%; height: 300px;'></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Modal -->
+        <!-- Modal -->
             <div class="modal fade" id="urgentModal" tabindex="-1" aria-labelledby="urgentModalLabel"
                  aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog modal-lg">

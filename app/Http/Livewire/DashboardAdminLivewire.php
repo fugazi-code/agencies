@@ -64,6 +64,12 @@ class DashboardAdminLivewire extends Component
 
     public function showRecues()
     {
-        $this->recues = Rescue::query()->with(['candidate'])->get()->toArray();
+        $this->recues = Rescue::query()
+                              ->leftJoin('responds as rs', 'rs.rescue_id', '=', 'rescues.id')
+                              ->whereNull('rs.rescue_id')
+                              ->orWhere('rs.status', '<>', 'resolved')
+                              ->with(['candidate'])
+                              ->get()
+                              ->toArray();
     }
 }
