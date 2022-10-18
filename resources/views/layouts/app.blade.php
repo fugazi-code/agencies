@@ -29,6 +29,9 @@
         #filter-active {
             padding-right: 2rem!important;
         }
+        .sidenav-header {
+            height: auto !important;
+        }
     </style>
 </head>
 
