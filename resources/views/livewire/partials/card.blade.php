@@ -6,6 +6,12 @@
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">{{ $label }}</p>
                     <h5 class="font-weight-bolder mb-0">
                         {{ $total_count }}
+                        @isset($positive)
+                            <span class="text-success text-sm font-weight-bolder">{{ $positive }}</span>
+                        @endisset
+                        @isset($negative)
+                            <span class="text-danger text-sm font-weight-bolder">{{ $negative }}</span>
+                        @endisset
                     </h5>
                 </div>
             </div>

@@ -1,4 +1,6 @@
 <div>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
     <style>
         .timeline-block:hover {
             background-color: yellow;
@@ -100,7 +102,7 @@
             @include('livewire.partials.card', ['label' => 'Total Reports', 'total_count' => $reportCount, 'icon' => '<i class="fas fa-tower-broadcast text-lg opacity-10" aria-hidden="true"></i>'])
         </div>
         <div class="col-md-4">
-            @include('livewire.partials.card', ['label' => 'Total Cases', 'total_count' => $casesCount, 'icon' => '<i class="fas fa-tower-broadcast text-lg opacity-10" aria-hidden="true"></i>'])
+            @include('livewire.partials.card', ['positive' => '+ '.$casesResolvedCount, 'negative' => '- '. $casesUnresolvedCount,'label' => 'Total Cases', 'total_count' => $casesCount, 'icon' => '<i class="fas fa-tower-broadcast text-lg opacity-10" aria-hidden="true"></i>'])
         </div>
         <div class="col-md-4">
             @include('livewire.partials.card', ['label' => 'Total Agencies', 'total_count' => $agencyCount, 'icon' => '<i class="fas fa-tower-broadcast text-lg opacity-10" aria-hidden="true"></i>'])
@@ -158,4 +160,49 @@
             </div>
         </div>
     @endif
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <canvas id="myChart" width="400" height="100"></canvas>
+        </div>
+    </div>
+    <script>
+        const data = {
+            labels: [@foreach($casesPerMonth as $item) '{{ $item['monthname'] }}', @endforeach],
+            datasets: [
+                {
+                    label: 'Cases Per Month',
+                    data: [@foreach($casesPerMonth as $item){{ $item['total'] }},@endforeach],
+                    borderColor: 'blue',
+                    backgroundColor: 'blue',
+                },
+                // {
+                //     label: 'Dataset 2',
+                //     data: [100, 33, 22, 19, 11, 49, 30],
+                //     borderColor: 'red',
+                //     backgroundColor: 'red',
+                // }
+            ]
+        };
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Min and Max Settings'
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 500,
+                    }
+                }
+            },
+        });
+    </script>
 </div>

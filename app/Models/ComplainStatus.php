@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Requisition extends Model
+class ComplainStatus extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'id',
-        'name',
-        'content',
-        'created_by',
+        'complain_id',
+        'status'
     ];
 }

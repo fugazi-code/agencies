@@ -11,6 +11,10 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 class ComplainsTable extends DataTableComponent
 {
 
+    public string $defaultSortColumn = 'id';
+
+    public string $defaultSortDirection = 'desc';
+
     public function columns(): array
     {
         return [
@@ -20,6 +24,9 @@ class ComplainsTable extends DataTableComponent
                           ['id' => $value, 'label' => 'VIEW', 'listener' => 'editCase', 'modal' => 'caseDetailModal']);
                   })
                   ->asHtml(),
+            Column::make("Status", "status")
+                  ->searchable()
+                  ->sortable(),
             Column::make("Created at", "created_at")
                   ->format(function ($value) {
                       return Carbon::parse($value)->format('F j, Y');
@@ -70,6 +77,8 @@ class ComplainsTable extends DataTableComponent
 
     public function query(): Builder
     {
-        return Complains::query();
+        return Complains::query()
+                        ->selectRaw('complains.*, cs.status')
+                        ->leftJoin('complain_statuses as cs', 'cs.complain_id', '=', 'complains.id');
     }
 }

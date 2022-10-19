@@ -27,7 +27,7 @@
     <!-- Modal -->
     <div wire:ignore.self class="modal fade" id="caseDetailModal" tabindex="-1" aria-labelledby="caseDetailModalLabel"
          aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="caseDetailModalLabel">Case Detail</h5>
@@ -54,16 +54,47 @@
                                 @endif
                             </div>
                             <div class="col-md-12 border-top">
-                                Complaint
+                                <strong>Complaint</strong>
                                 <p>
                                     {!! $detail['complaint'] !!}
                                 </p>
+                            </div>
+                            <div class="col-md-12 border-top mt-3">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Agency (PRA)</label>
+                                        <select class="form-select" wire:model="pra">
+                                            <option value="">Select Option</option>
+                                            @foreach($praList as $item)
+                                                <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Agency (FRA)</label>
+                                        <select class="form-select" wire:model="fra">
+                                            <option value="">Select Option</option>
+                                            @foreach($fraList as $item)
+                                                <option value="{{ $item['id'] }}">{{ $item['agency_name'] }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Status</label>
+                                        <select class="form-select" wire:model="status">
+                                            <option value="">Select Option</option>
+                                            <option value="resolved">Resolved</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endif
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click="assign">Assign
+                    </button>
                 </div>
             </div>
         </div>

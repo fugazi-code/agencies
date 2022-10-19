@@ -7,6 +7,7 @@ use App\Models\Candidate;
 use App\Models\Complains;
 use App\Models\Report;
 use App\Models\Rescue;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class DashboardAdminLivewire extends Component
@@ -25,6 +26,10 @@ class DashboardAdminLivewire extends Component
 
     public int $casesCount = 0;
 
+    public int $casesResolvedCount = 0;
+
+    public int $casesUnresolvedCount = 0;
+
     public int $agencyCount = 0;
 
     public int $rescueCount = 0;
@@ -33,9 +38,20 @@ class DashboardAdminLivewire extends Component
 
     public function mount()
     {
-        $this->reportCount = Report::query()->count();
-        $this->casesCount  = Complains::query()->count();
-        $this->agencyCount = Agency::query()->count();
+        $this->reportCount        = Report::query()->count();
+        $this->casesCount         = Complains::query()->count();
+        $this->casesResolvedCount = Complains::query()
+                                             ->leftJoin('complain_statuses as cs', 'cs.complain_id', '=',
+                                                 'complains.id')
+                                             ->where('cs.status', 'resolved')
+                                             ->count();
+
+        $this->casesUnresolvedCount = Complains::query()
+                                               ->leftJoin('complain_statuses as cs', 'cs.complain_id', '=',
+                                                   'complains.id')
+                                               ->whereNull('cs.status')
+                                               ->count();
+        $this->agencyCount          = Agency::query()->count();
     }
 
     public function render()
@@ -45,7 +61,16 @@ class DashboardAdminLivewire extends Component
                                    ->whereNull('rs.rescue_id')
                                    ->orWhere('rs.status', '<>', 'resolved')
                                    ->count();
-        return view('livewire.dashboard-admin-livewire');
+
+        $casesPerMonth = Complains::query()
+                                  ->selectRaw('COUNT(*) as total, MONTHNAME(complains.created_at) as monthname, MONTH(complains.created_at) as month')
+                                  ->where(DB::raw('YEAR(created_at)'), now()->format('Y'))
+                                  ->groupBy(DB::raw('MONTHNAME(complains.created_at),MONTH(complains.created_at)'))
+                                  ->orderBy(DB::raw('MONTH(complains.created_at)'))
+                                  ->get()
+                                  ->toArray();
+
+        return view('livewire.dashboard-admin-livewire', compact('casesPerMonth'));
     }
 
     public function searchCandidate()
