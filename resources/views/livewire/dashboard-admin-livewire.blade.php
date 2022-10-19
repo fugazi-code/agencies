@@ -12,6 +12,12 @@
             animation-iteration-count: infinite;
         }
 
+        .alert.alert-warning {
+            animation-name: alertify !important;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+
         /* The animation code */
         @keyframes alertify {
             0% {
@@ -27,15 +33,25 @@
     </style>
     <div class="row mb-4">
         <div class="col-md-12">
-            @if($this->rescueCount)
-                <div class="alert alert-danger d-flex justify-content-center">
-                <span class="text-white font-weight-bold">
+        @if($this->rescueCount)
+            <div class="alert alert-danger d-flex justify-content-center">
+                <h5 class="text-white font-weight-bold">
                     URGENT RESCUE!
-                </span>
-                    <button data-bs-toggle="modal" data-bs-target="#urgentModal" wire:click="showRecues"
-                            class="btn btn-link ms-2 p-0 my-0 text-info">Show Details
-                    </button>
-                </div>
+                </h5>
+                <button data-bs-toggle="modal" data-bs-target="#urgentModal" wire:click="showRecues"
+                        class="btn btn-link ms-2 p-0 my-0 text-info">Show Details
+                </button>
+            </div>
+        @endif
+        @if($this->reportDelayed > 0)
+            <div class="alert alert-warning d-flex justify-content-center">
+                <h5 class="text-white font-weight-bold">
+                    DELAYED REPORTS DETECTED!
+                </h5>
+{{--                <button data-bs-toggle="modal" data-bs-target="#urgentModal" wire:click="showRecues"--}}
+{{--                        class="btn btn-link ms-2 p-0 my-0 text-info">Show Details--}}
+{{--                </button>--}}
+            </div>
         @endif
 
         <!-- Modal -->
@@ -99,7 +115,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            @include('livewire.partials.card', ['label' => 'Total Reports', 'total_count' => $reportCount, 'icon' => '<i class="fas fa-tower-broadcast text-lg opacity-10" aria-hidden="true"></i>'])
+            @include('livewire.partials.card', ['negative' => '+ '. $reportDelayed, 'label' => 'Total Reports', 'total_count' => $reportCount, 'icon' => '<i class="fas fa-tower-broadcast text-lg opacity-10" aria-hidden="true"></i>'])
         </div>
         <div class="col-md-4">
             @include('livewire.partials.card', ['positive' => '+ '.$casesResolvedCount, 'negative' => '- '. $casesUnresolvedCount,'label' => 'Total Cases', 'total_count' => $casesCount, 'icon' => '<i class="fas fa-tower-broadcast text-lg opacity-10" aria-hidden="true"></i>'])

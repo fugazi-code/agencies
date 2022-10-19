@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 namespace App\Http\Livewire;
 
@@ -34,10 +34,30 @@ class DashboardAdminLivewire extends Component
 
     public int $rescueCount = 0;
 
+    public int $reportDelayed = 0;
+
     protected $listeners = ['refreshComponent' => '$refresh'];
 
     public function mount()
     {
+        $this->reportDelayed = DB::select("
+        select COUNT(*) as total FROM (
+        SELECT CASE
+                WHEN report_sub.latest <= NOW() - INTERVAL 30 DAY THEN 'DELAYED'
+                END,
+                report_sub.latest,
+                report_sub.reportable_id
+        from (SELECT
+            max(created_at) as latest,
+            r.reportable_id
+        FROM
+            reports r
+        group by
+            r.reportable_id) as report_sub
+            WHERE report_sub.latest <= NOW() - INTERVAL 30 DAY
+        ) as summary
+        ")[0]->total;
+
         $this->reportCount        = Report::query()->count();
         $this->casesCount         = Complains::query()->count();
         $this->casesResolvedCount = Complains::query()
@@ -45,7 +65,6 @@ class DashboardAdminLivewire extends Component
                                                  'complains.id')
                                              ->where('cs.status', 'resolved')
                                              ->count();
-
         $this->casesUnresolvedCount = Complains::query()
                                                ->leftJoin('complain_statuses as cs', 'cs.complain_id', '=',
                                                    'complains.id')

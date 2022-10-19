@@ -7,6 +7,7 @@ use App\Models\Candidate;
 use App\Models\Complains;
 use App\Models\ForeignAgency;
 use App\Models\JobOrder;
+use App\Models\Report;
 use App\Models\Voucher;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
@@ -15,7 +16,7 @@ class DevEnvironmentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *  php artisan db:seed --class=DevEnvironmentSeeder
+     * php artisan db:seed --class=DevEnvironmentSeeder
      *
      * @return void
      */
@@ -69,5 +70,6 @@ class DevEnvironmentSeeder extends Seeder
             $candidate->save();
         });
 
+        Report::factory()->count(50)->create();
     }
 }
