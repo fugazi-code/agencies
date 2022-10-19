@@ -29,6 +29,8 @@ class DashboardAdminLivewire extends Component
 
     public int $rescueCount = 0;
 
+    protected $listeners = ['refreshComponent' => '$refresh'];
+
     public function mount()
     {
         $this->reportCount = Report::query()->count();

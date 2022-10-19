@@ -18,6 +18,20 @@
           href="{{ asset('theme/soft-ui/assets/css/soft-ui-dashboard.min.css?v=1.0.6') }}">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    <script>
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('{{ config('broadcasting.connections.pusher.key') }}', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('rescue-channel');
+        channel.bind('broadcast-alert-system', function(data) {
+            Livewire.emit('refreshComponent')
+        });
+    </script>
     @livewireStyles
     <style>
         .btn.dropdown-toggle.d-block.w-100 {
