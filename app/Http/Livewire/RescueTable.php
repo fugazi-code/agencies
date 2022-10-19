@@ -18,7 +18,7 @@ class RescueTable extends DataTableComponent
                   ->format(fn($value) => Carbon::parse($value)->format('F j, Y'))
                   ->sortable(),
             Column::make('Status', 'status')
-                    ->searchable()
+                  ->searchable()
                   ->sortable(),
             Column::make('IP Address', 'ip_address')
                   ->searchable()
@@ -45,6 +45,7 @@ class RescueTable extends DataTableComponent
                             class="btn btn-sm btn-info my-auto"
                             wire:click="$emit(\'bindFeedback\', '.$value.')">Add Feedback</button>';
                       }
+
                       return '<button type="button" data-bs-toggle="modal" data-bs-target="#feedbackModal"
                       class="btn btn-sm btn-info my-auto"
                       wire:click="$emit(\'bindFeedback\', '.$value.')">View</button>';

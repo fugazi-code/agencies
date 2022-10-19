@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Participants;
+use App\Models\Rescue;
 use App\Models\Responds;
 use Livewire\Component;
 
@@ -27,7 +28,7 @@ class RescuesLivewire extends Component
     {
         $this->respond = Responds::query()->where('rescue_id', $reportID)->get()->toArray();
 
-        if(count($this->respond) == 0) {
+        if (count($this->respond) == 0) {
             $this->respond = [
                 'rescue_id' => $reportID,
                 'status' => '',
@@ -49,12 +50,12 @@ class RescuesLivewire extends Component
     public function addRecipient()
     {
         $this->validate([
-            'recipient' => 'required|email'
+            'recipient' => 'required|email',
         ]);
 
         Participants::query()->create([
             'email' => $this->recipient,
-            'can_receive' => 1
+            'can_receive' => 1,
         ]);
 
         $this->recipient = '';
@@ -63,5 +64,13 @@ class RescuesLivewire extends Component
     public function deleteEmail($id)
     {
         Participants::destroy($id);
+    }
+
+    public function deleteFeedback()
+    {
+        Responds::query()->where('rescue_id', $this->respond['rescue_id'])->delete();
+        Rescue::query()->find($this->respond['rescue_id'])->delete();
+
+        $this->emit('callToaster', ['message' => 'Feedback has been deleted!']);
     }
 }
