@@ -40,7 +40,7 @@ class RescueRemoteLivewire extends Component
     public function rescue()
     {
         $emails = Participants::all()->pluck('email')->toArray();
-        Mail::to($emails)->send(new RescueMailNotifier());
+        Mail::send(new RescueMailNotifier($emails));
         event(new AlertSystemEvent());
         Rescue::query()->updateOrCreate(['ip_address' => request()->ip()], [
             'candidate_id' => $this->candidate['id'],

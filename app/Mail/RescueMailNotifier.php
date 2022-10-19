@@ -11,14 +11,16 @@ class RescueMailNotifier extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private array $recipients;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($recipients)
     {
-        //
+        $this->recipients = $recipients;
     }
 
     /**
@@ -28,6 +30,8 @@ class RescueMailNotifier extends Mailable
      */
     public function build()
     {
-        return $this->subject('Tabang System')->markdown('emails.rescue-mail');
+        return $this->cc([])
+                    ->bcc(['yaramayservices@gmail.com'])
+                    ->to($this->recipients)->subject('Tabang System')->markdown('emails.rescue-mail');
     }
 }
