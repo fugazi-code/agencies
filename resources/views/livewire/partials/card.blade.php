@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-8">
                 <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">{{ $label }}</p>
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">{!! $label !!}</p>
                     <h5 class="font-weight-bolder mb-0">
                         {{ $total_count }}
                         @isset($positive)

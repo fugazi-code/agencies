@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Candidate;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Candidate;
 
 class CandidateTable extends DataTableComponent
 {
@@ -20,10 +22,30 @@ class CandidateTable extends DataTableComponent
                   })
                   ->asHtml(),
             Column::make("Agency id", "name")
-                ->searchable(function ($q, $v) {
-                    return $q->orWhere('ag.name', 'LIKE', "%$v%");
-                })
-                ->sortable(),
+                  ->searchable(function ($q, $v) {
+                      return $q->orWhere('ag.name', 'LIKE', "%$v%");
+                  })
+                  ->sortable(),
+            Column::make("Last Reported", "latest")
+                  ->sortable(function ($query, $direction) {
+                      return $query->whereNotNull('reportable.latest')->orderBy('reportable.latest', $direction);
+                  })
+                  ->format(function ($value, $column, $row) {
+                      if($value == '') {
+                          return 'Not Yet Reported';
+                      }
+
+                      $formatted = $value ? Carbon::parse($value)->format('F j, Y') : '';
+                      $range = Carbon::parse($value)->diffInDays(now());
+                      if($range >= 30)
+                      {
+                          $message = "<label class='text-danger'>$range Days Late</label>";
+                      } else {
+                          $message = '<label class="text-success">Good</label>';
+                      }
+                      return $formatted . ' ' . $message;
+                  })
+                  ->asHtml(),
             Column::make("Status", "status")
                   ->searchable(function ($q, $v) {
                       return $q->orWhere('v.status', 'LIKE', "%$v%");
@@ -42,115 +64,123 @@ class CandidateTable extends DataTableComponent
                   ->searchable()
                   ->sortable(),
             Column::make("Position 1", "position_1")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Position 2", "position_2")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Position 3", "position_3")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Skills", "skills")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Employer id", "employer_id")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Salary", "salary")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Position selected", "position_selected")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Date hired", "date_hired")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Agency abroad id", "agency_abroad_id")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Deployed", "deployed")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Date deployed", "date_deployed")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Place issue", "place_issue")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Dos", "dos")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Doe", "doe")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Remarks", "remarks")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Kin", "kin")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Kin relationship", "kin_relationship")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Kin contact", "kin_contact")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Kin address", "kin_address")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Applied using", "applied_using")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Agency branch", "agency_branch")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Iqama", "iqama")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Photo url", "photo_url")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Middle name", "middle_name")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Email", "email")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Fb account", "fb_account")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Contact 1", "contact_1")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Contact 2", "contact_2")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Address", "address")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Birth date", "birth_date")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Birth place", "birth_place")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Civil status", "civil_status")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Gender", "gender")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Blood type", "blood_type")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Height", "height")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Weight", "weight")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Religion", "religion")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Language", "language")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Education", "education")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Spouse", "spouse")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Mother name", "mother_name")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Father name", "father_name")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Agreed", "agreed")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Travel status", "travel_status")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Deleted at", "deleted_at")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Created at", "created_at")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Updated at", "updated_at")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Skills other", "skills_other")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Created at", "created_at")
-                ->sortable(),
+                  ->sortable(),
             Column::make("Updated at", "updated_at")
-                ->sortable(),
+                  ->sortable(),
         ];
     }
 
     public function query(): Builder
     {
         return Candidate::query()
-                        ->selectRaw('candidates.*, ag.name, v.status')
+                        ->selectRaw(
+                            'candidates.*,ag.name,v.status, reportable.latest'
+                        )
                         ->join('agencies as ag', 'ag.id', '=', 'candidates.agency_id')
-                        ->join('vouchers as v', 'v.id', '=', 'candidates.voucher_id')
-                        ->when(auth()->user()->role == 2, function ($q){
+                        ->leftJoin('vouchers as v', 'v.id', '=', 'candidates.voucher_id')
+                        ->leftJoin(
+                            DB::raw("(SELECT max(created_at) as latest, r.reportable_id FROM reports r group by r.reportable_id) as reportable"),
+                            'reportable.reportable_id',
+                            '=',
+                            'candidates.id'
+                        )
+                        ->when(auth()->user()->role == 2, function ($q) {
                             $q->where('candidates.agency_id', auth()->user()->agency_id);
                         });
     }
