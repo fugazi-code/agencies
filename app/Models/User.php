@@ -100,7 +100,7 @@ class User extends Authenticatable
     public function tableQuery()
     {
         return $this->newQuery()
-            ->selectRaw('users.id as prime_id, users.*, information.*')
+            ->selectRaw('users.*, agency.name as agency_name, information.name')
             ->leftJoin('information', 'information.id', '=', 'users.information_id')
             ->leftJoin('agencies as agency', 'agency.id', '=', 'users.agency_id');
     }
