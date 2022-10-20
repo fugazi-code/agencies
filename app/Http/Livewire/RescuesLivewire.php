@@ -19,6 +19,7 @@ class RescuesLivewire extends Component
 
     public function render()
     {
+        $this->emit('refreshComponent');
         $this->recipients = Participants::all()->toArray();
 
         return view('livewire.rescues-livewire');

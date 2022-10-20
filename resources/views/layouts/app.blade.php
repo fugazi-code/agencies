@@ -50,6 +50,39 @@
             min-height: 86px;
         }
     </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <style>
+        .timeline-block:hover {
+            background-color: yellow;
+        }
+
+        .alert.alert-danger {
+            animation-name: alertify !important;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+
+        .alert.alert-warning {
+            animation-name: alertify !important;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+
+        /* The animation code */
+        @keyframes alertify {
+            0% {
+                box-shadow: 0px 0px 6px 0px red;
+            }
+            50% {
+                box-shadow: 0px 0px 20px 19px red;
+            }
+            100% {
+                box-shadow: 0px 0px 6px 0px red;
+            }
+        }
+    </style>
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -70,11 +103,9 @@
     @include('layouts.partials.navbar')
     <!-- End Navbar -->
         <div class="container-fluid">
-            <div class="row row-offcanvas row-offcanvas-right">
-                <!-- partial -->
-                <div class="content-wrapper">
+            <div class="row row-offcanvas row-offcanvas-right pt-4">
+                <livewire:component.urgent-rescue-component/>
                     {{ $slot }}
-                </div>
             </div>
         </div>
     </div>

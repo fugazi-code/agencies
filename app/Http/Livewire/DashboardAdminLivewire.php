@@ -1,4 +1,5 @@
-<?php /** @noinspection ALL */
+<?php
+/** @noinspection ALL */
 
 namespace App\Http\Livewire;
 
@@ -20,8 +21,6 @@ class DashboardAdminLivewire extends Component
 
     public array $candidate = [];
 
-    public array $recues = [];
-
     public int $reportCount = 0;
 
     public int $casesCount = 0;
@@ -36,7 +35,9 @@ class DashboardAdminLivewire extends Component
 
     public int $reportDelayed = 0;
 
-    protected $listeners = ['refreshComponent' => '$refresh'];
+    public int $candidateCount = 0;
+
+    public int $candidateDeployedCount = 0;
 
     public function mount()
     {
@@ -58,19 +59,26 @@ class DashboardAdminLivewire extends Component
         ) as summary
         ")[0]->total;
 
-        $this->reportCount        = Report::query()->count();
-        $this->casesCount         = Complains::query()->count();
-        $this->casesResolvedCount = Complains::query()
-                                             ->leftJoin('complain_statuses as cs', 'cs.complain_id', '=',
-                                                 'complains.id')
-                                             ->where('cs.status', 'resolved')
-                                             ->count();
-        $this->casesUnresolvedCount = Complains::query()
-                                               ->leftJoin('complain_statuses as cs', 'cs.complain_id', '=',
-                                                   'complains.id')
-                                               ->whereNull('cs.status')
-                                               ->count();
-        $this->agencyCount          = Agency::query()->count();
+        $this->reportCount            = Report::query()->count();
+        $this->casesCount             = Complains::query()->count();
+        $this->casesResolvedCount     = Complains::query()
+                                                 ->leftJoin('complain_statuses as cs', 'cs.complain_id', '=',
+                                                     'complains.id')
+                                                 ->where('cs.status', 'resolved')
+                                                 ->count();
+        $this->casesUnresolvedCount   = Complains::query()
+                                                 ->leftJoin('complain_statuses as cs', 'cs.complain_id', '=',
+                                                     'complains.id')
+                                                 ->whereNull('cs.status')
+                                                 ->count();
+        $this->agencyCount            = Agency::query()->count();
+        $this->candidateCount         = Candidate::query()
+                                                 ->join('vouchers as v', 'v.id', '=', 'candidates.voucher_id')
+                                                 ->count();
+        $this->candidateDeployedCount = Candidate::query()
+                                                 ->join('vouchers as v', 'v.id', '=', 'candidates.voucher_id')
+                                                 ->where('v.status', 'deployed')
+                                                ->count();
     }
 
     public function render()
@@ -106,16 +114,5 @@ class DashboardAdminLivewire extends Component
         $this->keyIn     = 0;
         $this->keyword   = $keyword;
         $this->candidate = Candidate::query()->find($id)->toArray();
-    }
-
-    public function showRecues()
-    {
-        $this->recues = Rescue::query()
-                              ->leftJoin('responds as rs', 'rs.rescue_id', '=', 'rescues.id')
-                              ->whereNull('rs.rescue_id')
-                              ->orWhere('rs.status', '<>', 'resolved')
-                              ->with(['candidate'])
-                              ->get()
-                              ->toArray();
     }
 }

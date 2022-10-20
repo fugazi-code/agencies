@@ -6,7 +6,7 @@
         </ol>
         <h6 class="font-weight-bolder mb-0">Dashboard</h6>
     @endpush
-    <div class="row mt-5">
+    <div class="row">
             @can('agency')
                 <div class="col-md-12">
                     <div class="row justify-content-center">
