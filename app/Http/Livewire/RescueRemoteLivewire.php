@@ -12,7 +12,7 @@ use Livewire\Component;
 
 class RescueRemoteLivewire extends Component
 {
-    public string $code = '9z2x100822';
+    public string $code = '1q0w101422';
 
     public array $candidate = [];
 
@@ -50,5 +50,12 @@ class RescueRemoteLivewire extends Component
         ]);
 
         $this->emit('callToaster', ['message' => 'Alert has been submitted!']);
+    }
+
+    public function showComplaintForm()
+    {
+        $candidate = Candidate::query()->selectRaw('agency_id')->where('code', $this->code)->first();
+
+        return redirect()->to(route('complaint-form-livewire', ['agencyId' => $candidate->agency_id]));
     }
 }

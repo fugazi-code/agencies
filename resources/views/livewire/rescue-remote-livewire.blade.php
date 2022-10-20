@@ -4,26 +4,46 @@
         <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet'/>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     @endpush
+    <style>
+        body {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url("https://drive.google.com/uc?export=view&id=1NQpcM0yFahwTeX69CgRyCrGsVu2gNZqU");
+        }
+    </style>
     <livewire:toaster/>
     <div class="container-fluid mt-5">
         <div class="row justify-content-center">
             @if(!$candidate)
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-header bg-primary">
-                            <div class="card-title text-white">
-                                Please enter code for Rescue Responder
+                        <div class="card-header bg-primary p-3">
+                            <div class="card-title text-white font-weight-bold">
+                                OFW Tabang Services
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="d-flex flex-column">
-                                <label>Enter your code: </label>
-                                <div class="d-flex flex-row">
-                                    <input type="password" class="form-control me-2" wire:model="code">
-                                    <button class="btn btn-primary h-100 m-0" wire:click="showDetails">Submit</button>
+                                <label>Please enter code </label>
+                                <div class="d-flex flex-column">
+                                    <div>
+                                        <input type="password" class="form-control me-2" wire:model="code">
+                                        @error('code')
+                                        <span class="badge badge-sm bg-gradient-danger mt-2">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="d-grid mt-2">
+                                        <button class="btn btn-info h-100 m-0" wire:click="showComplaintForm">
+                                            COMPLAINT
+                                        </button>
+                                    </div>
+                                    <div class="d-grid mt-2">
+                                        <button class="btn btn-danger h-100 m-0" wire:click="showDetails">
+                                            URGENT
+                                        </button>
+                                    </div>
                                 </div>
-                                @error('code')<span
-                                    class="badge badge-sm bg-gradient-danger mt-2">{{ $message }}</span>@enderror
                             </div>
                         </div>
                     </div>
