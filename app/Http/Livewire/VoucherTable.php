@@ -107,7 +107,7 @@ class VoucherTable extends DataTableComponent
                   ->format(fn($value) => Carbon::parse($value)->format('F j, Y')),
             Column::make("Created by", "email")
                   ->sortable(),
-            Column::make("Applicant's Name", "name")
+            Column::make("Applicants Name", "name")
                   ->sortable()
                   ->searchable(),
             Column::make("Source", "source")
