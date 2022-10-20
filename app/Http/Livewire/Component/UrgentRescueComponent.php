@@ -15,6 +15,7 @@ class UrgentRescueComponent extends Component
 
     public function render()
     {
+        $this->emit('refreshDatatable');
         $this->rescueCount = Rescue::query()
                                    ->leftJoin('responds as rs', 'rs.rescue_id', '=', 'rescues.id')
                                    ->whereNull('rs.rescue_id')
