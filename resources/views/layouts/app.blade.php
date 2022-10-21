@@ -28,7 +28,7 @@
         });
 
         var channel = pusher.subscribe('rescue-channel');
-        channel.bind('broadcast-alert-system', function(data) {
+        channel.bind('broadcast-alert-system', function (data) {
             Livewire.emit('refreshComponent')
         });
     </script>
@@ -37,16 +37,20 @@
         .btn.dropdown-toggle.d-block.w-100 {
             margin: 0 !important;
         }
+
         #perPage {
-            padding-right: 2rem!important;
+            padding-right: 2rem !important;
         }
+
         #filter-active {
-            padding-right: 2rem!important;
+            padding-right: 2rem !important;
         }
+
         .sidenav-header {
             height: auto !important;
         }
-        .navbar-brand-img{
+
+        .navbar-brand-img {
             min-height: 86px;
         }
     </style>
@@ -104,8 +108,8 @@
     <!-- End Navbar -->
         <div class="container-fluid">
             <div class="row row-offcanvas row-offcanvas-right pt-4">
-                <livewire:component.urgent-rescue-component/>
-                    {{ $slot }}
+                {{--<livewire:component.urgent-rescue-component/>--}}
+                {{ $slot }}
             </div>
         </div>
     </div>
