@@ -11,46 +11,13 @@
                 <div class="col-md-12">
                     <div class="row justify-content-center">
                         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                            <div class="card">
-                                <div class="card-body p-3">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div class="numbers">
-                                                <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Vouchers</p>
-                                                <h5 class="font-weight-bolder mb-0">
-                                                    {{ $totalVoucher }}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-4 text-end">
-                                            <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                                <i class="fas fa-stream"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @include('livewire.partials.card', ['label' => 'Vouchers', 'total_count' => $totalVoucher, 'icon' => '<i class="fas fa-stream"></i>'])
                         </div>
                         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                            <div class="card">
-                                <div class="card-body p-3">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div class="numbers">
-                                                <p class="text-sm mb-0 text-capitalize font-weight-bold fs-3">Total Applicant</p>
-                                                <h5 class="font-weight-bolder mb-0">
-                                                    {{ $totalCandidate }}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-4 text-end">
-                                            <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                                <i class="fas fa-portrait"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @include('livewire.partials.card', ['label' => 'Deployed', 'total_count' => $totalDeployed, 'icon' => '<i class="fas fa-plane"></i>'])
+                        </div>
+                        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                            @include('livewire.partials.card', ['label' => 'Applicants', 'total_count' => $totalCandidate, 'icon' => '<i class="fas fa-portrait"></i>'])
                         </div>
                     </div>
                 </div>
