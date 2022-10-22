@@ -1,6 +1,6 @@
 <div>
     <button class="btn btn-outline-info ms-2" data-bs-toggle="modal" data-bs-target="#fraModal">
-        <i class="fas fa-building-circle-arrow-right"></i> F.R.A.
+        <span class="badge bg-primary">{{ count($fra) }}</span> F.R.A.
     </button>
 
     <!-- Modal -->
