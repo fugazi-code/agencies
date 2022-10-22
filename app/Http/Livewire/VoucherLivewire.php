@@ -7,6 +7,7 @@ use App\Models\JobOrder;
 use App\Models\User;
 use App\Models\Voucher;
 use App\Models\VoucherStatus;
+use Illuminate\Http\UploadedFile;
 use Livewire\Component;
 
 class VoucherLivewire extends Component
@@ -22,8 +23,6 @@ class VoucherLivewire extends Component
     public array $jobOrder = [];
 
     protected $listeners = ['editVoucher' => 'edit', 'editJobOrder' => 'editJobOrder'];
-
-    public string $fraKey = '';
 
     public array $fra = [];
 
@@ -65,14 +64,6 @@ class VoucherLivewire extends Component
         $this->voucherStatus = VoucherStatus::query()->where('voucher_id', $id['id'])->first()?->toArray() ?? [];
     }
 
-    public function editJobOrder($data)
-    {
-        $this->details  = Voucher::query()->find($data['id'])->toArray();
-        $this->jobOrder = JobOrder::query()
-                                  ->where('foreign_agency_id', $data['foreign_agency_id'])
-                                  ->first()?->toArray() ?? [];
-    }
-
     public function store()
     {
         $params = array_merge($this->details, ['created_by' => auth()->id(), 'agency_id' => auth()->user()->agency_id]);
@@ -111,6 +102,14 @@ class VoucherLivewire extends Component
         $this->emit('callToaster', ['message' => 'Voucher Status Updated!']);
     }
 
+    public function editJobOrder($data)
+    {
+        $this->details  = Voucher::query()->find($data['id'])->toArray();
+        $this->jobOrder = JobOrder::query()
+                                  ->where('voucher_id', $data['id'])
+                                  ->first()?->toArray() ?? [];
+    }
+
     public function jobOrderUpdate()
     {
         JobOrder::query()
@@ -120,30 +119,5 @@ class VoucherLivewire extends Component
                 );
 
         $this->emit('callToaster', ['message' => 'Voucher Status Updated!']);
-    }
-
-    public function addFRA()
-    {
-        ForeignAgency::create([
-            'agency_id' => auth()->user()->agency_id,
-            'agency_name' => $this->fraKey,
-        ]);
-
-        $this->fraKey = '';
-        $this->fra    = ForeignAgency::query()
-                                     ->select(['id', 'agency_name'])
-                                     ->where('agency_id', auth()->user()->agency_id)
-                                     ->get()
-                                     ->toArray();
-    }
-
-    public function deleteFRA($id)
-    {
-        ForeignAgency::destroy($id);
-        $this->fra = ForeignAgency::query()
-                                  ->select(['id', 'agency_name'])
-                                  ->where('agency_id', auth()->user()->agency_id)
-                                  ->get()
-                                  ->toArray();
     }
 }
