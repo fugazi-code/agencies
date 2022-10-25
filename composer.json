@@ -8,9 +8,9 @@
         "php": "^8.0.2",
         "algolia/algoliasearch-client-php": "^3.3",
         "fruitcake/laravel-cors": "^3.0",
-        "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^9.11",
-        "laravel/sanctum": "^2.14.1",
+        "guzzlehttp/guzzle": "^7.5",
+        "laravel/framework": "^v9.36",
+        "laravel/sanctum": "^2.14",
         "laravel/scout": "^9.4",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
@@ -20,12 +20,12 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
-        "fakerphp/faker": "^1.9.1",
-        "laravel/sail": "^1.0.1",
+        "fakerphp/faker": "^1.20.1",
+        "laravel/sail": "^1.16.1",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
+        "nunomaduro/collision": "^6.3",
         "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "spatie/laravel-ignition": "^1.5"
     },
     "autoload": {
         "psr-4": {
