@@ -12,7 +12,7 @@ class VoucherExpense extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'voucher_header_id',
+        'header_name',
         'voucher_id',
         'expense_date',
         'expense',

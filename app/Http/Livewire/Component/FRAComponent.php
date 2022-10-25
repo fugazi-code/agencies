@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Component;
 
 use App\Models\ForeignAgency;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class FRAComponent extends Component
@@ -11,7 +14,7 @@ class FRAComponent extends Component
 
     public array $fra = [];
 
-    public function render()
+    public function render(): Factory|View|Application
     {
         $this->fra = ForeignAgency::query()
                                   ->select(['id', 'agency_name'])
@@ -19,7 +22,7 @@ class FRAComponent extends Component
                                   ->get()
                                   ->toArray();
 
-        return view('livewire.f-r-a-component');
+        return view('livewire.component.f-r-a-component');
     }
 
     public function addFRA()
