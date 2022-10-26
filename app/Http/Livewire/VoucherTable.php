@@ -34,7 +34,8 @@ class VoucherTable extends DataTableComponent
                       ->leftJoin('job_orders', 'job_orders.voucher_id', '=', 'vouchers.id')
                       ->leftJoin('foreign_agencies', 'foreign_agencies.id', '=', 'job_orders.foreign_agency_id')
                       ->join('users', 'users.id', '=', 'vouchers.created_by')
-                      ->leftJoin(DB::raw('(select sum(amount) as amount, voucher_id from voucher_expenses where deleted_at is null group by voucher_id) as ve'), 've.voucher_id', '=', 'vouchers.id')
+                      ->leftJoin(DB::raw('(select sum(amount) as amount, voucher_id from voucher_expenses where deleted_at is null group by voucher_id) as ve'),
+                          've.voucher_id', '=', 'vouchers.id')
                       ->when(isset($this->params['account']), function ($q) {
                           $q->where('users.id', $this->params['account']);
                       }, fn($q) => $q->where('users.id', auth()->id()));
@@ -50,6 +51,18 @@ class VoucherTable extends DataTableComponent
                   ->asHtml(),
             Column::make("Total", "amount")
                   ->asHtml(),
+            Column::make("Total Old", "id")
+                  ->format(function ($value, $column, $row) {
+                      $total = 0;
+                      foreach ($row->toArray() as $item) {
+                          preg_match_all('/\(([\d\,\.]+)/', $item, $matches);
+                          foreach ($matches[1] as $amount) {
+                              $total += floatval(str_replace(',', '', $amount));
+                          }
+                      }
+
+                      return number_format($total, 2);
+                  }),
             Column::make("Status", "status")
                   ->sortable()
                   ->format(function ($value, $column, $row) {
