@@ -50,6 +50,9 @@ class VoucherTable extends DataTableComponent
                   })
                   ->asHtml(),
             Column::make("Total", "amount")
+                  ->format(function ($value) {
+                      return number_format($value, 2);
+                  })
                   ->asHtml(),
             Column::make("Total Old", "id")
                   ->format(function ($value, $column, $row) {
