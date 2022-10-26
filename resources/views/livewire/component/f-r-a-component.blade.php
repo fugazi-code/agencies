@@ -1,6 +1,10 @@
 <div>
-    <button class="btn btn-outline-info ms-2" data-bs-toggle="modal" data-bs-target="#fraModal">
-        <span class="badge bg-primary">{{ count($fra) }}</span> F.R.A.
+    <button class="btn btn-outline-secondary ms-3 position-relative" data-bs-toggle="modal" data-bs-target="#fraModal">
+        <i class="fas fa-building-circle-arrow-right"></i> F.R.A.
+
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+    {{ count($fra) }}
+  </span>
     </button>
 
     <!-- Modal -->
@@ -18,7 +22,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Recipient's username"
+                                <input type="text" class="form-control" placeholder="Agency Name"
                                        aria-label="Agency username" aria-describedby="button-addon2"
                                        wire:model="fraKey">
                                 <button class="btn btn-outline-success m-0" type="button" id="button-addon2"
@@ -32,7 +36,8 @@
                                 @foreach($fra as $item)
                                     <li class="list-group-item d-flex flex-row justify-content-between">
                                         <div>{{ $item['agency_name'] }}</div>
-                                        <button class="btn btn-sm btn-danger m-0" wire:click="deleteFRA({{ $item['id'] }})">
+                                        <button class="btn btn-sm btn-danger m-0"
+                                                wire:click="deleteFRA({{ $item['id'] }})">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </li>

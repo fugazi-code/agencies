@@ -6,12 +6,17 @@ use App\Models\ForeignAgency;
 use App\Models\JobOrder;
 use App\Models\User;
 use App\Models\Voucher;
+use App\Models\VoucherExpense;
+use App\Models\VoucherHeader;
 use App\Models\VoucherStatus;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class VoucherLivewire extends Component
 {
+
     public array $params = [];
 
     public array $accounts = [];
@@ -22,9 +27,17 @@ class VoucherLivewire extends Component
 
     public array $jobOrder = [];
 
-    protected $listeners = ['editVoucher' => 'edit', 'editJobOrder' => 'editJobOrder'];
+    public array $expenses = [];
 
     public array $fra = [];
+
+    public array $voucherHeader = [];
+
+    protected $listeners = [
+        'editVoucher' => 'edit',
+        'editJobOrder' => 'editJobOrder',
+        'editExpenses' => 'editExpenses',
+    ];
 
     public function mount()
     {
@@ -43,8 +56,17 @@ class VoucherLivewire extends Component
                                   ->toArray();
     }
 
-    public function render()
+    public function render(): Factory|View|Application
     {
+        $this->saveExpenses();
+        if (isset($this->details['id'])) {
+            $this->expenses = VoucherExpense::query()
+                                            ->where('voucher_id', $this->details['id'])
+                                            ->get()
+                                            ->toArray();
+        }
+
+        $this->voucherHeader = VoucherHeader::query()->where('agency_id', auth()->user()->agency_id)->get()->toArray();
         return view('livewire.vouchers');
     }
 
@@ -56,12 +78,6 @@ class VoucherLivewire extends Component
     public function updatedFiltered()
     {
         $this->emit('voucherFiltered');
-    }
-
-    public function edit($id)
-    {
-        $this->details       = Voucher::query()->find($id)->toArray()[0];
-        $this->voucherStatus = VoucherStatus::query()->where('voucher_id', $id['id'])->first()?->toArray() ?? [];
     }
 
     public function store()
@@ -102,12 +118,26 @@ class VoucherLivewire extends Component
         $this->emit('callToaster', ['message' => 'Voucher Status Updated!']);
     }
 
+    public function edit($id)
+    {
+        $this->details       = Voucher::query()->find($id)->toArray()[0];
+        $this->voucherStatus = VoucherStatus::query()->where('voucher_id', $id['id'])->first()?->toArray() ?? [];
+    }
+
+    /**
+     * @param $data
+     */
     public function editJobOrder($data)
     {
         $this->details  = Voucher::query()->find($data['id'])->toArray();
         $this->jobOrder = JobOrder::query()
                                   ->where('voucher_id', $data['id'])
                                   ->first()?->toArray() ?? [];
+    }
+
+    public function editExpenses($data)
+    {
+        $this->details = Voucher::query()->find($data['id'])->toArray();
     }
 
     public function jobOrderUpdate()
@@ -119,5 +149,38 @@ class VoucherLivewire extends Component
                 );
 
         $this->emit('callToaster', ['message' => 'Voucher Status Updated!']);
+    }
+
+    public function addHeader()
+    {
+        VoucherExpense::query()
+                      ->create([
+                          'voucher_id' => $this->details['id'],
+                          'header_name' => '',
+                          'expense_date' => now()->format('Y-m-d'),
+                          'expense' => '',
+                          'amount' => 0,
+                      ]);
+    }
+
+    public function removeExpenses($id)
+    {
+        VoucherExpense::destroy($id);
+    }
+
+    public function saveExpenses()
+    {
+        foreach ($this->expenses as $item) {
+            VoucherExpense::query()
+                          ->where('id', $item['id'])
+                          ->update([
+                              "header_name" => $item["header_name"],
+                              "expense_date" => $item["expense_date"],
+                              "expense" => $item["expense"],
+                              "amount" => $item["amount"],
+                          ]);
+        }
+
+        $this->emit('refreshDatatable');
     }
 }

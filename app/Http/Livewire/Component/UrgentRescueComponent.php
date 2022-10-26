@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Component;
+namespace App\Http\Livewire\Component\Component;
 
 use App\Models\Rescue;
 use Livewire\Component;

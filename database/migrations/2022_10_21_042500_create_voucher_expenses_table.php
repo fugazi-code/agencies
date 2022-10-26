@@ -8,6 +8,7 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * php artisan migrate:reset --path='database/migrations/2022_10_21_042500_create_voucher_expenses_table.php' --force
      *
      * @return void
      */
@@ -15,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('voucher_expenses', function (Blueprint $table) {
             $table->id();
-            $table->integer('voucher_header_id');
+            $table->string('header_name')->nullable();
             $table->integer('voucher_id');
             $table->date('expense_date')->nullable();
             $table->string('expense')->nullable();

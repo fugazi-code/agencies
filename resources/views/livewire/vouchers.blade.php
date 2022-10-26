@@ -11,13 +11,14 @@
         <div class="card-body">
             <div class="card-title mb-4 d-flex flex-row">
                 <h3>Vouchers</h3>
-                <x-a-button class="btn btn-success ms-3">
-                    <x-slot name="others">
-                        data-bs-toggle="modal" data-bs-target="#voucherModal" wire:click="$set('details', [])"
-                    </x-slot>
-                    <i class="fas fa-plus"></i> Add Voucher
-                </x-a-button>
-                <livewire:f-r-a-component/>
+{{--                <x-a-button class="btn btn-success ms-3">--}}
+{{--                    <x-slot name="others">--}}
+{{--                        data-bs-toggle="modal" data-bs-target="#voucherModal" wire:click="$set('details', [])"--}}
+{{--                    </x-slot>--}}
+{{--                    <i class="fas fa-plus"></i> Add Voucher--}}
+{{--                </x-a-button>--}}
+                <livewire:component.f-r-a-component/>
+                <livewire:component.voucher-header-component/>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -35,7 +36,7 @@
                     </form>
                 </div>
                 <div class="col-12">
-                    <livewire:voucher-table :filters="$params"></livewire:voucher-table>
+                    <livewire:voucher-table :filters="$params"/>
                 </div>
             </div>
         </div>
@@ -242,6 +243,61 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" wire:click="jobOrderUpdate">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div wire:ignore.self class="modal fade" id="expenseModal" data-bs-backdrop="static" data-bs-keyboard="false"
+         tabindex="-1"
+         aria-labelledby="expenseModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="expenseModalLabel">Expenses</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                        <th>Header</th>
+                        <th>Date</th>
+                        <th>Activity</th>
+                        <th>Amount</th>
+                        </thead>
+                        <tbody>
+                        @foreach($expenses as $key => $item)
+                            <tr>
+                                <td class="d-flex flex-row">
+                                    <button class="btn btn-sm btn-danger px-3 mb-0 me-2"
+                                            wire:click="removeExpenses({{ $item['id'] }})">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    <select class="form-select" wire:model="expenses.{{$key}}.header_name">
+                                        <option value="">Select Header</option>
+                                        @foreach($voucherHeader as $item)
+                                            <option value="{{ $item['header_name'] }}">{{ $item['header_name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td style="width: 15%;">
+                                    <input type="date" class="form-control" wire:model.lazy="expenses.{{$key}}.expense_date">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" wire:model.lazy="expenses.{{$key}}.expense">
+                                </td>
+                                <td style="width: 15%;">
+                                    <input type="number" class="form-control" wire:model.lazy="expenses.{{$key}}.amount">
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#" class="btn btn-success" wire:click="addHeader">Add Header</a>
                 </div>
             </div>
         </div>
