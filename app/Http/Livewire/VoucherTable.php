@@ -103,78 +103,78 @@ class VoucherTable extends DataTableComponent
             Column::make("Source", "source")
                   ->sortable()
                   ->searchable(),
-//            Column::make("Requirements", "requirements")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Passporting allowance", "passporting_allowance")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Ticket", "ticket")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Tesda allowance", "tesda_allowance")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Nbi renewal", "nbi_renewal")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Medical allowance", "medical_allowance")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Pdos", "pdos")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Info sheet", "info_sheet")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Owwa allowance", "owwa_allowance")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Office allowance", "office_allowance")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Travel allowance", "travel_allowance")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Weekly allowance", "weekly_allowance")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Medical follow up", "medical_follow_up")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Nbi refund", "nbi_refund")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Psa refund", "psa_refund")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Passport refund", "passport_refund")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Fare refund", "fare_refund")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Red rebon nbi", "red_rebon_nbi")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Fit to work", "fit_to_work")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Repat", "repat")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Stamping", "stamping")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Vaccine fare", "vaccine_fare")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Ticket to Kuwait", "ticket_to_kuwait")
-//                  ->sortable()
-//                  ->searchable(),
-//            Column::make("Ticket to Qatar", "ticket_to_qatar")
-//                  ->sortable()
-//                  ->searchable(),
+            Column::make("Requirements", "requirements")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Passporting allowance", "passporting_allowance")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Ticket", "ticket")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Tesda allowance", "tesda_allowance")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Nbi renewal", "nbi_renewal")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Medical allowance", "medical_allowance")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Pdos", "pdos")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Info sheet", "info_sheet")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Owwa allowance", "owwa_allowance")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Office allowance", "office_allowance")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Travel allowance", "travel_allowance")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Weekly allowance", "weekly_allowance")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Medical follow up", "medical_follow_up")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Nbi refund", "nbi_refund")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Psa refund", "psa_refund")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Passport refund", "passport_refund")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Fare refund", "fare_refund")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Red rebon nbi", "red_rebon_nbi")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Fit to work", "fit_to_work")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Repat", "repat")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Stamping", "stamping")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Vaccine fare", "vaccine_fare")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Ticket to Kuwait", "ticket_to_kuwait")
+                  ->sortable()
+                  ->searchable(),
+            Column::make("Ticket to Qatar", "ticket_to_qatar")
+                  ->sortable()
+                  ->searchable(),
             Column::make("Updated at", "updated_at")
                   ->sortable()
                   ->format(fn($value) => Carbon::parse($value)->format('F j, Y')),

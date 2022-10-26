@@ -11,12 +11,12 @@
         <div class="card-body">
             <div class="card-title mb-4 d-flex flex-row">
                 <h3>Vouchers</h3>
-                <x-a-button class="btn btn-success ms-3">
-                    <x-slot name="others">
-                        data-bs-toggle="modal" data-bs-target="#voucherModal" wire:click="$set('details', [])"
-                    </x-slot>
-                    <i class="fas fa-plus"></i> Add Voucher
-                </x-a-button>
+{{--                <x-a-button class="btn btn-success ms-3">--}}
+{{--                    <x-slot name="others">--}}
+{{--                        data-bs-toggle="modal" data-bs-target="#voucherModal" wire:click="$set('details', [])"--}}
+{{--                    </x-slot>--}}
+{{--                    <i class="fas fa-plus"></i> Add Voucher--}}
+{{--                </x-a-button>--}}
                 <livewire:component.f-r-a-component/>
                 <livewire:component.voucher-header-component/>
             </div>
