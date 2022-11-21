@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\CasesLivewire;
 use App\Http\Livewire\ComplaintFormLivewire;
+use App\Http\Livewire\DepriveLivewire;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\MapLivewire;
 use App\Http\Livewire\ReportLivewire;
@@ -9,6 +10,7 @@ use App\Http\Livewire\RescueRemoteLivewire;
 use App\Http\Livewire\RescuesLivewire;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Reporting;
+use App\Http\Livewire\VoucherV2Livewire;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\AgencyLivewire;
 use App\Http\Livewire\VoucherLivewire;
@@ -52,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['can:agency'])->group(function () {
         Route::get('/vouchers', VoucherLivewire::class)->name('finance.vouchers');
+        Route::get('/vouchers-v2', VoucherV2Livewire::class)->name('finance.vouchers-v2');
         Route::get('/applicants', ApplicantsLivewire::class)->name('applicants');
     });
 
@@ -63,5 +66,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/rescues', RescuesLivewire::class)->name('rescues');
         Route::get('/agencies', AgencyLivewire::class)->name('agencies');
         Route::get('/ofw-monitoring', OFWMonitoringLivewire::class)->name('ofw.monitoring');
+        Route::get('/deprive', DepriveLivewire::class)->name('deprive');
     });
 });

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Livewire;
 
 use App\Models\ForeignAgency;
@@ -14,9 +13,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class VoucherLivewire extends Component
+class VoucherV2Livewire extends Component
 {
-
     public array $params = [];
 
     public array $accounts = [];
@@ -68,7 +66,7 @@ class VoucherLivewire extends Component
 
         $this->voucherHeader = VoucherHeader::query()->where('agency_id', auth()->user()->agency_id)->get()->toArray();
 
-        return view('livewire.vouchers');
+        return view('livewire.voucher-v2-livewire');
     }
 
     public function updatedParams()

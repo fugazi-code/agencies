@@ -96,7 +96,7 @@
 
     <hr class="horizontal dark mt-0">
 
-    @include('layouts.partials.agency-sidebar')
+    <livewire:component.sidebar-component/>
 </aside>
 
 <main class="main-content position-relative bg-gray-100 d-flex align-items-start flex-column"

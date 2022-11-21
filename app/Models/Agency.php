@@ -29,4 +29,10 @@ class Agency extends Model
     {
         return $this->hasOne(User::class, 'id', 'created_by');
     }
+
+    public function deprives()
+    {
+        return $this->hasMany(Deprive::class, 'agency_id', 'id');
+    }
+
 }
