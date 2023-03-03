@@ -51,6 +51,14 @@
                     <option value="blocked">Blocked</option>
                 </x-select>
             </div>
+            <div class="col-md-6 mb-2">
+                <label>Owner Name</label>
+                <x-input type="text" model="details.owner_name"/>
+            </div>
+            <div class="col-md-6 mb-2">
+                <label>Contact Number</label>
+                <x-input type="text" model="details.contact_number"/>
+            </div>
             <div class="col-md-12 mb-2">
                 <label>Address</label>
                 <x-textarea model="details.address"/>
@@ -88,6 +96,14 @@
                     <option value="active">Active</option>
                     <option value="blocked">Blocked</option>
                 </x-select>
+            </div>
+            <div class="col-md-6 mb-2">
+                <label>Owner Name</label>
+                <x-input type="text" model="details.owner_name"/>
+            </div>
+            <div class="col-md-6 mb-2">
+                <label>Contact Number</label>
+                <x-input type="text" model="details.contact_number"/>
             </div>
             <div class="col-md-12 mb-2">
                 <label>Address</label>

@@ -63,6 +63,12 @@ class ComplaintFormLivewire extends Component
         if (isset($this->form['image3'])) {
             $this->form['image3'] = $this->form['image3']->store('evidences');
         }
+        if (isset($this->form['agency_id'])) {
+          $this->form['agency_id'] = Agency::query()->find($this->form['agency_id'])->name;
+        }
+
+        $this->form['agency_id'] = $this->agency->id;
+        $this->form['agency'] = $this->agency->name;
 
         Complains::query()->create($this->form);
 

@@ -35,6 +35,12 @@ class ComplainsTable extends DataTableComponent
             Column::make("Agency", "agency")
                   ->searchable()
                   ->sortable(),
+            Column::make("Agency owner", "agencyDetails.owner_name")
+                  ->searchable()
+                  ->sortable(),
+            Column::make("Agency contact", "agencyDetails.contact_number")
+                  ->searchable()
+                  ->sortable(),
             Column::make("Foreign agency", "foreign_agency")
                   ->searchable()
                   ->sortable(),

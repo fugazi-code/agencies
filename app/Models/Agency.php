@@ -17,6 +17,8 @@ class Agency extends Model
         'poea',
         'cr_no',
         'status',
+        'owner_name',
+        'contact_number',
         'created_by',
     ];
 
