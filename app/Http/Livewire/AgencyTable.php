@@ -34,6 +34,10 @@ class AgencyTable extends DataTableComponent
                 ->sortable(),
             Column::make("Status", "status")
                 ->sortable(),
+            Column::make("Owner name", "owner_name")
+                ->sortable(),
+            Column::make("Contact number", "contact_number")
+                ->sortable(),
             Column::make("Created by", "users.email")
                 ->sortable(),
         ];

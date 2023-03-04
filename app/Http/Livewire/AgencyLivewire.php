@@ -44,6 +44,8 @@ class AgencyLivewire extends Component
             'poea'       => $this->details['poea'],
             'cr_no'      => $this->details['cr_no'],
             'status'     => $this->details['status'],
+            'owner_name'      => $this->details['owner_name'],
+            'contact_number'     => $this->details['contact_number'],
             'created_by' => auth()->id(),
         ]);
 
@@ -78,6 +80,8 @@ class AgencyLivewire extends Component
                 'poea'       => $this->details['poea'],
                 'cr_no'      => $this->details['cr_no'],
                 'status'     => $this->details['status'],
+                'owner_name'      => $this->details['owner_name'],
+                'contact_number'     => $this->details['contact_number'],
                 'created_by' => auth()->id(),
             ]);
 

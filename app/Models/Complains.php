@@ -38,4 +38,9 @@ class Complains extends Model
         'actual_longitude',
         'created_at',
     ];
+
+    public function agencyDetails()
+    {
+        return $this->hasOne(Agency::class, 'id', 'agency_id');
+    }
 }

@@ -39,6 +39,7 @@ class ApplicationFromLivewire extends Component
 
     public function render()
     {
+      // dd(auth()->user()->agency_id);
         if ($this->candidate_id) {
             if ($this->cand_id == '') {
                 $this->cand_id = decrypt($this->candidate_id);
@@ -136,6 +137,9 @@ class ApplicationFromLivewire extends Component
         if ($this->picfull) {
             $this->details['picfull'] = $this->picfull->store('applicant');
         }
+        // auth()->user()->agency_id
+
+        $this->details['agency_id'] = auth()->user()->agency_id;
 
         $id = Candidate::query()->insertGetId($this->details);
 
