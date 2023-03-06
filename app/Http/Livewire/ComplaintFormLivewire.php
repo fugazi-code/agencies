@@ -55,13 +55,13 @@ class ComplaintFormLivewire extends Component
             $this->form['foreign_agency'] = ForeignAgency::query()->find($this->form['foreign_agency_id'])->agency_name;
         }
         if (isset($this->form['image1'])) {
-            $this->form['image1'] = $this->form['image1']->store('evidences');
+            $this->form['image1'] = $this->form['image1']->store('evidences', 'public');
         }
         if (isset($this->form['image2'])) {
-            $this->form['image2'] = $this->form['image2']->store('evidences');
+            $this->form['image2'] = $this->form['image2']->store('evidences', 'public');
         }
         if (isset($this->form['image3'])) {
-            $this->form['image3'] = $this->form['image3']->store('evidences');
+            $this->form['image3'] = $this->form['image3']->store('evidences', 'public');
         }
         if (isset($this->form['agency_id'])) {
           $this->form['agency_id'] = Agency::query()->find($this->form['agency_id'])->name;

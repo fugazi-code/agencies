@@ -41,7 +41,7 @@ class ApplicantDocsLivewire extends Component
             'details.type' => 'required',
         ]);
 
-        $path = $this->details['docu']->store('documents');
+        $path = $this->details['docu']->store('documents', 'public');
 
         Document::query()->insert([
             'candidate_id' => $this->candidate['id'],

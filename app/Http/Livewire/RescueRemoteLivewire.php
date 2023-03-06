@@ -55,7 +55,7 @@ class RescueRemoteLivewire extends Component
     public function showComplaintForm()
     {
         $candidate = Candidate::query()->selectRaw('agency_id')->where('code', $this->code)->first();
-        // dd($candidate->agency_id);
+        // dd($candidate);
         return redirect()->to(route('complaint-form-livewire', ['agencyId' => $candidate->agency_id]));
     }
 }

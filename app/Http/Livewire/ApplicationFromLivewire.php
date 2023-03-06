@@ -132,10 +132,10 @@ class ApplicationFromLivewire extends Component
     public function store()
     {
         if ($this->photo_url) {
-            $this->details['photo_url'] = $this->photo_url->store('applicant');
+            $this->details['photo_url'] = $this->photo_url->store('applicant', 'public');
         }
         if ($this->picfull) {
-            $this->details['picfull'] = $this->picfull->store('applicant');
+            $this->details['picfull'] = $this->picfull->store('applicant', 'public');
         }
         // auth()->user()->agency_id
 
@@ -169,10 +169,10 @@ class ApplicationFromLivewire extends Component
     public function edit()
     {
         if ($this->photo_url) {
-            $this->details['photo_url'] = $this->photo_url->store('applicant');
+            $this->details['photo_url'] = $this->photo_url->store('applicant', 'public');
         }
         if ($this->picfull) {
-            $this->details['picfull'] = $this->picfull->store('applicant');
+            $this->details['picfull'] = $this->picfull->store('applicant', 'public');
         }
 
         Candidate::query()->where('id', $this->cand_id)->update($this->details);
