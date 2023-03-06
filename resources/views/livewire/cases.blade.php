@@ -38,17 +38,17 @@
                         <div class="row">
                             <div class="col-md-12 d-flex flex-row justify-content-center">
                                 @if($detail['image1'])
-                                    <a href="{{ $detail['image1'] }}" class="btn btn-sm btn-info mx-2" target="_blank">
+                                    <a href="/storage/{{ $detail['image1'] }}" class="btn btn-sm btn-info mx-2" target="_blank">
                                         Image 1
                                     </a>
                                 @endif
                                 @if($detail['image2'])
-                                    <a href="{{ $detail['image2'] }}" class="btn btn-sm btn-info mx-2" target="_blank">
+                                    <a href="/storage/{{ $detail['image2'] }}" class="btn btn-sm btn-info mx-2" target="_blank">
                                         Image 2
                                     </a>
                                 @endif
                                 @if($detail['image3'])
-                                    <a href="{{ $detail['image3'] }}" class="btn btn-sm btn-info mx-2" target="_blank">
+                                    <a href="/storage/{{ $detail['image3'] }}" class="btn btn-sm btn-info mx-2" target="_blank">
                                         Image 3
                                     </a>
                                 @endif
