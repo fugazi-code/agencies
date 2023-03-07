@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-[ ] - fix discrepancy between application form and candidate table
-=======
 [x] - fix discrepancy between application form and candidate table
->>>>>>> ce119cfc5d7d0d5003148eca57bec05807e9ef60
-[ ] - fix ui table search bar
-[ ] - sidebar main_logo
+[x] - fix ui table search bar
+[x] - sidebar main_logo
+[x] - fix error on rescues page search
+[x] - fix err on save images

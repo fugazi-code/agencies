@@ -17,9 +17,10 @@ class RescueTable extends DataTableComponent
             Column::make('Created At', 'created_at')
                   ->format(fn($value) => Carbon::parse($value)->format('F j, Y'))
                   ->sortable(),
-            Column::make('Status', 'status')
-                  ->searchable()
-                  ->sortable(),
+            // TODO fix this
+            // Column::make('Status', 'status')
+            //       ->searchable()
+            //       ->sortable(),
             Column::make('IP Address', 'ip_address')
                   ->searchable()
                   ->sortable(),
