@@ -35,7 +35,7 @@ class AgencyLivewire extends Component
             'details.status'  => 'required',
         ]);
 
-        $path = $this->details['photo']->store('agency');
+        $path = $this->details['photo']->store('agency', 'public');
 
         Agency::query()->create([
             'name'       => $this->details['name'],
@@ -68,7 +68,7 @@ class AgencyLivewire extends Component
             $this->validate([
                 'details.photo' => 'image|max:1024',
             ]);
-            $path = $this->details['photo']->store('agency');
+            $path = $this->details['photo']->store('agency', 'public');
         }
 
         Agency::query()
