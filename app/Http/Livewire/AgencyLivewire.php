@@ -35,7 +35,7 @@ class AgencyLivewire extends Component
             'details.status'  => 'required',
         ]);
 
-        $path = $this->details['photo']->store('agency');
+        $path = $this->details['photo']->store('agency', 'public');
 
         Agency::query()->create([
             'name'       => $this->details['name'],
@@ -44,6 +44,8 @@ class AgencyLivewire extends Component
             'poea'       => $this->details['poea'],
             'cr_no'      => $this->details['cr_no'],
             'status'     => $this->details['status'],
+            'owner_name'      => $this->details['owner_name'],
+            'contact_number'     => $this->details['contact_number'],
             'created_by' => auth()->id(),
         ]);
 
@@ -66,7 +68,7 @@ class AgencyLivewire extends Component
             $this->validate([
                 'details.photo' => 'image|max:1024',
             ]);
-            $path = $this->details['photo']->store('agency');
+            $path = $this->details['photo']->store('agency', 'public');
         }
 
         Agency::query()
@@ -78,6 +80,8 @@ class AgencyLivewire extends Component
                 'poea'       => $this->details['poea'],
                 'cr_no'      => $this->details['cr_no'],
                 'status'     => $this->details['status'],
+                'owner_name'      => $this->details['owner_name'],
+                'contact_number'     => $this->details['contact_number'],
                 'created_by' => auth()->id(),
             ]);
 

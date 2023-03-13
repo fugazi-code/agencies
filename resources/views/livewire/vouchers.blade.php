@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-12">
                     <form id="former">
-                        <div class="row mb-4 mx-2">
+                        <div class="row mb-4">
                             <div class="col-md-2">
                                 <label>Filter By:</label>
                                 <select class="form-control" wire:model="params.account" name="filtered">

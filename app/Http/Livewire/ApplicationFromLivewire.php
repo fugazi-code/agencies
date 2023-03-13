@@ -39,6 +39,7 @@ class ApplicationFromLivewire extends Component
 
     public function render()
     {
+      // dd(auth()->user()->agency_id);
         if ($this->candidate_id) {
             if ($this->cand_id == '') {
                 $this->cand_id = decrypt($this->candidate_id);
@@ -131,11 +132,14 @@ class ApplicationFromLivewire extends Component
     public function store()
     {
         if ($this->photo_url) {
-            $this->details['photo_url'] = $this->photo_url->store('applicant');
+            $this->details['photo_url'] = $this->photo_url->store('applicant', 'public');
         }
         if ($this->picfull) {
-            $this->details['picfull'] = $this->picfull->store('applicant');
+            $this->details['picfull'] = $this->picfull->store('applicant', 'public');
         }
+        // auth()->user()->agency_id
+
+        $this->details['agency_id'] = auth()->user()->agency_id;
 
         $id = Candidate::query()->insertGetId($this->details);
 
@@ -165,10 +169,10 @@ class ApplicationFromLivewire extends Component
     public function edit()
     {
         if ($this->photo_url) {
-            $this->details['photo_url'] = $this->photo_url->store('applicant');
+            $this->details['photo_url'] = $this->photo_url->store('applicant', 'public');
         }
         if ($this->picfull) {
-            $this->details['picfull'] = $this->picfull->store('applicant');
+            $this->details['picfull'] = $this->picfull->store('applicant', 'public');
         }
 
         Candidate::query()->where('id', $this->cand_id)->update($this->details);

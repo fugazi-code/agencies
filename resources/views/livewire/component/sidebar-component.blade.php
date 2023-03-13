@@ -8,6 +8,9 @@
                 @isset($logo[0])
                     <img src="{{ \Illuminate\Support\Facades\Storage::url($logo[0]) }}"
                          class="navbar-brand-img" alt="main_logo">
+                         <!-- <img class="" src="{{ Storage::url($logo[0]) }}"  alt="main_logo"> -->
+                         {{-- <img src="{{asset('/storage/'.$logo[0])}}" alt="main_logo"> --}}
+                         <!-- <img src="{{ asset('storage/agency/gcVUjNUhEBNshxgXrk4c3uH9mOBRk2iWbnZ7b6Ct.jpg') }}" /> -->
                 @endisset
             </div>
         </a>

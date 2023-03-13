@@ -89,7 +89,7 @@
                 <div class="col-md-12"></div>
                 <div class="col-md-4 mb-2">
                     <label>Mother's Name</label>
-                    <x-input model="details.father_name"/>
+                    <x-input model="details.mother_name"/>
                 </div>
                 <div class="col-md-4 mb-2">
                     <label>Mother's Occupation</label>

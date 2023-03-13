@@ -11,6 +11,7 @@ class SidebarComponent extends Component
 
     public function mount()
     {
+      // dd($logo = auth()->user()->agency()->pluck('logo_path')[0]);
         $this->deprive = Deprive::query()
                                 ->where('agency_id', auth()->user()->agency_id)
                                 ->toBase()
