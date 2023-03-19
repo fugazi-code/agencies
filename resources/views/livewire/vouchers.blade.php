@@ -18,7 +18,6 @@
                     <i class="fas fa-plus"></i> Add Voucher
                 </x-a-button>
                 <livewire:component.f-r-a-component/>
-                {{-- <livewire:component.voucher-header-component/> --}}
             </div>
             <div class="row">
                 <div class="col-12">

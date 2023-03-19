@@ -12,7 +12,6 @@
             <div class="card-title mb-4 d-flex flex-row">
                 <h3>Vouchers</h3>
                 <livewire:component.f-r-a-component/>
-                {{-- <livewire:component.voucher-header-component/> --}}
             </div>
             <div class="row">
                 <div class="col-12">
