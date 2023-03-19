@@ -53,6 +53,23 @@
         .navbar-brand-img {
             min-height: 86px;
         }
+
+        .input-group {
+          display: flex;
+          height: 3rem !important;
+          position: relative !important;
+        }
+
+        .input-group > input[type="text"] {
+          height: 100%;
+        }
+
+        .input-group > button {
+          height: 100%;
+          border-top-left-radius: .5rem !important;
+          border-bottom-left-radius: .5rem !important;
+        }
+
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
