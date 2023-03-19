@@ -42,7 +42,8 @@ class Voucher extends Model
         "stamping",
         "vaccine_fare",
         "ticket_to_kuwait",
-        "ticket_to_qatar"
+        "ticket_to_qatar",
+        "agent"
     ];
 
     public function information(): HasOne

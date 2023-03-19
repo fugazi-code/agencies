@@ -186,6 +186,9 @@ class VoucherTable extends DataTableComponent
             Column::make("Ticket to Qatar", "ticket_to_qatar")
                   ->sortable()
                   ->searchable(),
+            Column::make("Agent", "agent")
+                  ->sortable()
+                  ->searchable(),
             Column::make("Updated at", "updated_at")
                   ->sortable()
                   ->format(fn($value) => Carbon::parse($value)->format('F j, Y')),
