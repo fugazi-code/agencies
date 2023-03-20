@@ -18,7 +18,6 @@
                     <i class="fas fa-plus"></i> Add Voucher
                 </x-a-button>
                 <livewire:component.f-r-a-component/>
-                <livewire:component.voucher-header-component/>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -99,6 +98,8 @@
                                                                      wire:model="details.stamping"></div>
             <div class="col-md-4 mb-2"><label>Vaccine Fare</label><input type="text" class="form-control"
                                                                          wire:model="details.vaccine_fare"></div>
+            <div class="col-md-4 mb-2"><label>Agent</label><input type="text" class="form-control"
+                                                                         wire:model="details.agent"></div>
         </div>
         <x-slot name="button">
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click="store">Save changes
