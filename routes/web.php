@@ -19,6 +19,7 @@ use App\Http\Livewire\ApplicantsLivewire;
 use App\Http\Livewire\ApplicantDocsLivewire;
 use App\Http\Livewire\OFWMonitoringLivewire;
 use App\Http\Livewire\ApplicationFromLivewire;
+use App\Http\Controllers\VouchersExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ use App\Http\Livewire\ApplicationFromLivewire;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('vouchers/export', [VouchersExportController::class, 'export']);
 
 Route::get('/login', Login::class)->name('login');
 Route::post(
@@ -45,6 +47,7 @@ Route::post(
 Route::get('report', Reporting::class)->name('report');
 Route::get('rescue-report', RescueRemoteLivewire::class)->name('rescue');
 Route::get('complaint', ComplaintFormLivewire::class)->name('complaint-form-livewire');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', DashboardLivewire::class)->name('dashboard');

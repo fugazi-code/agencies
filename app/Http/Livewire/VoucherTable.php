@@ -29,13 +29,13 @@ class VoucherTable extends DataTableComponent
     public function query(): Builder
     {
         return Voucher::query()
-                      ->selectRaw('vouchers.*, users.email, foreign_agencies.agency_name, job_orders.foreign_agency_id, ve.amount')
+                      ->selectRaw('vouchers.*, users.email, foreign_agencies.agency_name, job_orders.foreign_agency_id')
                       ->leftJoin('agencies', 'agencies.id', '=', 'vouchers.agency_id')
                       ->leftJoin('job_orders', 'job_orders.voucher_id', '=', 'vouchers.id')
                       ->leftJoin('foreign_agencies', 'foreign_agencies.id', '=', 'job_orders.foreign_agency_id')
                       ->join('users', 'users.id', '=', 'vouchers.created_by')
-                      ->leftJoin(DB::raw('(select sum(amount) as amount, voucher_id from voucher_expenses where deleted_at is null group by voucher_id) as ve'),
-                          've.voucher_id', '=', 'vouchers.id')
+                  //     ->leftJoin(DB::raw('(select sum(amount) as amount, voucher_id from voucher_expenses where deleted_at is null group by voucher_id) as ve'),
+                  //         've.voucher_id', '=', 'vouchers.id')
                       ->when(isset($this->params['account']), function ($q) {
                           $q->where('users.id', $this->params['account']);
                       }, fn($q) => $q->where('users.id', auth()->id()));
