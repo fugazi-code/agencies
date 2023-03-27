@@ -24,16 +24,22 @@ class VouchersExport implements FromCollection, ShouldAutoSize, WithMapping, Wit
         return Voucher::all();
     }
 
+    public function matchedData($data)
+    {
+      preg_match_all('/\(([\d\,\.]+)/', $data, $match);
+      return $match[1][0];
+    }
+
     public function map($voucher): array
     {
         return[
             $voucher->id,
             $voucher->source,
             $voucher->name,
-            $voucher->created_at,
-            $voucher->medical_allowance,
-            $voucher->vaccine_fare,
-            $voucher->ticket,
+            date_format($voucher->created_at,"d-M-y"),
+            $this->matchedData($voucher->medical_allowance),
+            $this->matchedData($voucher->vaccine_fare),
+            $this->matchedData($voucher->ticket),
         ];
     }
 

@@ -18,6 +18,12 @@
                     <i class="fas fa-plus"></i> Add Voucher
                 </x-a-button>
                 <livewire:component.f-r-a-component/>
+                <div>
+                  <form action="{{ route('vouchers.export-excel') }}" method="GET" class="btn btn-success ms-3" target="_blank">@csrf</form>
+                  <x-a-button class="btn btn-success ms-3" >
+                    Export
+                  </x-a-button>
+              </div>
             </div>
             <div class="row">
                 <div class="col-12">

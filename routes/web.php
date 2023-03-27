@@ -31,7 +31,7 @@ use App\Http\Controllers\VouchersExportController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('vouchers/export', [VouchersExportController::class, 'export']);
+Route::get('vouchers/export', [VouchersExportController::class, 'export'])->name('vouchers.export-excel');
 
 Route::get('/login', Login::class)->name('login');
 Route::post(
