@@ -19,10 +19,10 @@
                 </x-a-button>
                 <livewire:component.f-r-a-component/>
                 <div>
-                  <form action="{{ route('vouchers.export-excel') }}" method="GET" class="btn btn-success ms-3" target="_blank">@csrf</form>
-                  <x-a-button class="btn btn-success ms-3" >
-                    Export
-                  </x-a-button>
+                  <form action="{{ route('vouchers.export-excel') }}" method="GET" target="_blank">
+                <button class="btn btn-info ms-3" type="submit">
+                    <i class="fa-solid fa-download"></i> Export</button>
+                </form>
               </div>
             </div>
             <div class="row">
@@ -71,7 +71,7 @@
                                                                          wire:model="details.requirements"></div>
             <div class="col-md-4 mb-2"><label>Red Rebon NBI</label><input type="text" class="form-control"
                                                                           wire:model="details.red_rebon_nbi"></div>
-            <div class="col-md-4 mb-2"><label>NBI Renewal</label><input type="text" class="form-control"
+            <div class="col-md-4 mb-2"><label>NBI Fee</label><input type="text" class="form-control"
                                                                         wire:model="details.nbi_renewal"></div>
             <div class="col-md-4 mb-2"><label>TESDA Allowance</label><input type="text" class="form-control"
                                                                             wire:model="details.tesda_allowance"></div>
@@ -136,7 +136,7 @@
                                                                          wire:model="details.requirements"></div>
             <div class="col-md-4 mb-2"><label>Red Rebon NBI</label><input type="text" class="form-control"
                                                                           wire:model="details.red_rebon_nbi"></div>
-            <div class="col-md-4 mb-2"><label>NBI Renewal</label><input type="text" class="form-control"
+            <div class="col-md-4 mb-2"><label>NBI Fee</label><input type="text" class="form-control"
                                                                         wire:model="details.nbi_renewal"></div>
             <div class="col-md-4 mb-2"><label>TESDA Allowance</label><input type="text" class="form-control"
                                                                             wire:model="details.tesda_allowance"></div>

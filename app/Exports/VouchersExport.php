@@ -26,8 +26,10 @@ class VouchersExport implements FromCollection, ShouldAutoSize, WithMapping, Wit
 
     public function matchedData($data)
     {
-      preg_match_all('/\(([\d\,\.]+)/', $data, $match);
-      return $match[1][0];
+        preg_match_all('/\(([\d\,\.]+)/', $data, $match);
+        if($match[1]) {
+            return $match[1][0];
+        }
     }
 
     public function map($voucher): array

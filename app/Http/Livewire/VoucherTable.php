@@ -126,7 +126,7 @@ class VoucherTable extends DataTableComponent
             Column::make("Tesda allowance", "tesda_allowance")
                   ->sortable()
                   ->searchable(),
-            Column::make("Nbi renewal", "nbi_renewal")
+            Column::make("Nbi fee", "nbi_renewal")
                   ->sortable()
                   ->searchable(),
             Column::make("Medical allowance", "medical_allowance")
