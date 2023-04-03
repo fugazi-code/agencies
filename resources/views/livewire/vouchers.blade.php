@@ -19,7 +19,7 @@
                 </x-a-button>
                 <livewire:component.f-r-a-component/>
                 <div>
-                  <form action="{{ route('vouchers.export-excel') }}" method="GET" target="_blank">
+                  <form action="{{ route('vouchers.export-excel') }}" method="GET">
                 <button class="btn btn-info ms-3" type="submit">
                     <i class="fa-solid fa-download"></i> Export</button>
                 </form>
