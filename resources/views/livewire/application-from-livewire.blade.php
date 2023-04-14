@@ -6,10 +6,11 @@
                 <h3>Applicant Form</h3>
             </div>
             <div class="row">
-                <div class="col-md-6 mb-2">
+                <div class="col-md-2 mb-2">
                     <label>Voucher ID</label>
                     <x-input model="details.voucher_id"/>
                 </div>
+                <br>
                 <div class="col-md-3 mb-2">
                     <label>Position Selected</label>
                     <x-input model="details.position_selected"/>
