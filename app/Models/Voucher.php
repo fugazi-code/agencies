@@ -14,6 +14,7 @@ class Voucher extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        "id",
         "agency_id",
         "name",
         "status",
@@ -103,6 +104,7 @@ class Voucher extends Model
 
     public function pdos(): Attribute
     {
+                    
         return Attribute::set(fn($value) => trim($value));
     }
 
@@ -130,6 +132,7 @@ class Voucher extends Model
     {
         return Attribute::set(fn($value) => trim($value));
     }
+                    
 
     public function weeklyAllowance(): Attribute
     {
@@ -148,6 +151,7 @@ class Voucher extends Model
 
     public function psaRefund(): Attribute
     {
+                    
         return Attribute::set(fn($value) => trim($value));
     }
 
@@ -162,6 +166,7 @@ class Voucher extends Model
     }
 
     public function redRebonNbi(): Attribute
+                    
     {
         return Attribute::set(fn($value) => trim($value));
     }
@@ -184,5 +189,15 @@ class Voucher extends Model
     public function vaccineFare(): Attribute
     {
         return Attribute::set(fn($value) => trim($value));
+    }
+
+    public function deployments()
+    {
+        return $this->hasOne(Deployment::class);
+    }
+
+    public function voucher_statuses()
+    {
+        return $this->hasOne(VoucherStatus::class);
     }
 }

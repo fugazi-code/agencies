@@ -51,6 +51,18 @@
                     </a>
                 </li>
             @endif
+            @if(!in_array('deployments', $deprive))
+                <li class="nav-item">
+                    <a class="nav-link @if(request()->routeIs('deployments')) active @endif"
+                       href="{{ route('deployments') }}">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-plane fs-6"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Deployments</span>
+                    </a>
+                </li>
+            @endif
         @endcan
 
         @can('admin')

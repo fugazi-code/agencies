@@ -1,25 +1,27 @@
 <?php
 
-use App\Http\Livewire\CasesLivewire;
-use App\Http\Livewire\ComplaintFormLivewire;
-use App\Http\Livewire\DepriveLivewire;
 use App\Http\Livewire\Login;
-use App\Http\Livewire\MapLivewire;
-use App\Http\Livewire\ReportLivewire;
-use App\Http\Livewire\RescueRemoteLivewire;
-use App\Http\Livewire\RescuesLivewire;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Reporting;
-use App\Http\Livewire\VoucherV2Livewire;
-use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\MapLivewire;
+use App\Http\Livewire\CasesLivewire;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\AgencyLivewire;
+use App\Http\Livewire\ReportLivewire;
+use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\DepriveLivewire;
+use App\Http\Livewire\RescuesLivewire;
 use App\Http\Livewire\VoucherLivewire;
 use App\Http\Livewire\DashboardLivewire;
+use App\Http\Livewire\VoucherV2Livewire;
 use App\Http\Livewire\ApplicantsLivewire;
+use App\Http\Livewire\RescueRemoteLivewire;
 use App\Http\Livewire\ApplicantDocsLivewire;
+use App\Http\Livewire\ComplaintFormLivewire;
 use App\Http\Livewire\OFWMonitoringLivewire;
 use App\Http\Livewire\ApplicationFromLivewire;
 use App\Http\Controllers\VouchersExportController;
+use App\Http\Livewire\DeploymentLivewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/vouchers', VoucherLivewire::class)->name('finance.vouchers');
         Route::get('/vouchers-v2', VoucherV2Livewire::class)->name('finance.vouchers-v2');
         Route::get('/applicants', ApplicantsLivewire::class)->name('applicants');
+        Route::get('/deployments', DeploymentLivewire::class)->name('deployments');
     });
 
     Route::middleware(['can:admin'])->group(callback: function () {
