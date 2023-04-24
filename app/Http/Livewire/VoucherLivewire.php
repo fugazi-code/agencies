@@ -16,7 +16,6 @@ use Livewire\Component;
 
 class VoucherLivewire extends Component
 {
-
     public array $params = [];
 
     public array $accounts = [];

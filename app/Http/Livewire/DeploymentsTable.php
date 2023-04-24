@@ -9,16 +9,34 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 
 class DeploymentsTable extends DataTableComponent
 {
+    protected $listeners = ['refreshDatatable' => '$refresh', 'outsideFilter'];
+
+    public $params;
+
+    public function outsideFilter($data)
+    {
+        $this->params = $data;
+        $this->render();
+    }
 
     public function query(): Builder
     {
         return Voucher::selectRaw('vouchers.*, voucher_statuses.status_date,
         deployments.type,deployments.ppt,deployments.fit,deployments.contract_signing,
         foreign_agencies.agency_name')
+            ->when(
+                isset($this->params['deployed_from']) && isset($this->params['deployed_to']),
+                function ($q) {
+                    $q->whereBetween('voucher_statuses.status_date', [$this->params['deployed_from'], $this->params['deployed_to']]);
+                }
+            )
             ->where('vouchers.status', 'deployed')
             ->leftJoin('voucher_statuses', 'voucher_statuses.voucher_id', '=', 'vouchers.id')
             ->leftJoin('foreign_agencies', 'foreign_agencies.id', '=', 'vouchers.agency_id')
-            ->leftJoin('deployments', 'deployments.voucher_id', '=', 'vouchers.id');
+            ->leftJoin('deployments', 'deployments.voucher_id', '=', 'vouchers.id')
+            ->when(isset($this->params['account']), function ($q) {
+                $q->where('vouchers.created_by', $this->params['account']);
+            }, fn ($q) => $q->where('vouchers.created_by', auth()->id()));
     }
 
     public function columns(): array

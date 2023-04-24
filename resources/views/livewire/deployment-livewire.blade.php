@@ -12,11 +12,44 @@
             <div class="card-title mb-4 d-flex flex-row">
                 <h3>Deployments</h3>
             </div>
-            <livewire:deployments-table>
+            <div class="row">
+                <div class="col-12">
+                    <form id="former">
+                        <div class="row  justify-content-center mb-4">
+                            <div class="col-md-2">
+                                <label>Filter By:</label>
+                                <select class="form-control" wire:model="params.account" name="filtered">
+                                    @foreach($accounts as $account)
+                                        <option value="{{ $account['id'] }}">{{ $account['email'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label>Deployed Date From</label>
+                                <input type="date" class="form-control" wire:model="params.deployed_from">
+                            </div>
+                            <div class="col-md-2">
+                                <label>Deployed Date To</label>
+                                <input type="date" class="form-control" wire:model="params.deployed_to">
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-info" wire:click='resetDates'>Reset Dates</button>
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-primary" wire:click=''>Export</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <livewire:deployments-table :filters="$params" />
         </div>
     </div>
 
-    <div wire:ignore.self class="modal fade" id="deployModal" tabindex="-1" aria-labelledby="deployModalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="deployModal" tabindex="-1" aria-labelledby="deployModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
