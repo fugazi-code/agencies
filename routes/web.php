@@ -21,6 +21,7 @@ use App\Http\Livewire\ComplaintFormLivewire;
 use App\Http\Livewire\OFWMonitoringLivewire;
 use App\Http\Livewire\ApplicationFromLivewire;
 use App\Http\Controllers\VouchersExportController;
+use App\Http\Controllers\DeploymentsExportController;
 use App\Http\Livewire\DeploymentLivewire;
 
 /*
@@ -34,6 +35,7 @@ use App\Http\Livewire\DeploymentLivewire;
 |
 */
 Route::get('vouchers/export', [VouchersExportController::class, 'export'])->name('vouchers.export-excel');
+Route::get('deployments/export', [DeploymentsExportController::class, 'export'])->name('deployments.export-excel');
 
 Route::get('/login', Login::class)->name('login');
 Route::post(
