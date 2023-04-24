@@ -38,6 +38,10 @@
                             <input type="text" class="form-control" wire:model='detail.ppt'>
                         </div>
                         <div class="col-12">
+                            <label>Age</label>
+                            <input type="number" class="form-control" wire:model='detail.age'>
+                        </div>
+                        <div class="col-12">
                             <label>Fit to Work</label>
                             <input type="text" class="form-control" wire:model='detail.fit'>
                         </div>
@@ -49,7 +53,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" wire:click='store'>Send message</button>
+                    <button type="button" class="btn btn-primary" wire:click='store'>Save</button>
                 </div>
             </div>
         </div>
@@ -60,6 +64,7 @@
             var myModal = new bootstrap.Modal(document.getElementById('deployModal'), {
                 keyboard: false
             })
+
             window.addEventListener('deploy-modal', event => {
                 myModal.toggle();
             });

@@ -13,9 +13,11 @@ class DeploymentsTable extends DataTableComponent
     public function query(): Builder
     {
         return Voucher::selectRaw('vouchers.*, voucher_statuses.status_date,
-        deployments.type,deployments.ppt,deployments.fit,deployments.contract_signing')
+        deployments.type,deployments.ppt,deployments.fit,deployments.contract_signing,
+        foreign_agencies.agency_name')
             ->where('vouchers.status', 'deployed')
             ->leftJoin('voucher_statuses', 'voucher_statuses.voucher_id', '=', 'vouchers.id')
+            ->leftJoin('foreign_agencies', 'foreign_agencies.id', '=', 'vouchers.agency_id')
             ->leftJoin('deployments', 'deployments.voucher_id', '=', 'vouchers.id');
     }
 
@@ -33,10 +35,19 @@ class DeploymentsTable extends DataTableComponent
             Column::make("Source", "source")
                 ->searchable()
                 ->sortable(),
-            Column::make("Source", "vouchers.status")
+            Column::make("FRA", "agency_name")
                 ->searchable()
                 ->sortable(),
-            Column::make("Status Date", "voucher_statuses.status_date")
+            Column::make("Source", "status")
+                ->searchable()
+                ->sortable(),
+            Column::make("Age", "deployments.age")
+                ->searchable()
+                ->sortable(),
+            Column::make("Ticket", "ticket")
+                ->searchable()
+                ->sortable(),
+            Column::make("Deployment Date", "status_date")
                 ->sortable(),
             Column::make("Type", "deployments.type")
                 ->searchable()

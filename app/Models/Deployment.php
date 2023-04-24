@@ -14,6 +14,8 @@ class Deployment extends Model
         'ppt',
         'fit',
         'contract_signing',
-        'type'
+        'type',
+        'age',
+        'ticket_deployment'
     ];
 }

@@ -32,7 +32,7 @@ class DeploymentLivewire extends Component
         );
         
         $this->dispatchBrowserEvent('deploy-modal');
-        $this->emit('callToaster', ['message' => 'Deployment Status Updated!']);
         $this->emit('refreshDatatable');
+        $this->emit('callToaster', ['message' => 'Deployment Status Updated!']);
     }
 }
