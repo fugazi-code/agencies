@@ -10,7 +10,6 @@ class VouchersExportController extends Controller
 {
     public function export()
     {
-        // return dd('sheesh');
         return Excel::download(new VouchersExport, 'vouchers.xlsx');
     }
 }

@@ -11,6 +11,10 @@
         <div class="card-body">
             <div class="card-title mb-4 d-flex flex-row">
                 <h3>Deployments</h3>
+                <form action="{{ route('deployments.export-excel') }}" method="GET">
+                  <button class="btn btn-primary ms-3" type="submit">
+                    <i class="fa-solid fa-download"></i> Export</button>
+                </form>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -38,7 +42,8 @@
                                 <button type="button" class="btn btn-info" wire:click='resetDates'>Reset Dates</button>
                             </div>
                             <div class="col-auto">
-                                <button type="button" class="btn btn-primary" wire:click=''>Export</button>
+                                
+                                {{-- <button type="button" class="btn btn-primary" wire:click=''>Export</button> --}}
                             </div>
                         </div>
                     </form>
