@@ -6,6 +6,9 @@ use App\Models\User;
 use Livewire\Component;
 use App\Models\Deployment;
 
+use App\Exports\DeploymentExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class DeploymentLivewire extends Component
 {
     protected $listeners = ['editDeploy' => 'bind'];
@@ -25,6 +28,7 @@ class DeploymentLivewire extends Component
             ->where('agency_id', auth()->user()->agency_id)
             ->get()
             ->toArray();
+        session()->put('export', $this->params);
     }
 
     public function render()
@@ -54,6 +58,7 @@ class DeploymentLivewire extends Component
 
     public function updatedParams()
     {
+        session()->put('export', $this->params);
         $this->emit('outsideFilter', $this->params);
     }
 
@@ -61,5 +66,10 @@ class DeploymentLivewire extends Component
     {
         $this->params['deployed_from'] = null;
         $this->params['deployed_to'] = null;
+    }
+
+    public function export()
+    {
+      return Excel::download(new DeploymentExport(), 'deployments.xlsx');
     }
 }

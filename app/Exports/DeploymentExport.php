@@ -16,20 +16,29 @@ use Maatwebsite\Excel\Events\AfterSheet;
 
 class DeploymentExport implements FromCollection, ShouldAutoSize, WithMapping, WithHeadings, WithEvents
 {
+
+  private $params;
     /**
     * @return \Illuminate\Support\Collection
     */
+
+    public function __construct() 
+    {
+        $this->params = session('export');;
+    }
+
     public function collection()
     {
+        
         return Voucher::selectRaw('vouchers.*, voucher_statuses.status_date,
         deployments.type,deployments.ppt,deployments.fit,deployments.contract_signing,deployments.age,
         foreign_agencies.agency_name')
-            // ->when(
-            //     isset($this->params['deployed_from']) && isset($this->params['deployed_to']),
-            //     function ($q) {
-            //         $q->whereBetween('voucher_statuses.status_date', [$this->params['deployed_from'], $this->params['deployed_to']]);
-            //     }
-            // )
+            ->when(
+                isset($this->params['deployed_from']) && isset($this->params['deployed_to']),
+                function ($q) {
+                    $q->whereBetween('voucher_statuses.status_date', [$this->params['deployed_from'], $this->params['deployed_to']]);
+                }
+            )
             ->where('vouchers.status', 'deployed')
             ->leftJoin('voucher_statuses', 'voucher_statuses.voucher_id', '=', 'vouchers.id')
             ->leftJoin('foreign_agencies', 'foreign_agencies.id', '=', 'vouchers.agency_id')
