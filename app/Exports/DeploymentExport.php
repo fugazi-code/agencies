@@ -40,6 +40,9 @@ class DeploymentExport implements FromCollection, ShouldAutoSize, WithMapping, W
                 }
             )
             ->where('vouchers.status', 'deployed')
+            ->when(isset($this->params['account']), function ($q) {
+                $q->where('vouchers.created_by', $this->params['account']);
+            }, fn ($q) => $q->where('vouchers.created_by', auth()->id()))
             ->leftJoin('voucher_statuses', 'voucher_statuses.voucher_id', '=', 'vouchers.id')
             ->leftJoin('foreign_agencies', 'foreign_agencies.id', '=', 'vouchers.agency_id')
             ->leftJoin('deployments', 'deployments.voucher_id', '=', 'vouchers.id')->get();
