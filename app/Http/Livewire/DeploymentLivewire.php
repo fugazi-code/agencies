@@ -6,9 +6,6 @@ use App\Models\User;
 use Livewire\Component;
 use App\Models\Deployment;
 
-use App\Exports\DeploymentExport;
-use Maatwebsite\Excel\Facades\Excel;
-
 class DeploymentLivewire extends Component
 {
     protected $listeners = ['editDeploy' => 'bind'];
@@ -66,10 +63,5 @@ class DeploymentLivewire extends Component
     {
         $this->params['deployed_from'] = null;
         $this->params['deployed_to'] = null;
-    }
-
-    public function export()
-    {
-      return Excel::download(new DeploymentExport(), 'deployments.xlsx');
     }
 }
