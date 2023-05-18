@@ -14,7 +14,7 @@
                             <div class="d-flex flex-column">
                                 <label>Enter your code: </label>
                                 <div class="d-flex flex-row">
-                                    <input type="password" class="form-control me-2" wire:model="code">
+                                    <input type="text" class="form-control me-2" wire:model="code">
                                     <button class="btn btn-primary h-100 m-0" wire:click="showDetails">Submit</button>
                                 </div>
                                 @error('code')<span
@@ -69,17 +69,31 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-md-12 mt-4">
                                         <label>Salary Received</label>
-                                        <input type="number" class="form-control" wire:model="salary">
-                                        @error('salary')<span
-                                            class="badge badge-sm bg-gradient-danger mt-2">{{ $message }}</span>@enderror
+                                        <select class="form-select" wire:model="salary_received">
+                                            <option value="">Select Option</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                        @error('salary_received')
+                                        <span class="badge badge-sm bg-gradient-danger mt-2">{{ $message }}</span>
+                                        @enderror
+                                    </div>                                    
+                                    <div class="col-md-12 mt-4">
+                                        <label>Salary Date</label>
+                                        <input type="date" class="form-control" wire:model='salary_date'>
+                                        @error('salary_date')
+                                        <span class="badge badge-sm bg-gradient-danger mt-2">{{ $message }}</span>
+                                        @enderror
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 mt-4">
                                         <label>Remarks</label>
                                         <textarea class="form-control" wire:model="remarks"></textarea>
-                                        @error('remarks')<span
-                                            class="badge badge-sm bg-gradient-danger mt-2">{{ $message }}</span>@enderror
+                                        @error('remarks')
+                                        <span class="badge badge-sm bg-gradient-danger mt-2">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

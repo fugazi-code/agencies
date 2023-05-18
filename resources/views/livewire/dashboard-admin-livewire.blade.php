@@ -6,9 +6,9 @@
                 <h5 class="text-white font-weight-bold">
                     DELAYED REPORTS DETECTED!
                 </h5>
-{{--                <button data-bs-toggle="modal" data-bs-target="#urgentModal" wire:click="showRecues"--}}
-{{--                        class="btn btn-link ms-2 p-0 my-0 text-info">Show Details--}}
-{{--                </button>--}}
+               <button data-bs-toggle="modal" data-bs-target="#urgentModal" wire:click="showRecues"
+                       class="btn btn-link ms-2 p-0 my-0 text-info">Show Details
+               </button>
             </div>
         @endif
         </div>

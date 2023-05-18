@@ -28,7 +28,7 @@
                                 <label>Please enter code </label>
                                 <div class="d-flex flex-column">
                                     <div>
-                                        <input type="password" class="form-control me-2" wire:model="code">
+                                        <input type="text" class="form-control me-2" wire:model="code">
                                         @error('code')
                                         <span class="badge badge-sm bg-gradient-danger mt-2">{{ $message }}</span>
                                         @enderror

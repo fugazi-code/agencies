@@ -10,7 +10,8 @@
     <div class="card mt-5">
         <div class="card-body">
             <div class="card-title mb-4 d-flex flex-row">
-                <h3>Cases</h3>
+                <h3>Reports</h3>
+                <a href="{{ route('reporting') }}" target="_blank" class="btn btn-outline-info ms-2">Form for Reporting</a>
             </div>
             <div class="row">
                 <div class="col-12">

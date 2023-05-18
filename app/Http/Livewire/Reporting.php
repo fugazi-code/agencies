@@ -7,13 +7,15 @@ use Livewire\Component;
 
 class Reporting extends Component
 {
-    public $code = '9z2x100822';
+    public $code;
 
     public $candidate = [];
 
-    public $remarks = '';
+    public $remarks;
 
-    public $salary = '';
+    public $salary_received;
+
+    public $salary_date;
 
     public $latest_report;
 
@@ -47,14 +49,15 @@ class Reporting extends Component
     {
         $this->validate([
             'remarks' => 'required',
-            'salary' => 'required',
+            'salary_received' => 'required',
         ]);
 
         $candidate = Candidate::find($this->candidate['id']);
 
         $candidate->report()->create([
-            'salary' => $this->salary,
+            'salary_received' => $this->salary_received,
             'remarks' => $this->remarks,
+            'salary_date' => $this->salary_date
         ]);
 
         $this->emit('callToaster', ['message' => 'Report has been submitted!']);

@@ -12,7 +12,7 @@ use Livewire\Component;
 
 class RescueRemoteLivewire extends Component
 {
-    public string $code = '1q0w101422';
+    public string $code = '';
 
     public array $candidate = [];
 

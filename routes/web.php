@@ -49,10 +49,9 @@ Route::post(
     }
 )->name('logout');
 
-Route::get('report', Reporting::class)->name('report');
+Route::get('report', Reporting::class)->name('reporting');
 Route::get('rescue-report', RescueRemoteLivewire::class)->name('rescue');
 Route::get('complaint', ComplaintFormLivewire::class)->name('complaint-form-livewire');
-
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', DashboardLivewire::class)->name('dashboard');

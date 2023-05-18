@@ -45,7 +45,7 @@ class CandidateFactory extends Factory
             'passport' => $this->faker->bankAccountNumber,
             'place_issue' => $this->faker->address,
             'education' => 'college',
-            'spouse' => $this->faker->name,
+            'spouse_name' => $this->faker->name,
             'mother_name' => $this->faker->name('female'),
             'father_name' => $this->faker->name('male'),
             'status' => 'applicant',

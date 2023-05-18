@@ -165,7 +165,7 @@
                 <div class="col-md-12"></div>
                 <div class="col-md-4 mb-2 mt-4">
                     <div class="col-md-auto d-flex flex-row">
-                        <x-a-button click="addChildren"><i class="fas fa-plus"></i></x-a-button><h4 class="ml-2">Childrens</h4>
+                        <x-a-button click="addChildren"><i class="fas fa-plus"></i></x-a-button><h4 class="ml-2">Children</h4>
                     </div>
                     <div class="row mt-4">
                         <div class="col-md-12">
