@@ -42,8 +42,6 @@ class VoucherFactory extends Factory
             'repat' => $this->faker->sentence,
             'stamping' => $this->faker->sentence,
             'created_by' => $this->faker->sentence,
-            'created_at' => $this->faker->dateTimeBetween('-2 years'),
-            'updated_at' => $this->faker->dateTimeBetween('-2 years'),
             'vaccine_fare' => $this->faker->sentence,
             'ticket_to_kuwait' => $this->faker->sentence,
             'ticket_to_qatar' => $this->faker->sentence,
