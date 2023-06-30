@@ -1,3 +1,5 @@
-<div>
-    <!-- The best way to take care of the future is to take care of the present moment. - Thich Nhat Hanh -->
-</div>
+
+<button type="button" class="{{ $class ?? 'btn btn-success' }} me-2" {{ $others ?? '' }}
+        @isset($click) wire:click="{{ $click }}" @endisset>
+    {{ $slot }}
+</button>

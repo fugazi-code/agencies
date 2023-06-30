@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use Database\Factories\CandidateFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
+use Carbon\Carbon;
 use Spatie\Tags\HasTags;
+use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Model;
+use Database\Factories\CandidateFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * php artisan scout:import 'App\Models\Candidate'
@@ -30,7 +32,6 @@ class Candidate extends Model
         'code',
         'contact_1',
         'contact_2',
-        'created_at',
         'date_hired',
         'deleted_at',
         'doe',

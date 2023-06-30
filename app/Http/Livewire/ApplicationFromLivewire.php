@@ -37,9 +37,8 @@ class ApplicationFromLivewire extends Component
 
     public ?string $cand_id = '';
 
-    public function render()
+    public function mount()
     {
-      // dd(auth()->user()->agency_id);
         if ($this->candidate_id) {
             if ($this->cand_id == '') {
                 $this->cand_id = decrypt($this->candidate_id);
@@ -57,6 +56,10 @@ class ApplicationFromLivewire extends Component
         } else {
             $this->generateCode();
         }
+    }
+
+    public function render()
+    {
 
         return view('livewire.application-from-livewire');
     }
@@ -137,7 +140,6 @@ class ApplicationFromLivewire extends Component
         if ($this->picfull) {
             $this->details['picfull'] = $this->picfull->store('applicant', 'public');
         }
-        // auth()->user()->agency_id
 
         $this->details['agency_id'] = auth()->user()->agency_id;
 
@@ -175,7 +177,7 @@ class ApplicationFromLivewire extends Component
             $this->details['picfull'] = $this->picfull->store('applicant', 'public');
         }
 
-        Candidate::query()->where('id', $this->cand_id)->update($this->details);
+        Candidate::updateOrCreate(['id' => $this->cand_id], $this->details);
 
         Children::query()->where('candidate_id', $this->cand_id)->delete();
         foreach ($this->children as $child) {
