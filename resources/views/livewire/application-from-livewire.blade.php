@@ -283,17 +283,89 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-3 mt-5">
-                    @if (!$candidate_id)
-                        <x-button class="btn btn-primary w-100" click="store">
-                            <h5>Confirm and Save</h5>
-                        </x-button>
-                    @else
-                        <x-button class="btn btn-info w-100" click="edit">
-                            <h5>Confirm and Update</h5>
-                        </x-button>
+            <div class="row justify-content-center mt-5">
+                <div class="col-auto">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                            wire:model='approvedTerms'>
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Please read
+                            <!-- Button trigger modal -->
+                            <a href="#" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                Data Privacy Policy
+                            </a> before approving.
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12"></div>
+                <div class="col-3">
+                    @if ($approvedTerms)
+                        @if (!$candidate_id)
+                            <x-button class="btn btn-primary w-100" click="store">
+                                <h5>Confirm and Save</h5>
+                            </x-button>
+                        @else
+                            <x-button class="btn btn-info w-100" click="edit">
+                                <h5>Confirm and Update</h5>
+                            </x-button>
+                        @endif
                     @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Data Privacy Policy</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><br>Below is a general outline of what a data privacy policy for employment may include. Please note that actual policies may vary depending on the organization and local laws. It&apos;s important to refer to the specific policy of your employer to obtain accurate and up-to-date information.</p>
+                    <ol>
+                        <li>
+                            <p>Data Collection: The policy should explain what types of personal information are collected from employees, such as contact details, employment history, educational background, and any other relevant information required for employment purposes.</p>
+                        </li>
+                        <li>
+                            <p>Purpose of Data Collection: The policy should clearly state the purpose for which the data is being collected, which is typically related to managing the employment relationship, fulfilling legal obligations, and ensuring the proper functioning of HR processes.</p>
+                        </li>
+                        <li>
+                            <p>Consent: The policy may mention that by providing personal information to the employer, employees are giving their consent for the collection, use, and processing of their data for employment-related purposes.</p>
+                        </li>
+                        <li>
+                            <p>Use of Employee Data: The policy should outline how the collected data will be used, such as for recruitment, payroll and benefits administration, performance evaluations, training and development, internal communication, and compliance with employment laws.</p>
+                        </li>
+                        <li>
+                            <p>Data Sharing: The policy may specify circumstances under which employee data may be shared with third parties, such as government agencies for tax purposes, benefit providers, or legal and regulatory authorities.</p>
+                        </li>
+                        <li>
+                            <p>Data Security: The policy should detail the security measures in place to protect employee data from unauthorized access, disclosure, alteration, or destruction, including physical, technical, and administrative safeguards.</p>
+                        </li>
+                        <li>
+                            <p>Data Retention: The policy should specify how long employee data will be retained by the employer, taking into account legal requirements and business needs. It may also address the procedures for securely disposing of data when it is no longer needed.</p>
+                        </li>
+                        <li>
+                            <p>Employee Rights: The policy should inform employees about their rights regarding their personal data, including the right to access, rectify, restrict processing, and lodge complaints. It may also explain the process for exercising these rights.</p>
+                        </li>
+                        <li>
+                            <p>Employee Obligations: The policy may outline the responsibilities of employees in protecting the confidentiality and security of their own and others&apos; personal information, such as using strong passwords, reporting data breaches, and following company data protection policies.</p>
+                        </li>
+                        <li>
+                            <p>Updates to the Policy: The policy should state that it may be subject to periodic updates or revisions as necessary to reflect changes in the organization&apos;s practices, legal requirements, or technological advancements.</p>
+                        </li>
+                    </ol>
+                    <p>Remember, this is a general overview, and the specific data privacy policy of your employer may contain additional or different provisions. It&apos;s crucial to review the policy provided by your employer to understand how your personal data is handled in the employment context.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

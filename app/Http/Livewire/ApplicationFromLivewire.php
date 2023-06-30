@@ -37,6 +37,8 @@ class ApplicationFromLivewire extends Component
 
     public ?string $cand_id = '';
 
+    public $approvedTerms = 0;
+
     public function mount()
     {
         if ($this->candidate_id) {
