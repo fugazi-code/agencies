@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Actions\CalculateTotalByVoucher;
 use App\Models\ForeignAgency;
 use App\Models\JobOrder;
 use App\Models\User;
@@ -83,7 +84,10 @@ class VoucherLivewire extends Component
     public function store()
     {
         $params = array_merge($this->details, ['created_by' => auth()->id(), 'agency_id' => auth()->user()->agency_id]);
-        Voucher::query()->updateOrCreate(['id' => $this->details['id'] ?? null], $params);
+        $object = Voucher::updateOrCreate(['id' => $this->details['id'] ?? null], $params);
+
+        CalculateTotalByVoucher::handle($object->id);
+        
         $this->emit('callToaster', [
             'message' => isset($this->details['id']) ? 'Voucher has been updated!' : 'New Voucher has been Added!',
         ]);
